@@ -1,5 +1,27 @@
 # Lab 7.2 - Die Dataverse Web API im Architekturkontext einordnen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist die Dataverse Web API und wie ist sie standardisiert?
+2. Wie authentifiziert sich eine externe Anwendung gegen die Dataverse Web API?
+3. Was ist ein OData $batch-Request und wann nutzen Sie ihn?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Eine RESTful-Schnittstelle basierend auf OData v4. Jede Tabelle ist als OData-Entityset erreichbar. Authentifizierung: OAuth 2.0 mit Entra ID. Unterstuetzt: CRUD, Batch-Anfragen, $filter, $select, $expand.
+
+**2.** 1. App Registration in Entra ID. 2. Client ID + Client Secret ausstellen. 3. Application User in Dataverse anlegen und Sicherheitsrolle zuweisen. 4. OAuth 2.0 Client Credentials Flow: Token von Entra ID holen, im Authorization-Header jedes API-Calls nutzen.
+
+**3.** Ein $batch-Request fasst mehrere OData-Operationen in einer HTTP-Anfrage zusammen. Statt 100 einzelne CREATE-Aufrufe: eine $batch-Anfrage. Reduziert HTTP-Overhead und hilft beim Service Protection Limit (1 Batch-Anfrage = 1 API-Call aus SPL-Sicht).
+
+</details>
+
+</details>
+
+
 ## Was ist die Dataverse Web API?
 
 Die Dataverse Web API ist eine RESTful-Schnittstelle basierend auf dem OData v4 Standard. Sie ermoeglicht externen Systemen, Anwendungen und Diensten den Zugriff auf Dataverse-Daten - lesend und schreibend - ohne Power Platform-Lizenzen nutzen zu muessen.

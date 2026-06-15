@@ -1,5 +1,27 @@
 # Lab 1.1 - Rolle, Mandat und Verantwortung des Solution Architects
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist der Unterschied zwischen einem Solution Architect und einem Senior Developer auf der Power Platform?
+2. Welche sechs Kernbereiche deckt ein SA auf der Power Platform ab?
+3. Was meint man mit 'zwischen Fachlichkeit und Technik uebersetzen'?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Der Senior Developer loest konkrete technische Aufgaben. Der SA ist fuer das Gesamtbild verantwortlich: Datenmodell, Sicherheit, Integrationen, Umgebungen und ALM muessen zusammenpassen. Er trifft Designentscheidungen, die schwer rueckgaengig zu machen sind.
+
+**2.** Datenmodell & Dataverse-Architektur | Sicherheitsarchitektur | Umgebungsstrategie | Integrationsstrategie | Erweiterungsstrategie | Governance & ALM.
+
+**3.** Der SA hoert den Fachbereich in Geschaeftssprache und uebersetzt das in technische Entscheidungen (Tabellen, Flows, Rollen). Er erklaert technische Grenzen rueckwaerts in Businessauswirkungen — ohne Fachjargon.
+
+</details>
+
+</details>
+
+
 ## Was ist ein Solution Architect?
 
 Ein Solution Architect auf der Power Platform ist die Person, die dafuer verantwortlich ist, dass die gesamte Loesung zusammenhaelt. Nicht einzelne Features, nicht einzelne Flows, nicht einzelne Screens, sondern das Gesamtbild: Wie passen Datenmodell, Sicherheit, Integrationen, Umgebungen und Benutzererfahrung so zusammen, dass das Ergebnis wartbar, skalierbar und korrekt ist?

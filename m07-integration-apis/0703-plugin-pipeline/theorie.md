@@ -1,5 +1,27 @@
 # Lab 7.3 - Plug-In-Pipeline und Ausfuehrungsmodelle verstehen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist die Dataverse Plugin-Pipeline und in welchen Phasen kann man eingreifen?
+2. Was ist der Unterschied zwischen synchronem und asynchronem Plugin?
+3. Warum ist ein Plugin, das eine externe HTTP-API aufruft, in einem synchronen Pre-Operation-Step problematisch?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Die Plugin-Pipeline ist eine serverseitige Verarbeitungskette bei jedem Dataverse-Vorgang. Phasen: Pre-Validation (vor Datenbankvalidierung, ausserhalb Transaktion) | Pre-Operation (vor dem Schreiben, innerhalb Transaktion) | Post-Operation (nach dem Schreiben, optional asynchron).
+
+**2.** Synchron: Laeuft innerhalb der Transaktion — Fehler rollt zurueck. Nachteil: Blockiert Nutzer bis fertig (max. 2 Min Timeout). Asynchron: Laeuft nach dem Schreiben in separatem Prozess — kein Rollback. Fuer Benachrichtigungen und externe Systemaufrufe.
+
+**3.** Wenn die externe API langsam oder nicht erreichbar ist, blockiert das gesamte Dataverse-Save bis zum Timeout. Bei hohem Transaktionsvolumen warten alle Nutzer. Loesung: HTTP-Calls immer in asynchronen Post-Operation-Steps — oder in Power Automate auslagern.
+
+</details>
+
+</details>
+
+
 ## Was ist die Plugin-Pipeline?
 
 Wenn ein Nutzer oder eine Anwendung einen Dataverse-Datensatz erstellt, aendert oder loescht, durchlaeuft dieser Vorgang eine interne Verarbeitungspipeline. In diese Pipeline koennen Plugins eingehaengt werden - benutzerdefinierter .NET-Code, der serverseitig auf dem Dataverse-Server ausgefuehrt wird.

@@ -1,5 +1,27 @@
 # Lab 6.3 - Spaltensicherheit fuer sensible Daten konfigurieren
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist Column-Level Security und wann braucht man sie?
+2. Wie konfiguriert man Column-Level Security in Dataverse?
+3. Was ist ein haeufiger Fehler bei der Implementierung von Column-Level Security?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Schraenkt Zugriff auf einzelne Felder ein — unabhaengig davon, ob der Nutzer den Datensatz lesen darf. Einsatz: Gehaltsfelder, Einkaufspreise, Sozialversicherungsnummern (DSGVO-relevant). Der Nutzer sieht den Datensatz, aber gesperrte Felder zeigen leer.
+
+**2.** 1. Feld als 'Spaltensicherheit aktivieren' markieren. 2. Column Security Profile erstellen. 3. Nutzer oder Teams dem Profil zuweisen. 4. Lese-/Schreib-/Erstell-Berechtigung pro Profil konfigurieren. Ohne Profil-Zuweisung: Feld fuer alle gesperrt.
+
+**3.** Das Feld wird in einem Flow gelesen der unter einem Service Account laeuft — der kein Column Security Profil hat. Ergebnis: Der Flow schreibt leere Werte. Loesung: Service Account einem Column Security Profil zuweisen.
+
+</details>
+
+</details>
+
+
 ## Was ist Spaltensicherheit (Column-Level Security)?
 
 Spaltensicherheit ist ein Mechanismus in Dataverse, der den Zugriff auf einzelne Felder einer Tabelle einschraenkt - unabhaengig davon, ob der Nutzer den Datensatz lesen darf. Ein Nutzer kann also einen Datensatz sehen, aber bestimmte Felder sind fuer ihn leer oder gesperrt.

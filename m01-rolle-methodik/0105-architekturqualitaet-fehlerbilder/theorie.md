@@ -1,5 +1,27 @@
 # Lab 1.5 - Architekturqualitaet sichern und typische Fehlerbilder erkennen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Welche fuenf Saeulen hat das Power Platform Well-Architected Framework?
+2. Was sind die haeufigsten Fehlerbilder bei Power Platform Projekten?
+3. Wie erkennt man eine schlecht gebaute Power Platform Loesung, ohne alle Details zu kennen?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Reliability (Zuverlaessigkeit) | Security (Sicherheit) | Operational Excellence (Operativer Betrieb) | Performance Efficiency (Performance) | Experience Optimization (Nutzererfahrung). Jede Saeule enthaelt konkrete Design-Prinzipien.
+
+**2.** Sicherheitsrollen zu grosszuegig gesetzt | Alles in einer Solution gebaut ohne Layering | Flows direkt in Produktion gebaut ohne Versionierung | Canvas Apps mit duplizierten Screens statt Komponenten | Keine Umgebungsstrategie.
+
+**3.** Warnsignale: Keine Solutions vorhanden (alles unmanaged) | Alle Customizations in der Default Solution | Sicherheitsrollen heissen 'Admin' und 'User' ohne weitere Differenzierung | Flows mit mehr als 50 Schritten ohne Unterflows | Canvas Apps ohne Komponenten.
+
+</details>
+
+</details>
+
+
 ## Das Power Platform Well-Architected Framework
 
 Microsoft hat fuer die Power Platform ein eigenes Well-Architected Framework definiert. Es beschreibt fuenf Saeulen, anhand derer eine Loesung bewertet werden kann. Eine gute Architektur erreicht in allen fuenf Saeulen ein angemessenes Niveau.

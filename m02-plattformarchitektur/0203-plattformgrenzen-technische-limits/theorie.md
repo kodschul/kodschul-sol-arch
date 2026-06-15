@@ -1,5 +1,27 @@
 # Lab 2.3 - Plattformgrenzen und technische Limits erkennen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Welche technischen Limits der Power Platform sollte ein SA auswendig kennen?
+2. Was bedeutet 'Delegation' in Canvas Apps und warum ist es ein haeufiger Fallstrick?
+3. Ein Kunde hat 15 Millionen Datensaetze in einer Tabelle. Was fragen Sie als SA zuerst?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Dataverse: 50.000 Zeilen per API-Abfrage-Limit | 1.000 Felder pro Tabelle. Power Automate: 100.000 Aktionen pro Flow-Run | 30-Tage Flow-History. Canvas Apps: Delegierbarkeitsgrenze (500-2.000 Zeilen ohne Delegation). API: Service Protection Limits (6.000 Anfragen / 5 Min pro Nutzer).
+
+**2.** Delegation bedeutet, dass Power Apps die Filterlogik an die Datenquelle uebergibt. Wenn eine Funktion nicht delegierbar ist, werden nur die ersten 500/2.000 Zeilen geladen und dann clientseitig gefiltert — der Nutzer sieht nicht alle Ergebnisse.
+
+**3.** Wie oft werden diese Daten gelesen/geschrieben? Brauchen wir volle CRUD-Faehigkeiten oder nur Archivzugriff? Gibt es Performance-SLAs? Dann: Elastic Tables evaluieren, Azure Synapse Link fuer Analytics, Archivierungsstrategie pruefen.
+
+</details>
+
+</details>
+
+
 ## Warum ein SA die Limits kennen muss
 
 Ein SA, der die technischen Limits der Plattform nicht kennt, entwirft Loesungen, die in der Produktion scheitern. Die typische Geschichte: Die Loesung funktioniert perfekt in der Entwicklungsumgebung mit 100 Testdatensaetzen. Im ersten Produktivmonat erreicht sie 10.000 Datensaetze und faengt an zu versagen. Der SA muss solche Szenarien voraussehen.

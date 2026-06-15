@@ -1,5 +1,27 @@
 # Theorie: Governance-Anforderungen fuer Agents beruecksichtigen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Welche Governance-Risiken entstehen, wenn Mitarbeiter unkontrolliert eigene Agents bauen?
+2. Welche DLP-Einstellungen sind fuer Copilot Studio besonders relevant?
+3. Wie etablieren Sie einen Freigabeprozess fuer neue Agents?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Agents mit Zugriff auf sensible Daten ohne Sicherheitsreview | Agents die externe Services aufrufen (Datenleck) | Unkontrollierter Einsatz von generativer KI mit Halluzinationsrisiko | Lizenzkosten explodieren | Kein Support im Fehlerfall.
+
+**2.** Welche Connectors der Agent nutzen darf | Welche Knowledge Sources erlaubt sind (nur interne SharePoint-Seiten vs. oeffentliche Websites) | Tenant-Einstellung: 'Wer darf Agents erstellen'.
+
+**3.** Agent-Review-Prozess: Sicherheitsreview (Daten, Actions) | Lizenz-Check | Compliance-Check (DSGVO). Deployment in kontrollierte Umgebung via Solution. Monitoring: Conversation-Logs, Eskalationsrate. Dokumentation: Topics, Actions, Datenquellen.
+
+</details>
+
+</details>
+
+
 ## Warum Governance bei Agents besonders wichtig ist
 
 Bei klassischen Apps und Flows ist das Verhalten deterministisch: Was programmiert wurde, passiert. Bei Agents mit generativer KI ist das anders. Ein Agent kann prinzipiell auf jede Nutzereingabe reagieren, auch auf solche, die nicht vorgesehen waren. Das schafft Risiken, die bei klassischen Anwendungen nicht existieren.

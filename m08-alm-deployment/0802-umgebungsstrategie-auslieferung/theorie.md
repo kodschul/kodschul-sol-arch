@@ -1,5 +1,27 @@
 # Lab 8.2 - Umgebungsstrategie fuer professionelle Auslieferung aufbauen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Warum reicht Dev-Test-Prod fuer professionelle Power Platform Projekte oft nicht aus?
+2. Wie gehen Sie mit Konfigurationsdaten beim Deployment um?
+3. Was ist Ihre Rollback-Strategie wenn ein Deployment in Produktion einen Fehler einfuehrt?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Bei mehreren parallelen Entwicklungsstroaengen braucht man getrennte Dev-Umgebungen oder Feature-Branches. UAT braucht eine eigene Umgebung mit Produktionsdaten und echten Fachbereichstestern — nicht identisch mit der Test-Umgebung des Entwicklungsteams.
+
+**2.** Konfigurationsdaten (Status-Codes, Kategorien) gehoeren nicht in die Solution-ZIP. Separat migrieren: Configuration Migration Tool oder ein Seed-Flow der beim Deployment Stammdaten anlegt. Dokumentation: Welche Konfigurationsdaten muessen in jeder Umgebung vorhanden sein.
+
+**3.** Managed Solutions koennen deinstalliert werden — sauberster Rollback. Voraussetzung: Vorherige Version als Managed Solution archiviert (Azure DevOps Artefakt). Wenn Deinstallation Datenverlust riskiert: vorher Backup. Immer: Deployment-Fenster und Rollback-Plan vor jedem Prod-Deployment definieren.
+
+</details>
+
+</details>
+
+
 ## Warum eine Umgebungsstrategie mehr ist als "Dev-Test-Prod"
 
 Die Grundstruktur mit drei Umgebungen (Dev, Test, Prod) ist bekannt. Eine professionelle Umgebungsstrategie geht jedoch darueber hinaus: Sie definiert wer in welcher Umgebung was tun darf, wie Daten zwischen Umgebungen fliessen, und wie Loesungen kontrolliert transportiert werden.

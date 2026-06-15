@@ -1,5 +1,27 @@
 # Lab 6.2 - Teams als Sicherheits- und Kollaborationswerkzeug bewerten
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Welche drei Team-Typen gibt es in Dataverse und wann nutzt man welchen?
+2. Was ist der Unterschied zwischen Sicherheitsrolle die einem Nutzer vs. einem Team zugewiesen wird?
+3. Warum sind Access Teams keine dauerhafte Loesung fuer strukturelle Sicherheitsanforderungen?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Owner Team: Kann Datensatzbesitzer sein — fuer stabile Gruppenverantwortung. Access Team: Dynamisch pro Datensatz zusammengestellt — fuer ad-hoc Sharing. Entra ID-Team (AAD-Team): Gespiegelt aus Azure AD Gruppen — fuer zentrale Benutzerverwaltung.
+
+**2.** Nutzer erbt alle Rollen die direkt ihm und allen seinen Teams zugewiesen sind — additive Berechtigung (immer die hoechste). Wenn Rollen nur Teams zugewiesen werden: Zugriffsaenderungen zentral ueber Teamzugehoerigkeit steuern, nicht jeden Nutzer einzeln.
+
+**3.** Access Teams existieren pro Datensatz und werden dynamisch erstellt. Gut fuer Ausnahmen, aber nicht fuer systematische Zugriffsregeln. 10.000 Datensaetze mit je einem Access Team: Performance-Problem und Wartungsalptraum.
+
+</details>
+
+</details>
+
+
 ## Die drei Team-Typen in Dataverse
 
 Dataverse kennt drei verschiedene Team-Typen, die sich in Zweck, Konfiguration und Verhalten grundlegend unterscheiden.

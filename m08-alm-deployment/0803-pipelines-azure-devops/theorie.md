@@ -1,5 +1,27 @@
 # Lab 8.3 - Power-Platform-Pipelines und Azure DevOps Build Tools einordnen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist der Unterschied zwischen Power Platform Pipelines (eingebaut) und Azure DevOps Pipelines?
+2. Was sind die drei Stages in einer typischen Azure DevOps Pipeline fuer Power Platform?
+3. Wie authentifiziert sich eine Azure DevOps Pipeline gegen Power Platform?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** PP Built-in Pipelines: Einfach, im Admin Center konfiguriert, keine Code-Kenntnisse — fuer einfache DEV>TEST>PROD ohne benutzerdefinierte Logik. Azure DevOps: Vollstaendig skriptbar via YAML, Git-integriert, unterstuetzt Tests und Genehmigungen — fuer professionelle ALM-Setups.
+
+**2.** Stage 1 - Export: Solution aus Dev exportieren (unmanaged), in Git-Quellcode entpacken. Stage 2 - Build: Entpackten Source als Managed Solution verpacken. Stage 3 - Deploy: Managed Solution in Zielumgebung importieren. Zwischen Stages: Artefakte als Pipeline-Artifacts uebergeben.
+
+**3.** Ueber Service Principal (App Registration in Entra ID) + Service Connection in Azure DevOps. Service Principal als Application User in Dataverse-Umgebung registrieren mit Sicherheitsrolle. Pipeline nutzt 'PowerPlatformSPN' als Authentication Type in den Build Tool Tasks.
+
+</details>
+
+</details>
+
+
 ## Das ALM-Werkzeugspektrum
 
 Fuer automatisierte Deployments in Power Platform gibt es drei Hauptwerkzeuge, die sich in Komplexitaet und Kontrolle unterscheiden:

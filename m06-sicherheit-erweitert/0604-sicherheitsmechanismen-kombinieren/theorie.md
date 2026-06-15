@@ -1,5 +1,27 @@
 # Lab 6.4 - Sicherheitsmechanismen sinnvoll kombinieren
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Welche Sicherheitsschichten kann ein SA in Dataverse kombinieren?
+2. Was passiert, wenn Sicherheitsschichten widerspruchlich konfiguriert werden?
+3. Wie dokumentieren Sie ein Sicherheitskonzept so, dass es auditierbar und wartbar ist?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** 1. Umgebungsebene (wer hat Zugang). 2. Tabellen-/Aktionsebene (Sicherheitsrolle: welche CRUD-Aktionen). 3. Zeilenebene (Owner/BU/Hierarchie: welche Datensaetze). 4. Spaltenebene (Column Security Profile: welche Felder). Alle vier Ebenen muessen explizit geplant werden.
+
+**2.** In Dataverse gelten additive Regeln bei mehreren Rollen: Der Nutzer bekommt immer die groesste Berechtigung aus allen zugewiesenen Rollen. Eine restriktivere Rolle kann eine grosszuegigere nicht 'ueberschreiben'. Wenn ein Nutzer zu viel sieht: pruefen ob er mehrere Rollen hat.
+
+**3.** Matrix aus Nutzergruppen x Tabellen x Berechtigungstiefe. Column Security Profiles separat. BU-Hierarchie als Diagramm. Alle Sharing-Regeln auflisten. Review-Prozess definieren: Wer darf Rollen anlegen? Wie werden Nutzer ongeboardet?
+
+</details>
+
+</details>
+
+
 ## Das Zusammenspiel der Sicherheitsschichten
 
 Die Power Platform kennt mehrere Sicherheitsschichten, die unabhaengig voneinander konfiguriert werden, aber zusammenwirken. Ein SA muss verstehen, wie diese Schichten interagieren, um Luecken zu vermeiden und keine unnoetigen Komplexitaeten zu erzeugen.

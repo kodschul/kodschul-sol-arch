@@ -1,5 +1,27 @@
 # Lab 5.2 - Business Units und Hierarchien strukturiert aufbauen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was sind Business Units in Dataverse und wie beeinflussen sie, was ein Nutzer sieht?
+2. Wann sollte man Business Units fuer Security nutzen — und wann ist es die falsche Wahl?
+3. Was passiert mit Datensaetzen eines Nutzers, wenn er in eine andere Business Unit verschoben wird?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Business Units sind die organisatorische Grundstruktur fuer Datensichtbarkeit. Abhaengig von Sicherheitsrolle sieht der Nutzer: eigene BU (User-Ebene), untergeordnete BUs (Business Unit-Ebene) oder alle BUs (Organization-Ebene).
+
+**2.** Richtig: Wenn die Datentrennung der Unternehmensstruktur folgt (Regionen, Abteilungen) und stabil ist. Falsch: Wenn die Trennung dynamisch ist (projektbasiert) oder Nutzer regelmaessig BUs wechseln — dann ist Team-basiertes Sharing flexibler.
+
+**3.** Die Datensaetze bleiben in der alten BU — sie wandern nicht mit. Der Nutzer sieht seine alten Datensaetze moeglicherweise nicht mehr. Loesung: Ownership der Datensaetze uebertragen oder ein Team als Besitzer setzen.
+
+</details>
+
+</details>
+
+
 ## Was sind Business Units?
 
 Business Units (BUs) sind die organisatorische Grundstruktur des Dataverse-Sicherheitsmodells. Sie bilden die Aufbauorganisation des Unternehmens innerhalb einer Umgebung ab und bestimmen, welche Datensaetze ein Nutzer standardmaessig sehen kann.

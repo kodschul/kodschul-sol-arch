@@ -1,5 +1,27 @@
 # Lab 5.1 - Umgebungen als erste Sicherheitsgrenze verstehen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Warum sind Umgebungen in der Power Platform mehr als nur Dev/Test/Prod?
+2. Was passiert, wenn zu viele Nutzer System Administrator-Rechte in der Produktionsumgebung haben?
+3. Wann wuerde man eine separate Sandbox-Umgebung statt der Dev-Umgebung fuer Tests nutzen?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Umgebungen sind die haerteste Sicherheitsgrenze: Daten einer Umgebung sind fuer Nutzer anderer Umgebungen nicht sichtbar, unabhaengig von Rollen. Sie trennen auch Lizenzen, DLP-Richtlinien und Ressourcenlimits. Falsche Umgebungsstrategie = Datenlecks oder Compliance-Verstoesse.
+
+**2.** System Admins koennen alle Datensaetze lesen und aendern, Sicherheitskonfigurationen aendern, Daten exportieren und Plugins deaktivieren. Prinzip der minimalen Rechte: In Produktion maximal 2-3 Service Accounts mit Admin-Rechten.
+
+**3.** Wenn echte Produktionsdaten fuer Tests benoetigt werden (Backup-Restore aus Prod) | wenn ein Hotfix getestet werden muss ohne die laufende Entwicklung zu stoeren | wenn ein neuer Connector risikofrei ausprobiert werden soll.
+
+</details>
+
+</details>
+
+
 ## Warum Umgebungen keine reine ALM-Entscheidung sind
 
 Umgebungen werden haeufig als Entwicklungs-, Test- und Produktivumgebungen diskutiert. Das ist richtig, aber unvollstaendig. Umgebungen sind gleichzeitig die haerteste Sicherheitsgrenze in der gesamten Power Platform. Wer Zugriff auf eine Umgebung hat, kann im schlimmsten Fall alle Daten darin lesen, aendern oder loeschen, unabhaengig davon, welche Sicherheitsrollen konfiguriert wurden.

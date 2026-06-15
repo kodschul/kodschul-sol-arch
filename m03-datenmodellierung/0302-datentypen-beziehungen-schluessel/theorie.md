@@ -1,5 +1,27 @@
 # Theorie: Datentypen, Beziehungen und Schluessel gezielt einsetzen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Warum ist die Wahl des falschen Datentyps ein Architekturproblem?
+2. Wann nutzen Sie eine 1:N-Beziehung, wann eine N:N-Beziehung?
+3. Was ist ein Alternate Key und wann brauchen Sie ihn?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Weil Datentypaaenderungen in Produktion Datenmigration erfordern. Ein Preisfeld als Text: keine Sortierung nach Wert, keine Summe, keine Waehrungsumrechnung. Einmal in Produktion mit Tausenden von Datensaetzen — sehr teuer zu korrigieren.
+
+**2.** 1:N: Wenn ein Datensatz genau einem uebergeordneten Datensatz gehoert (Reklamation gehoert zu einem Kunden). N:N: Wenn Datensaetze beidseitig mehrfach vorkommen koennen (Techniker arbeitet an mehreren Projekten). In Dataverse: N:N erzeugt intern eine Zwischentabelle.
+
+**3.** Ein Alternate Key ist ein eindeutiges Feld das als Integrations-Schluessel genutzt wird — z.B. die SAP-Kundennummer. Damit koennen externe Systeme Datensaetze upserten, ohne die Dataverse-GUID zu kennen.
+
+</details>
+
+</details>
+
+
 ## Warum Datentypen eine Architekturentscheidung sind
 
 Ein Datentyp ist nicht nur eine technische Eigenschaft eines Feldes. Er ist eine Entscheidung ueber das Verhalten der gesamten Anwendung. Wenn ein Architect ein Preisfeld als Text statt als Currency anlegt, kann spaeter nicht nach dem hoechsten Preis sortiert werden, keine Summe gebildet werden und keine Waehrungsumrechnung stattfinden. Der Fehler entsteht beim Entwurf, die Kosten entstehen beim Betrieb.

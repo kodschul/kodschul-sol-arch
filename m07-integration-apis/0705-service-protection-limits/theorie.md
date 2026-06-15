@@ -1,5 +1,27 @@
 # Lab 7.5 - Service-Protection-Limits und Bulk-Muster beruecksichtigen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was sind Service Protection Limits in Dataverse und welche drei Grenzen gibt es?
+2. Was passiert, wenn ein Power Automate Flow die Service Protection Limits erreicht?
+3. Wie entwerfen Sie einen Bulk-Import von 100.000 Datensaetzen so, dass keine Limits ueberschritten werden?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Schuetzen die Plattform vor Ueberlastung. Drei Grenzen pro Nutzer: 1. Anzahl API-Anfragen pro 5-Minuten-Fenster (6.000). 2. Maximale Ausfuehrungszeit pro 5-Minuten-Fenster (20 Min). 3. Anzahl gleichzeitiger Anfragen (52 parallel). Bei Ueberschreitung: HTTP 429.
+
+**2.** Der Flow bekommt HTTP 429 zurueck. Power Automate hat eingebautes Auto-Retry mit Exponential Backoff. Problem: Wenn das Limit strukturell ueberschritten wird (z.B. Loop mit 10.000 Iterationen), hilft Retry nicht — das Design muss geaendert werden.
+
+**3.** Batch-API ($batch) statt Einzel-Aufrufe. Pausen zwischen Batches einbauen (Concurrency-Steuerung). Dataverse Bulk Import Job nutzen wenn moeglich. Alternativ: Azure Data Factory mit Dataverse-Connector — fuer echte Bulk-Szenarien gebaut.
+
+</details>
+
+</details>
+
+
 ## Was sind Service Protection Limits?
 
 Service Protection Limits (SPL) sind eingebaute Schutzmechanismen in Dataverse, die verhindern, dass einzelne Anwendungen oder Integrationen die Plattform fuer alle anderen Nutzer unbrauchbar machen. Sie begrenzen die Anzahl der API-Anfragen pro Nutzer und Zeitfenster.

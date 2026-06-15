@@ -1,5 +1,27 @@
 # Lab 2.1 - Die Kernkomponenten der Power Platform im Zusammenspiel
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Nennen Sie die vier Hauptprodukte der Power Platform und ihre primaere Aufgabe.
+2. Was ist Dataverse und warum ist es das Fundament der Power Platform?
+3. Wann wuerden Sie SharePoint oder Excel statt Dataverse empfehlen?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Power Apps: Anwendungen bauen (Canvas App fuer flexibles UI, Model Driven fuer datengesteuerte Prozesse). Power Automate: Prozesse automatisieren. Power BI: Daten visualisieren. Copilot Studio: KI-Agents und Chatbots bauen.
+
+**2.** Dataverse ist die relationale Datenbank der Power Platform mit integriertem Sicherheitsmodell, Geschaeftslogik, Auditing, API und Erweiterungspunkten. Ohne Dataverse: kein Row-Level Security, keine Model Driven Apps, keine Plugins.
+
+**3.** Nur fuer sehr einfache Szenarien ohne Sicherheitsanforderungen, ohne relationale Daten, ohne Workflows und mit wenigen Nutzern. Sobald mehrere Nutzer gleichzeitig schreiben oder Berechtigungen noetig sind: Dataverse.
+
+</details>
+
+</details>
+
+
 ## Die Power Platform als integriertes System
 
 Die Power Platform ist kein einzelnes Produkt, sondern eine Familie von Diensten, die so konzipiert sind, dass sie zusammenarbeiten. Jede Komponente hat eine klare Hauptverantwortung, aber die eigentliche Staerke entfaltet sich wenn sie kombiniert werden.

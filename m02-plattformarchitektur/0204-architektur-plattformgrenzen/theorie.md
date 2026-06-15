@@ -1,5 +1,27 @@
 # Lab 2.4 - Architektur unter Beruecksichtigung von Plattformgrenzen entwerfen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Wie beeinflusst das 50.000-Zeilen-Limit von Dataverse das Design eines Flows, der alle Datensaetze verarbeiten soll?
+2. Wann ist eine Canvas App die falsche Wahl?
+3. Was ist Ihre Strategie, wenn ein Kunde eine Anforderung stellt, die an eine Plattformgrenze stoesst?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Der Flow darf nicht alle Datensaetze auf einmal laden. Loesung: Paging-Token verwenden, um seitenweise durch die Ergebnisse zu iterieren — oder Dataverse Bulk Delete Job / Azure Synapse Link fuer Massenverarbeitung nutzen.
+
+**2.** Wenn viele Tabellen verknuepft sind, komplexe Rollenrechte auf Zeilenebene benoetigt werden oder viele gleichzeitige Nutzer erwartet werden. Dann: Model Driven App fuer strukturierte Datenprozesse, oder Power Pages fuer externe Nutzer.
+
+**3.** Zuerst pruefen ob die Grenze wirklich getroffen wird. Dann Pattern suchen das die Grenze umgeht (Paging, Chunking, Caching). Wenn nicht moeglich: Azure-Komponente als Extension. Als letztes: Anforderung mit Kunden neu verhandeln.
+
+</details>
+
+</details>
+
+
 ## Von Limits zu Designentscheidungen
 
 Technische Limits sind keine Hindernisse, um die man herumarbeiten muss. Sie sind Informationen, die das Design beeinflussen. Ein erfahrener SA kennt die Limits und entwirft von Anfang an Loesungen, die sie respektieren.

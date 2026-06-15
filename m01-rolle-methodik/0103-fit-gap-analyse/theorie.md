@@ -1,5 +1,27 @@
 # Lab 1.3 - Fit-Gap-Analyse als Architekturwerkzeug
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was bedeuten Fit, Partial Fit und Gap in der Fit-Gap-Analyse?
+2. Warum ist die Fit-Gap-Analyse eine Architekturentscheidung und keine Checkliste?
+3. Wie kommuniziert man einen Gap dem Fachbereich, ohne Vertrauen zu verlieren?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Fit: Power Platform kann die Anforderung out-of-the-box erfuellen. Partial Fit: Konfiguration oder leichte Erweiterung noetig. Gap: Plattform kann die Anforderung nicht erfuellen — SA entscheidet: Erweiterung entwickeln, externe Loesung oder Anforderung neu verhandeln.
+
+**2.** Weil jeder Gap eine Kosten-, Risiko- und Komplexitaetsentscheidung ausloest. Der SA waehlt nicht nur 'ob umsetzbar', sondern auch 'wie', 'mit welchem Aufwand' und 'welche Alternativen gibt es'. Das praegt das gesamte Projektbudget und den Zeitplan.
+
+**3.** Nicht als Ablehnung, sondern als Entscheidungspunkt: 'Diese Anforderung geht nicht out-of-the-box. Wir haben drei Optionen: X kostet Y, Y kostet Z, oder wir passen die Anforderung so an, dass sie passt. Welche Option priorisieren Sie?'
+
+</details>
+
+</details>
+
+
 ## Was ist eine Fit-Gap-Analyse?
 
 Nach der Discovery hat der SA eine Liste von Anforderungen. Die Fit-Gap-Analyse beantwortet nun fuer jede Anforderung eine einfache Frage: Kann die Power Platform das von Haus aus, braucht sie Konfiguration oder Erweiterung, oder kann sie es gar nicht?

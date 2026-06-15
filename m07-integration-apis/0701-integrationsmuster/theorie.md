@@ -1,5 +1,27 @@
 # Lab 7.1 - Integrationsmuster systematisch auswaehlen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Nennen Sie drei grundlegende Integrationsmuster und wann Sie welches waehlen.
+2. Was ist der Unterschied zwischen Standard-Connector und Custom Connector?
+3. Wann ist Power Automate die falsche Wahl fuer eine Integration?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Request/Response (synchron): Wenn die Antwort sofort benoetigt wird. Event-Driven (asynchron): Wenn das Quellsystem eine Aenderung meldet ohne den Aufrufer zu blockieren. Batch: Wenn grosse Datenmengen in definierten Zeitfenstern uebertragen werden (Nacht-Import aus ERP).
+
+**2.** Standard-Connector: Von Microsoft vorgefertigt — keine Entwicklung noetig. Custom Connector: Sie definieren die API-Endpunkte selbst anhand OpenAPI/Swagger — volle Kontrolle, Entwicklungsaufwand. Custom Connector ist in Solutions transportierbar.
+
+**3.** Wenn Echtzeit-Latenz unter 1 Sekunde gefordert ist | wenn komplexe Fehlerbehandlung noetig ist | wenn Millionen von Datensaetzen taeglich verarbeitet werden muessen. Alternative: Azure Logic Apps, Azure Functions, direkte API-Anbindung.
+
+</details>
+
+</details>
+
+
 ## Warum Integrationsmuster eine Architekturentscheidung sind
 
 Integrationen sind der haeufigste Quelle von Architekturproblemen in Power Platform Projekten. Nicht weil Integrationen schwierig zu bauen sind, sondern weil sie unter Zeitdruck mit dem erstbesten Ansatz umgesetzt werden, der dann skaliert, Performance-Probleme erzeugt oder bei Systemausfaellen das gesamte System blockiert.

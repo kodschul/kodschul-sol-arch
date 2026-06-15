@@ -1,5 +1,27 @@
 # Theorie: Datenmodell-Strategien fuer Loesungen entwickeln
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist der Unterschied zwischen normalisierter und denormalisierter Datenstruktur?
+2. Welche Fragen stellen Sie sich beim Entwerfen einer neuen Tabelle in Dataverse?
+3. Was passiert, wenn Sie alle Daten in eine einzige Tabelle packen statt zu modellieren?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Normalisiert: Daten werden einmal gespeichert, ueber Beziehungen verknuepft — besser fuer Wartbarkeit, weniger Redundanz. Denormalisiert: Haeufig gelesene Felder werden in die Haupttabelle kopiert — besser fuer Performance. In Dataverse: Normalisierung als Grundregel, Rollup-/Calculated-Felder fuer kritische Aggregate.
+
+**2.** Braucht diese Entitaet einen Eigenbesitzer (Owner-Typ) oder ist sie organisationsgebunden? Welche Beziehungen hat sie? Wie viele Datensaetze werden erwartet? Brauche ich Auditing? Gibt es eine Standardtabelle (Account, Contact), die besser passt?
+
+**3.** Redundanz: gleiche Kundendaten in jeder Zeile | Inkonsistenzen bei Aktualisierungen | Schlechte Performance bei Filtern | Keine Row-Level Security auf Teilmengen | Kein sauberes Reporting.
+
+</details>
+
+</details>
+
+
 ## Was ist Datenmodellierung im Kontext der Power Platform?
 
 Datenmodellierung ist die Disziplin, in der ein Solution Architect festlegt, wie Informationen strukturiert, gespeichert, miteinander verknuepft und abrufbar gemacht werden. Im Kontext der Power Platform bedeutet das konkret: Welche Tabellen entstehen in Dataverse, welche Felder enthalten sie, wie haengen sie zusammen und welche Auswirkungen hat diese Entscheidung auf Performance, Wartbarkeit, Kosten und Nutzerfreundlichkeit?

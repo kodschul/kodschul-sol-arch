@@ -1,5 +1,27 @@
 # Lab 1.2 - Anforderungen strukturiert erfassen und Discovery steuern
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was unterscheidet eine strukturierte Discovery von einem normalen Kundengespraech?
+2. Welche drei Phasen hat eine typische Discovery?
+3. Warum reicht eine einzige Workshop-Runde mit dem Fachbereich fast nie aus?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** In einer strukturierten Discovery denkt der SA schon waehrend des Gespraechs an Datenmodell, Sicherheit, Integrationen und technische Grenzen. Er sammelt nicht Feature-Wuensche, sondern baut ein vollstaendiges Bild: funktionale Anforderungen, nicht-funktionale Anforderungen, Constraints und Stakeholder-Interessen.
+
+**2.** Phase 1 - Pre-Discovery: Dokumente lesen, Stakeholder-Map erstellen, Hypothesen formulieren. Phase 2 - Discovery-Workshops (3 Runden: Prozesse, technische Details, Validierung). Phase 3 - Konsolidierung: Anforderungen strukturieren, Widersprueche klaeren, Fit-Gap vorbereiten.
+
+**3.** In Runde 1 spricht der Fachbereich ueber Prozesse aus seiner Sicht. Technische Constraints kommen erst in Runde 2 heraus. Validierung und Priorisierung brauchen einen dritten Termin, wenn der Fachbereich die strukturierten Anforderungen schriftlich vorliegen hat.
+
+</details>
+
+</details>
+
+
 ## Was ist Discovery und warum ist sie Architektensache?
 
 Discovery ist der Prozess, bei dem ein Projektteam herausfindet, was ein Kunde wirklich braucht. Der Unterschied zu einem normalen Gespraech liegt in der Systematik. Ein SA steuert die Discovery so, dass am Ende nicht eine Liste von Feature-Wuenschen steht, sondern ein vollstaendiges Bild der Anforderungen, das als Grundlage fuer Architekturentscheidungen taugt.

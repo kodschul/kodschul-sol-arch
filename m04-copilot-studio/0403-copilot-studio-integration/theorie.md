@@ -1,5 +1,27 @@
 # Theorie: Copilot Studio in die Loesungsarchitektur integrieren
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Wie kommuniziert ein Copilot Studio Agent mit Dataverse?
+2. Ein Agent soll Reklamationen aus Dataverse anzeigen. Welche Architektur skizzieren Sie?
+3. Wo liegen die Grenzen der Integration von Copilot Studio?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Ueber Power Automate Actions: Der Agent triggert einen Flow, der Dataverse liest oder schreibt. Der Agent selbst hat kein direktes OData-Binding — er geht immer ueber Actions/Flows.
+
+**2.** Topic 'Meine Reklamationen' mit Trigger-Phrasen. Action (Flow) filtert Dataverse-Tabelle nach aktuellem Nutzer (userId). Rueckgabe als Text. Sicherheitskontext: Der Flow laeuft unter dem Kontext des eingeloggten Nutzers — Dataverse-Rechte greifen automatisch.
+
+**3.** Agent kann keine direkten Plugins aufrufen — nur ueber Flows. Kein vollstaendiges Session-Management fuer komplexe Transaktionen. Performance: Jede Action bedeutet einen Flow-Run — Throttling-Risiko. Lizenzierung ist conversation-basiert.
+
+</details>
+
+</details>
+
+
 ## Agents sind keine Inseln
 
 Ein Agent in Copilot Studio ist in den seltensten Faellen eine eigenstaendige Loesung. Er ist ein Interaktionspunkt in einem groesseren System aus Daten, Prozessen und Anwendungen. Ein SA der einen Agent plant, muss gleichzeitig planen, wie der Agent mit Dataverse kommuniziert, welche Flows er ausloest und wo die Verantwortlichkeitsgrenzen verlaufen.

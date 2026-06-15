@@ -1,5 +1,27 @@
 # Lab 5.3 - Sicherheitsrollen und Berechtigungstiefe sicher einsetzen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was sind die vier Zugriffsebenen (Scope-Tiefen) bei Dataverse-Sicherheitsrollen?
+2. Was ist der Unterschied zwischen 'Lesen' und 'Anhaengen' als Berechtigung?
+3. Warum ist eine einzige 'Super-User'-Sicherheitsrolle fuer alle Nutzer schlechte Architektur?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** User (Basic): Nur eigene Datensaetze. Business Unit: Alle Datensaetze der eigenen BU. Parent:Child Business Units: Eigene BU + untergeordnete BUs. Organization: Alle Datensaetze in der Umgebung.
+
+**2.** Lesen (Read): Datensatz oeffnen und Felder sehen. Anhaengen (Append): Einen Datensatz mit einem anderen verknuepfen (z.B. Notiz an Reklamation). Anhaengen-An (AppendTo): Die Tabelle erlaubt es, dass andere Datensaetze angehaengt werden. Beide muessen passen fuer eine Verknuepfung.
+
+**3.** Verletzt Prinzip der minimalen Rechte. Im Schadensfall ist der Schaden maximal. Auditierung wird sinnlos. Compliance-Anforderungen (DSGVO) koennen nicht erfuellt werden.
+
+</details>
+
+</details>
+
+
 ## Was ist eine Sicherheitsrolle?
 
 Eine Sicherheitsrolle in Dataverse ist eine Sammlung von Berechtigungen, die einem Nutzer oder Team zugewiesen werden. Sie definiert:

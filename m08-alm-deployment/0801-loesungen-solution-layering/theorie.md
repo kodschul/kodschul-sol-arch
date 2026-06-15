@@ -1,5 +1,27 @@
 # Lab 8.1 - Loesungen und Solution Layering sicher beherrschen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist eine Power Platform Solution und warum ist alles ausserhalb von Solutions fuer ALM wertlos?
+2. Was ist der Unterschied zwischen Managed und Unmanaged Solution?
+3. Was ist Solution Layering und welches Problem loest es?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Eine Solution ist ein Container fuer alle transportierbaren Komponenten (Tabellen, Flows, Apps, Rollen). Nur was in einer Solution ist, kann kontrolliert von Dev nach Test nach Prod deployed werden. Alles in der Default Solution: nicht transportierbar, kein Versionsstand, kein Rollback.
+
+**2.** Unmanaged: Komponenten koennen direkt bearbeitet werden — fuer Entwicklungsumgebungen. Managed: Komponenten sind schreibgeschuetzt — fuer Test und Produktion. Managed Solution kann deinstalliert werden (Rollback).
+
+**3.** Solution Layering schichtet mehrere Solutions uebereinander. Base Solution enthaelt Datenmodell, Feature Solution enthaelt Flows und Apps. Aenderungen an oberen Schichten ueberschreiben gezielt Teile der unteren Schicht. Hotfixes koennen in separater Solution deployed werden.
+
+</details>
+
+</details>
+
+
 ## Was sind Loesungen (Solutions) in Power Platform?
 
 Loesungen sind Container, die Anpassungen und Komponenten buendeln. Alles, was transportiert werden soll (Tabellen, Flows, Apps, Sicherheitsrollen, Umgebungsvariablen etc.), muss in einer Loesung enthalten sein. Ohne Loesung kein kontrolliertes Deployment.

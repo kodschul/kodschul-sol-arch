@@ -1,5 +1,27 @@
 # Theorie: Grundkonzepte in Copilot Studio verstehen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Welche drei Grundbausteine hat jeder Agent in Copilot Studio?
+2. Was ist ein Topic-Trigger und wie funktioniert Routing?
+3. Wie testen Sie einen Agent, bevor er in Produktion geht?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Topics: Strukturierte Gespraemsthemen mit Trigger-Phrasen. Knowledge Sources: Wissensdatenbanken (SharePoint, Websites) die der Agent durchsucht. Actions: Power Automate Flows oder Connectors, die der Agent ausfuehren kann.
+
+**2.** Ein Trigger ist eine Liste von Phrasen, die den Nutzer in dieses Topic leiten. Copilot Studio nutzt NLU (Natural Language Understanding) um die Nutzereingabe einem Topic zuzuordnen. Fallback-Topic: wenn kein Topic passt.
+
+**3.** Im eingebauten Test-Chat im Studio. Dann: Publish in eine Test-Umgebung, reale Tester einladen. Metriken: Eskalationsrate und Topic-Abschlussrate. Logs in Application Insights auswerten.
+
+</details>
+
+</details>
+
+
 ## Die Bausteine eines Agents
 
 Ein Agent in Copilot Studio besteht aus drei Grundbausteinen: Topics, Knowledge Sources und Actions. Wer diese drei Konzepte versteht, kann jeden Agent einordnen, unabhaengig davon, wie er heisst oder was er tut.

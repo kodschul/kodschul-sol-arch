@@ -1,5 +1,27 @@
 # Lab 2.5 - Erweiterungsoptionen systematisch auswaehlen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Nennen Sie die Erweiterungsoptionen der Power Platform von 'ohne Code' bis 'vollstaendige Custom-Entwicklung'.
+2. Wann ist ein Plugin die richtige Wahl — und wann ist es die falsche?
+3. Standard-Connector vs. Custom Connector: Wann welcher?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** 1. Konfiguration (Business Rules, Calculated Fields) | 2. Power Automate Flow | 3. Canvas App mit PCF-Komponenten | 4. Plugin (.NET, serverseitig) | 5. Custom Connector (externe REST-API) | 6. Azure Function | 7. Azure Microservice mit Dataverse-Integration.
+
+**2.** Richtig: Wenn Logik serverseitig erzwungen werden muss, unabhaengig vom Client — z.B. Validierung die nicht umgangen werden darf. Falsch: Wenn die Logik asynchron sein kann (dann: Power Automate) oder nur in einer App benoetigt wird (dann: Business Rule).
+
+**3.** Standard-Connector: Bei einmaliger Nutzung, wenn der Connector existiert. Custom Connector: Bei Nutzung in mehreren Flows oder Canvas Apps — wiederverwendbar, Swagger-Dokumentation, Authentication zentral verwaltet, in Solutions transportierbar.
+
+</details>
+
+</details>
+
+
 ## Das Erweiterungs-Spektrum
 
 Die Power Platform ist kein starres System. Sie bietet ein breites Spektrum von Erweiterungsmoeglichkeiten, vom einfachen Konfigurieren ohne Code bis hin zu vollstaendigen Azure-basierten Microservices.

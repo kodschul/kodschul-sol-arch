@@ -1,5 +1,27 @@
 # Theorie: Speicher- und Kapazitaetsauswirkungen architektonisch beruecksichtigen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Welche drei Speicherkategorien gibt es in Dataverse?
+2. Welche Designentscheidungen haben den groessten Einfluss auf den Dataverse-Speicherverbrauch?
+3. Ein Kunde beschwert sich, dass seine Dataverse-Kapazitaet aufgebraucht ist. Was fragen Sie zuerst?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Database Storage: Datensaetze, Felder, Beziehungen. File Storage: Dateianhhaenge (Attachments, Notizen). Log Storage: Audit-Logs, Plugin-Trace-Logs. Jede Power Platform Lizenz enthaelt ein Basiskontingent.
+
+**2.** 1. Attachments direkt in Dataverse vs. SharePoint/Azure Blob (Dateien in Dataverse sind teuer). 2. Audit-Logging fuer alle Tabellen aktiviert (Log Storage waechst schnell). 3. Email-Aktivitaeten in Dataverse tracken. 4. Ungenutzte Altdaten nicht archivieren.
+
+**3.** Admin Center > Capacity: welche Kategorie ist voll? File: Attachment-Strategie pruefen (SharePoint-Integration). Log: Audit-Einstellungen reviewen, alte Logs loeschen. Database: Tabellen mit hoechstem Wachstum identifizieren, Archivierungsstrategie.
+
+</details>
+
+</details>
+
+
 ## Warum Speicher eine Architekturentscheidung ist
 
 Dataverse-Speicher kostet Geld. Jede Power Platform Lizenz enthaelt ein bestimmtes Kontingent. Wenn das Kontingent erschoepft ist, koennen keine neuen Datensaetze mehr angelegt werden, bis Speicher freigegeben oder hinzugekauft wird.

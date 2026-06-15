@@ -1,5 +1,27 @@
 # Lab 6.1 - Hierarchiesicherheit gezielt einsetzen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist Hierarchiesicherheit und wie unterscheidet sie sich von der BU-Struktur?
+2. Was sind die zwei Hierarchie-Typen in Dataverse?
+3. Welche Tiefenbegrenzung gibt es bei der Hierarchiesicherheit?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Hierarchiesicherheit ist personenbezogen: Ein Manager sieht die Datensaetze seiner direkten Untergebenen, unabhaengig von deren BU. BU-Struktur ist organisationsbezogen. Beides kann kombiniert werden.
+
+**2.** Manager-Hierarchie: Basiert auf dem 'Manager'-Feld im Nutzerdatensatz. Positions-Hierarchie: Basiert auf definierten Positionen (z.B. Regionalleiter > Teamleiter > Techniker) — flexibler, da unabhaengig von der tatsaechlichen Manager-Zuordnung.
+
+**3.** Maximal 7 Ebenen. Datensaetze von Nutzern die mehr als 7 Ebenen entfernt sind, werden nicht angezeigt. Bei grossen Konzernen mit tiefen Hierarchien muss das geprueft werden.
+
+</details>
+
+</details>
+
+
 ## Was ist Hierarchiesicherheit?
 
 Hierarchiesicherheit ist ein optionaler Sicherheitsmechanismus in Dataverse, der auf der Manager-Mitarbeiter-Beziehung basiert. Er wird auf Umgebungsebene aktiviert und erweist das BU-Modell um eine personenbezogene Dimension: Ein Manager kann die Datensaetze seiner direkt unterstellten Mitarbeiter sehen, auch wenn diese in anderen BUs sind oder die BU-Tiefe das normalerweise nicht zuliesse.

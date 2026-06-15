@@ -1,5 +1,27 @@
 # Theorie: Tabellenarten architekturgerecht einordnen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Welche Tabellenarten gibt es in Dataverse und wann setzt man welche ein?
+2. Was ist der Vorteil, die Account-Tabelle fuer 'Kunde' zu nutzen statt eine eigene Kundentabelle?
+3. Wann wuerden Sie eine Elastic Table statt einer Standard-Tabelle waehlen?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Standard Custom: Fuer eigene Geschaeftsobjekte. Standard Microsoft (Account, Contact, Case): Vorgefertigte CRM-Tabellen. Activity-Tabellen: Fuer Kommunikationsartefakte mit Zeitstempel. Elastic Tables: Fuer sehr grosse Datenvolumina (>Millionen Zeilen) — aber kein volles Security-Modell.
+
+**2.** Account ist in viele Microsoft-Produkte integriert (Teams, Outlook). Bestehende Standardfelder und -formulare koennen genutzt werden. Nachteil: Account bringt viele ungenutzte Felder mit — Abwaegung noetig.
+
+**3.** Wenn das Volumen ueber 100 Millionen Datensaetze waechst, oder Schreiboperationen sehr haeufig sein muessen (z.B. IoT-Sensordaten). Einschraenkungen: Kein Row-Level Owner Security, kein Auditing, keine Business Rules — muss explizit abgewaegt werden.
+
+</details>
+
+</details>
+
+
 ## Warum die Wahl der Tabellenart eine Architekturentscheidung ist
 
 In Dataverse gibt es nicht "die eine Tabelle". Stattdessen gibt es verschiedene Tabellenarten, die sich in ihrem Verhalten, ihren Faehigkeiten und ihren Einschraenkungen grundlegend unterscheiden. Die Wahl der falschen Tabellenart fuehrt zu Performance-Problemen, fehlenden Funktionen oder unnoetigem Entwicklungsaufwand.

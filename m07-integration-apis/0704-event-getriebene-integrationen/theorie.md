@@ -1,5 +1,27 @@
 # Lab 7.4 - Event-getriebene Integrationen entwerfen
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist der Unterschied zwischen Polling und Event-getriebener Integration?
+2. Was ist Dataverse Event Publishing und wie nutzt man es fuer externe Integrationen?
+3. Wann brauchen Sie Azure Service Bus als Middleware — wann reicht ein direkter Webhook?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Polling: Zielsystem fragt regelmaessig ab ('Hat sich etwas geaendert?') — einfach, aber ineffizient. Event-getrieben: Quellsystem meldet aktiv wenn etwas passiert — effizienter, geringere Latenz, aber Quellsystem muss Events senden koennen.
+
+**2.** Dataverse kann bei Datensatzaenderungen Nachrichten an Azure Service Bus oder einen Webhook senden. Konfiguration: Service Endpoint Registration → Nachrichten-Typ (Create/Update/Delete) → Ziel. Das externe System abonniert den Service Bus und reagiert auf Nachrichten.
+
+**3.** Direkter Webhook: Wenn Zielsystem immer verfuegbar und schnell antwortet. Service Bus: Wenn Zielsystem manchmal offline ist (Nachrichten gepuffert) | mehrere Systeme auf dasselbe Event reagieren sollen | Retry-Logik und Dead Letter Queue benoetigt werden.
+
+</details>
+
+</details>
+
+
 ## Was ist Event-getriebene Integration?
 
 Bei event-getriebener Integration reagiert das System auf Ereignisse (Events), anstatt in regelmaessigen Abstaenden nach Aenderungen zu suchen (Polling). Das Quellsystem meldet aktiv, wenn etwas passiert. Das Zielsystem verarbeitet die Nachricht, wenn sie ankommt.

@@ -1,5 +1,27 @@
 # Lab 2.2 - Dataverse als Fundament der Loesungsarchitektur
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Welche eingebauten Faehigkeiten hat Dataverse, die eine einfache Datenbank nicht hat?
+2. Was ist der Unterschied zwischen Standard-Tabelle, benutzerdefinierter Tabelle und Activity-Tabelle?
+3. Warum ist die Wahl des Publisher-Praefixes bei der Solution-Erstellung wichtig?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Integriertes Sicherheitsmodell (Rollen, Row-Level, Column-Level) | Business Rules und Berechnungsfelder ohne Code | Auditing und Change Tracking | OData Web API | Plugin-Pipeline | Loesungscontainer fuer ALM.
+
+**2.** Standard-Tabellen (z.B. Account, Contact): von Microsoft mitgeliefert, in andere Produkte integriert. Benutzerdefinierte Tabellen: vom SA angelegt. Activity-Tabellen: spezialisiert fuer Kommunikationsartefakte (Email, Aufgabe, Termin) mit Zeitstempeln.
+
+**3.** Das Praefixes (z.B. 'vt_') wird vor alle benutzerdefinierten Felder und Tabellen gesetzt. Es verhindert Namenskonflikte. Einmal gesetzt, kann es nicht geaendert werden — alle abhaengigen Komponenten muessten umbenannt werden.
+
+</details>
+
+</details>
+
+
 ## Was ist Dataverse?
 
 Dataverse ist die relationale Datenbank der Power Platform. Sie ist keine einfache Tabelle, sondern eine vollstaendige Datenbankplattform mit integriertem Sicherheitsmodell, Geschaeftslogik, Auditing, API und Erweiterungspunkten.

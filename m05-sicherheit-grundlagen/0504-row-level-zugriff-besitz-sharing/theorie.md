@@ -1,5 +1,27 @@
 # Lab 5.4 - Row-Level-Zugriff, Besitz und Sharing bewerten
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist der Unterschied zwischen Sicherheitsrolle und Row-Level Security?
+2. Was ist Sharing in Dataverse und wann sollte man es nutzen?
+3. Wann ist Team-Ownership besser als User-Ownership fuer Datensaetze?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Sicherheitsrolle: Definiert welche Tabellen und Aktionen erlaubt sind (strukturelle Ebene). Row-Level Security: Definiert welche konkreten Datensaetze ein Nutzer sehen kann (Datenebene). Zuerst greift die Rollenprueefung, dann die Zeilenprueefung.
+
+**2.** Sharing: Ein konkreter Datensatz wird explizit mit einem Nutzer oder Team geteilt, auch wenn die BU-Struktur das normalerweise nicht erlauben wuerde. Nutzen: Fuer Ausnahmen und dynamische Zugriffsrechte (Eskalation). Nachteil: Schwer verwaltbar bei grossem Massstab.
+
+**3.** Wenn Nutzer die Organisation verlassen oder die Abteilung wechseln — dann wandern die Datensaetze nicht mit ihnen. Teams als Besitzer sind stabiler. Empfehlung: Fuer alle Produktionsdaten Team-Ownership bevorzugen.
+
+</details>
+
+</details>
+
+
 ## Das Eigentuemermodell in Dataverse
 
 Jeder Dataverse-Datensatz mit einem Eigentuemer-Typ (Owner-Type-Tabellen) hat ein Feld "Eigentuemer" (OwnerId). Dieser Eigentuemer ist entweder ein Nutzer oder ein Team. Das Eigentuemer-Feld ist die Grundlage fuer Row-Level-Security: Wer was sieht, haengt davon ab, wem der Datensatz gehoert.

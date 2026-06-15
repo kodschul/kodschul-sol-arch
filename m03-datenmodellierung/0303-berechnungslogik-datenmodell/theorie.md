@@ -1,5 +1,27 @@
 # Theorie: Berechnungslogik im Datenmodell korrekt bewerten
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist der Unterschied zwischen Calculated Field, Rollup Field und Power Automate-Berechnung?
+2. Warum sollte man Berechnungen nicht in Canvas App Formeln stecken, wenn sie auch im Datenmodell moeglich sind?
+3. Wann ist ein Rollup Field problematisch?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Calculated Field: Echtzeit-Berechnung aus anderen Feldern desselben Datensatzes. Rollup Field: Aggregation ueber untergeordnete Datensaetze — asynchron alle 1-12 Stunden. Power Automate: Fuer komplexe Logik mit externen Daten oder asynchronen Prozessen.
+
+**2.** Weil Canvas App-Berechnungen clientseitig sind und nur in dieser App gelten. Wenn dieselbe Logik in einer anderen App oder via API gebraucht wird, muss sie dupliziert werden. Berechnungen im Datenmodell gelten fuer jeden Client und jede Integration.
+
+**3.** Rollup Fields werden asynchron aktualisiert (maximal alle 1 Stunde). Fuer Echtzeit-Anzeigen zu langsam. Ausserdem: maximale Tiefe von 5 Ebenen und keine berechneten Felder als Quellen.
+
+</details>
+
+</details>
+
+
 ## Das Problem mit Berechnungen in Dataverse
 
 In nahezu jeder Geschaeftsanwendung gibt es Felder, die sich aus anderen Feldern ergeben: Ein Gesamtpreis ergibt sich aus Einzelpreis mal Menge. Ein Alter ergibt sich aus dem Geburtsdatum und dem heutigen Datum. Die Anzahl offener Aufgaben eines Projekts ergibt sich aus der Summe aller Aufgaben mit Status "Offen".

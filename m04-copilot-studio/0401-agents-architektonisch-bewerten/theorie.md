@@ -1,5 +1,27 @@
 # Theorie: Den Einsatz von Agents architektonisch bewerten
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Wann ist ein Agent (Copilot Studio) die richtige Wahl — und wann Overengineering?
+2. Welche Risiken bringt ein KI-Agent in einer Produktionsumgebung?
+3. Was ist der Unterschied zwischen einem 'klassischen' Chatbot und einem generativen Agent?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Richtig: Wenn Nutzer in natuerlicher Sprache Informationen abfragen oder Prozesse anstossen muessen. Overengineering: Wenn die Interaktion strukturiert und vorhersehbar ist — dann ist eine Canvas App effizienter und kontrollierbarer.
+
+**2.** Halluzinationen (falsche Informationen als Antworten) | Datenlecks wenn der Agent auf zu viele Quellen zugreifen kann | Unerwartetes Verhalten bei Edge-Cases | Compliance-Risiken bei regulierten Daten (DSGVO).
+
+**3.** Klassischer Bot: Folgt vordefinierten Topics/Dialogen — deterministisch, kontrollierbar. Generativer Agent: Nutzt LLM um frei zu antworten — flexibel, natural language, aber nicht deterministisch. In Copilot Studio kann man beides kombinieren.
+
+</details>
+
+</details>
+
+
 ## Was ist ein Agent und warum ist das keine triviale Frage?
 
 Ein "Agent" in Copilot Studio ist ein KI-gestuetztes System, das in natuerlicherSprache mit Nutzern interagiert, Informationen aus verschiedenen Quellen abruft und Aktionen ausfuehren kann. Seit der Umbenennung von "Copilot Studio" aus dem ehemaligen "Power Virtual Agents" ist der Begriff "Agent" der offizielle Terminus fuer das, was frueher als Chatbot, Bot oder Copilot bezeichnet wurde.

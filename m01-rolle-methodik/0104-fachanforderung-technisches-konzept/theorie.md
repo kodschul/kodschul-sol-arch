@@ -1,5 +1,27 @@
 # Lab 1.4 - Von der Fachanforderung zum technischen Konzept
 
+<details>
+<summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
+
+
+1. Was ist der Unterschied zwischen einer Fachanforderung und einem technischen Konzept?
+2. Welche Fragen muss ein SA stellen, bevor er eine Fachanforderung in ein technisches Konzept uebersetzt?
+3. Warum ist ein zu fruehes technisches Konzept gefaehrlich?
+
+<details>
+<summary>💡 Musterlösung</summary>
+
+**1.** Eine Fachanforderung beschreibt das gewuenschte Geschaeftsergebnis aus Nutzersicht. Ein technisches Konzept beschreibt, wie Power Platform das umsetzt: welche Tabellen, welcher Flow-Typ, welche Trigger, welche Sicherheitsrollen.
+
+**2.** Wer fuehrt diese Aktion aus (Nutzergruppe)? Wie oft passiert das (Volumen)? Welche Systeme muessen integriert werden? Gibt es Offline-Anforderungen? Was passiert bei Fehler oder Ablehnung?
+
+**3.** Weil es auf unvollstaendigen Anforderungen basiert. Aenderungen in der Fachlichkeit erzwingen dann Restrukturierungen im Datenmodell oder in der Security — beides ist teuer und zeitaufwaendig.
+
+</details>
+
+</details>
+
+
 ## Die Bruecke zwischen Fachlichkeit und Technik
 
 Eine Fachanforderung klingt so: "Ich moechte, dass Mitarbeiter ihren Urlaub beantragen koennen und ihr Vorgesetzter benachrichtigt wird."
