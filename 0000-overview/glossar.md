@@ -10,13 +10,13 @@ Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphab
 
 **ADO** → Abkürzung für **Azure DevOps** (s. dort).
 
-**ALM** → *Application Lifecycle Management* — Verwaltung des gesamten Lebenszyklus einer Anwendung: von der Entwicklung über Tests bis zur Auslieferung und Wartung. In Power Platform umfasst ALM den Einsatz von Solutions, Umgebungen, Pipelines und Source Control.
+**ALM** → _Application Lifecycle Management_ — Verwaltung des gesamten Lebenszyklus einer Anwendung: von der Entwicklung über Tests bis zur Auslieferung und Wartung. In Power Platform umfasst ALM den Einsatz von Solutions, Umgebungen, Pipelines und Source Control.
 
-**API** → *Application Programming Interface* — Schnittstelle, über die zwei Systeme miteinander kommunizieren. Im Kontext Power Platform meist REST-APIs (HTTP-basiert).
+**API** → _Application Programming Interface_ — Schnittstelle, über die zwei Systeme miteinander kommunizieren. Im Kontext Power Platform meist REST-APIs (HTTP-basiert).
 
-**App Registration** → *App-Registrierung* — Eintrag in Entra ID, der einer Anwendung eine eindeutige Identität gibt. Notwendig für Service-to-Service-Kommunikation mit der Dataverse Web API ohne menschliche Anmeldung.
+**App Registration** → _App-Registrierung_ — Eintrag in Entra ID, der einer Anwendung eine eindeutige Identität gibt. Notwendig für Service-to-Service-Kommunikation mit der Dataverse Web API ohne menschliche Anmeldung.
 
-**App User** → *Application User* — Technischer Benutzer in Dataverse (kein Mensch), der einer App-Registrierung entspricht. Erhält Sicherheitsrollen und ruft APIs im eigenen Namen auf.
+**App User** → _Application User_ — Technischer Benutzer in Dataverse (kein Mensch), der einer App-Registrierung entspricht. Erhält Sicherheitsrollen und ruft APIs im eigenen Namen auf.
 
 **ASB** → Abkürzung für **Azure Service Bus** (s. dort).
 
@@ -52,7 +52,7 @@ Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphab
 
 **CDM** → Abkürzung für **Common Data Model** — Standardisiertes Schema von Microsoft mit vordefinierten Tabellen (Account, Contact, etc.) für gängige Geschäftsszenarien. Bildet die Grundlage für Dataverse-Standardtabellen.
 
-**CI/CD** → *Continuous Integration / Continuous Delivery* (oder Deployment) — Praxis, bei der Code-Änderungen automatisch gebaut, getestet und ausgeliefert werden. In Power Platform: Lösungen werden automatisch exportiert, geprüft und in Zielumgebungen importiert.
+**CI/CD** → _Continuous Integration / Continuous Delivery_ (oder Deployment) — Praxis, bei der Code-Änderungen automatisch gebaut, getestet und ausgeliefert werden. In Power Platform: Lösungen werden automatisch exportiert, geprüft und in Zielumgebungen importiert.
 
 **CoE** → Abkürzung für **Center of Excellence** (s. dort).
 
@@ -88,7 +88,7 @@ Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphab
 
 **Elastic Table** → Spezielle Dataverse-Tabelle, die auf Azure Cosmos DB (NoSQL) statt Azure SQL basiert. Für Hochvolumen-Szenarien (Millionen von Datensätzen, IoT-Daten, Logs). Eingeschränkte Beziehungs- und Feature-Unterstützung im Vergleich zu Standard-Tabellen.
 
-**Environment Variable** → *Umgebungsvariable* — Benannter Konfigurationswert in einer Lösung, der je nach Umgebung unterschiedlich sein kann (z. B. eine URL, die in Dev anders ist als in Prod). Ermöglicht konfigurationsfreies Deployment.
+**Environment Variable** → _Umgebungsvariable_ — Benannter Konfigurationswert in einer Lösung, der je nach Umgebung unterschiedlich sein kann (z. B. eine URL, die in Dev anders ist als in Prod). Ermöglicht konfigurationsfreies Deployment.
 
 **Entra ID** → Microsofts Identitäts- und Zugriffsverwaltungsdienst (früher: Azure Active Directory / Azure AD / AAD). Stellt Tokens für alle Azure- und Microsoft-365-Dienste aus.
 
@@ -154,7 +154,7 @@ Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphab
 
 ## O
 
-**OData** → *Open Data Protocol* — Standardprotokoll für REST-APIs mit eingebauten Filter-, Sortier- und Paginierungsmechanismen (`$filter`, `$select`, `$orderby`, `$top`). Dataverse Web API basiert auf OData v4.
+**OData** → _Open Data Protocol_ — Standardprotokoll für REST-APIs mit eingebauten Filter-, Sortier- und Paginierungsmechanismen (`$filter`, `$select`, `$orderby`, `$top`). Dataverse Web API basiert auf OData v4.
 
 ---
 
@@ -168,7 +168,7 @@ Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphab
 
 **Plugin Registration Tool (PRT)** → Grafisches Tool von Microsoft zum Registrieren von Plugins und Webhooks in Dataverse. Wird über NuGet heruntergeladen.
 
-**PL-600** → Prüfungsbezeichnung für *Microsoft Power Platform Solution Architect* — die Zertifizierung, auf die dieser Kurs vorbereitet.
+**PL-600** → Prüfungsbezeichnung für _Microsoft Power Platform Solution Architect_ — die Zertifizierung, auf die dieser Kurs vorbereitet.
 
 **Power Apps CLI** → s. **pac**.
 
@@ -202,7 +202,7 @@ Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphab
 
 **RLS** → Abkürzung für **Row-Level Security** — Zeilensicherheit (s. dort).
 
-**REST** → *Representational State Transfer* — Architekturstil für HTTP-APIs. Die meisten modernen APIs (inkl. Dataverse Web API) sind REST-konform.
+**REST** → _Representational State Transfer_ — Architekturstil für HTTP-APIs. Die meisten modernen APIs (inkl. Dataverse Web API) sind REST-konform.
 
 **Retry-After** → HTTP-Antwort-Header, der bei einer 429-Antwort angibt, wie viele Sekunden gewartet werden soll, bevor erneut versucht werden darf.
 
@@ -218,13 +218,13 @@ Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphab
 
 **Sandbox** → Nicht-Produktive Umgebung für Entwicklung und Tests. Auch: Ausführungsmodus für Plugins (Isolation Mode = Sandbox).
 
-**SAS-Token** → *Shared Access Signature Token* — Zeitlich begrenzter Zugriffstoken für Azure-Dienste (z. B. Azure Service Bus). Ersatz für vollständige Zugangsdaten bei eingeschränktem Zugriff.
+**SAS-Token** → _Shared Access Signature Token_ — Zeitlich begrenzter Zugriffstoken für Azure-Dienste (z. B. Azure Service Bus). Ersatz für vollständige Zugangsdaten bei eingeschränktem Zugriff.
 
-**SDK** → *Software Development Kit* — Sammlung von Bibliotheken und Tools für die Entwicklung mit einem bestimmten System. Dataverse hat ein .NET-SDK für Plugin-Entwicklung.
+**SDK** → _Software Development Kit_ — Sammlung von Bibliotheken und Tools für die Entwicklung mit einem bestimmten System. Dataverse hat ein .NET-SDK für Plugin-Entwicklung.
 
 **Sicherheitsrolle** → Sammlung von Berechtigungen in Dataverse, die einem Nutzer oder Team zugewiesen werden. Definiert welche Tabellen, Aktionen und Zugriffstiefen erlaubt sind.
 
-**Solution** → *Lösung* — Container in Power Platform, der Anpassungen und Komponenten für den Transport zwischen Umgebungen bündelt. Basis für ALM.
+**Solution** → _Lösung_ — Container in Power Platform, der Anpassungen und Komponenten für den Transport zwischen Umgebungen bündelt. Basis für ALM.
 
 **Solution Architect (SA)** → Rolle, die für die Gesamtarchitektur einer Power Platform-Lösung verantwortlich ist. Trifft strukturelle und langfristige Architekturentscheidungen.
 
@@ -242,15 +242,15 @@ Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphab
 
 **Tenant** → Microsoft-365-/Azure-Mandant — die logische Organisation eines Unternehmens in der Microsoft-Cloud. Alle Power Platform-Umgebungen eines Unternehmens gehören zu einem Tenant.
 
-**TTL** → *Time to Live* — Zeitraum, nach dem ein Datensatz oder eine Nachricht automatisch gelöscht wird. In Elastic Tables und Azure Service Bus konfigurierbar.
+**TTL** → _Time to Live_ — Zeitraum, nach dem ein Datensatz oder eine Nachricht automatisch gelöscht wird. In Elastic Tables und Azure Service Bus konfigurierbar.
 
 ---
 
 ## U
 
-**UAT** → *User Acceptance Testing* — Abnahmetest durch den Fachbereich. Wird in einer dedizierten Test-/UAT-Umgebung durchgeführt, nie in der Produktivumgebung.
+**UAT** → _User Acceptance Testing_ — Abnahmetest durch den Fachbereich. Wird in einer dedizierten Test-/UAT-Umgebung durchgeführt, nie in der Produktivumgebung.
 
-**Umgebung** → *Environment* — Isolierter Container in Power Platform mit eigenem Dataverse, eigenen Apps, Flows und Konfigurationen. Gleichzeitig die stärkste Sicherheitsgrenze.
+**Umgebung** → _Environment_ — Isolierter Container in Power Platform mit eigenem Dataverse, eigenen Apps, Flows und Konfigurationen. Gleichzeitig die stärkste Sicherheitsgrenze.
 
 **Unmanaged Solution** → Nicht geschützte Lösung in der Entwicklungsumgebung. Alle Komponenten sind frei editierbar. Wird für die Entwicklung verwendet, nie in Produktivumgebungen deployt.
 
@@ -258,7 +258,7 @@ Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphab
 
 ## V
 
-**Virtual Table** → *Virtuelle Tabelle* — Dataverse-Tabelle, die Daten aus einer externen Quelle (REST-API, SharePoint, etc.) live abfragt und als native Dataverse-Tabelle darstellt. Keine lokale Datenspeicherung.
+**Virtual Table** → _Virtuelle Tabelle_ — Dataverse-Tabelle, die Daten aus einer externen Quelle (REST-API, SharePoint, etc.) live abfragt und als native Dataverse-Tabelle darstellt. Keine lokale Datenspeicherung.
 
 ---
 
@@ -270,7 +270,7 @@ Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphab
 
 ## X
 
-**XRM** → Abkürzung für *Extensible Relationship Management* — historische interne Bezeichnung für die Dataverse-/CRM-Plattform. Taucht noch in älteren SDK-Namespaces auf (z. B. `Microsoft.Xrm.Sdk`).
+**XRM** → Abkürzung für _Extensible Relationship Management_ — historische interne Bezeichnung für die Dataverse-/CRM-Plattform. Taucht noch in älteren SDK-Namespaces auf (z. B. `Microsoft.Xrm.Sdk`).
 
 ---
 
