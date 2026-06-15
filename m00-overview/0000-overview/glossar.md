@@ -2,278 +2,83 @@
 
 Alle Begriffe, Abkürzungen und Konzepte die im Kurs verwendet werden — alphabetisch sortiert.
 
----
-
-## A
-
-**AAD** → Abkürzung für **Azure Active Directory**. Inzwischen umbenannt zu **Entra ID** (s. dort). In älteren Dokumenten und Code noch häufig als AAD zu finden.
-
-**ADO** → Abkürzung für **Azure DevOps** (s. dort).
-
-**ALM** → _Application Lifecycle Management_ — Verwaltung des gesamten Lebenszyklus einer Anwendung: von der Entwicklung über Tests bis zur Auslieferung und Wartung. In Power Platform umfasst ALM den Einsatz von Solutions, Umgebungen, Pipelines und Source Control.
-
-**API** → _Application Programming Interface_ — Schnittstelle, über die zwei Systeme miteinander kommunizieren. Im Kontext Power Platform meist REST-APIs (HTTP-basiert).
-
-**App Registration** → _App-Registrierung_ — Eintrag in Entra ID, der einer Anwendung eine eindeutige Identität gibt. Notwendig für Service-to-Service-Kommunikation mit der Dataverse Web API ohne menschliche Anmeldung.
-
-**App User** → _Application User_ — Technischer Benutzer in Dataverse (kein Mensch), der einer App-Registrierung entspricht. Erhält Sicherheitsrollen und ruft APIs im eigenen Namen auf.
-
-**ASB** → Abkürzung für **Azure Service Bus** (s. dort).
-
-**Azure DevOps (ADO)** → Microsofts Plattform für CI/CD-Pipelines, Source Control (Git), Work Items und Artefaktverwaltung. Kann über die **Power Platform Build Tools** mit der Power Platform verbunden werden.
-
-**Azure Event Hub** → Hochvolumen-Streaming-Dienst in Azure. Geeignet für Millionen von Nachrichten pro Sekunde (IoT, Logs, Telemetrie). Unterschied zu Azure Service Bus: kein garantiertes Exactly-Once-Delivery, dafür massiv skalierbarer Durchsatz.
-
-**Azure Function** → Serverloses Ausführungsmodell in Azure für benutzerdefinierten Code (.NET, Python, JavaScript, etc.). Geeignet für komplexe Logik, externe Bibliotheken oder Hochlast-Szenarien, die Plugins oder Flows übersteigen.
-
-**Azure Service Bus (ASB)** → Nachrichtenbroker-Dienst in Azure. Nachrichten werden in Queues oder Topics (Themen mit Subscriptions/Abonnements) gespeichert und von Empfängern verarbeitet. Garantiert Zustellung, auch wenn Empfänger temporär nicht verfügbar ist.
-
----
-
-## B
-
-**Bearer Token** → Zugriffstoken (kurze Zeichenkette), das nach Azure-AD-Anmeldung ausgestellt wird. Wird im HTTP-Header mitgeschickt (`Authorization: Bearer <token>`) und beweist dem Zielsystem, dass der Aufrufer berechtigt ist.
-
-**BPF** → Abkürzung für **Business Process Flow** (s. dort).
-
-**BU** → Abkürzung für **Business Unit** (s. dort).
-
-**Build Tools** → Kurzform für **Power Platform Build Tools** — Azure DevOps-Erweiterung von Microsoft, die PowerShell/YAML-Tasks für Export, Import, Solution Checker und weitere ALM-Operationen bereitstellt.
-
-**Business Process Flow (BPF)** → Geführter Prozessablauf in Model-Driven Apps. Zeigt dem Nutzer Schritt für Schritt, welche Informationen in welcher Reihenfolge zu erfassen sind. Konfigurierbar ohne Code.
-
-**Business Unit (BU)** → Organisationseinheit innerhalb einer Dataverse-Umgebung. Bildet die Aufbauorganisation ab und bestimmt, welche Datensätze ein Nutzer standardmäßig sehen kann (Row-Level Security durch Eigentuemer-BU).
-
----
-
-## C
-
-**Canvas App** → App-Typ in Power Apps mit vollständig frei gestaltbarem UI (wie ein leeres Zeichenblatt). Kann viele verschiedene Datenquellen verbinden. Geeignet für mobile Apps und maßgeschneiderte Oberflächen.
-
-**CDM** → Abkürzung für **Common Data Model** — Standardisiertes Schema von Microsoft mit vordefinierten Tabellen (Account, Contact, etc.) für gängige Geschäftsszenarien. Bildet die Grundlage für Dataverse-Standardtabellen.
-
-**CI/CD** → _Continuous Integration / Continuous Delivery_ (oder Deployment) — Praxis, bei der Code-Änderungen automatisch gebaut, getestet und ausgeliefert werden. In Power Platform: Lösungen werden automatisch exportiert, geprüft und in Zielumgebungen importiert.
-
-**CoE** → Abkürzung für **Center of Excellence** (s. dort).
-
-**Center of Excellence (CoE)** → Governance-Konzept und Microsoft-Starterkit für die verwaltete Einführung der Power Platform im Unternehmen. Umfasst DLP-Monitoring, Maker-Onboarding, Inventarisierung aller Apps/Flows, und Richtlinien-Durchsetzung.
-
-**Common Data Model (CDM)** → s. CDM.
-
-**Connection Reference** → Platzhalter in einer Lösung für eine Verbindung (Connector). Ermöglicht es, dass derselbe Flow in verschiedenen Umgebungen verschiedene Verbindungen nutzt (z. B. Dev-SharePoint vs. Prod-SharePoint).
-
-**Connector** → Fertig gebaute Integration zu einem externen Dienst (z. B. SharePoint Connector, Teams Connector, SAP Connector). Power Platform hat über 1.000 vorgefertigte Connectors.
-
-**Custom Connector** → Selbst erstellter Connector für eine REST-API, die keinen Standard-Connector hat.
-
-**Customization Prefix** → Kürzel (z. B. `cr_`, `contoso_`) das automatisch vor alle benutzerdefinierten Tabellen- und Spaltennamen in Dataverse gesetzt wird. Wird durch den **Publisher** festgelegt und kann nach Erstellung nicht mehr geändert werden.
-
----
-
-## D
-
-**Dataverse** → Relationale Datenbankplattform der Power Platform (basierend auf Azure SQL). Bietet integriertes Sicherheitsmodell, Geschäftslogik-Schichten, OData-API und ALM-Integration. Das Herzstück professioneller Power Platform-Lösungen.
-
-**Dataverse Web API** → REST-Schnittstelle auf Basis von OData v4 für den programmatischen Zugriff auf Dataverse-Daten. Authentifizierung ausschließlich über Entra ID (Bearer Token).
-
-**DLP** → Abkürzung für **Data Loss Prevention** (s. dort).
-
-**Data Loss Prevention (DLP)** → Richtlinien im Power Platform Admin Center, die festlegen, welche Connectors in einer Umgebung verwendet werden dürfen und welche miteinander kombiniert werden dürfen. Verhindert, dass sensible Daten in unerwünschte externe Dienste fließen.
-
-**Dead Letter Queue (DLQ)** → Sonderwarteschlange im Azure Service Bus. Nachrichten, die nach maximaler Anzahl von Zustellversuchen nicht verarbeitet werden konnten, landen hier automatisch zur manuellen Prüfung.
-
----
-
-## E
-
-**Elastic Table** → Spezielle Dataverse-Tabelle, die auf Azure Cosmos DB (NoSQL) statt Azure SQL basiert. Für Hochvolumen-Szenarien (Millionen von Datensätzen, IoT-Daten, Logs). Eingeschränkte Beziehungs- und Feature-Unterstützung im Vergleich zu Standard-Tabellen.
-
-**Environment Variable** → _Umgebungsvariable_ — Benannter Konfigurationswert in einer Lösung, der je nach Umgebung unterschiedlich sein kann (z. B. eine URL, die in Dev anders ist als in Prod). Ermöglicht konfigurationsfreies Deployment.
-
-**Entra ID** → Microsofts Identitäts- und Zugriffsverwaltungsdienst (früher: Azure Active Directory / Azure AD / AAD). Stellt Tokens für alle Azure- und Microsoft-365-Dienste aus.
-
-**ExecuteMultiple** → Dataverse API-Operation, die mehrere Einzeloperationen (Create, Update, Delete) in einem einzigen HTTP-Request bündelt. Reduziert API-Aufrufe und verbessert Performance bei Massen-Importen.
-
----
-
-## F
-
-**FetchXML** → XML-basierte Abfragesprache für Dataverse-Daten. Alternative zu OData-Filtern für komplexere Abfragen. Wird in SSRS-Berichten, Advanced Find und Plugins verwendet.
-
-**Fit-Gap-Analyse** → Architekturwerkzeug, bei dem jede Anforderung bewertet wird: Kann die Plattform das von Haus aus (Fit), mit Konfiguration (Partial Fit), oder gar nicht (Gap)?
-
-**Flow** → Kurzbezeichnung für einen **Power Automate Flow** — automatisierter Workflow, der Aktionen ausführt, wenn ein Ereignis eintritt oder ein Zeitplan greift.
-
----
-
-## G
-
-**Go-Live** → Zeitpunkt, an dem eine Anwendung für echte Endnutzer freigeschaltet wird (Produktivbetrieb startet).
-
-**Governance** → Gesamtheit der Regeln, Prozesse und Werkzeuge, die sicherstellen, dass die Power Platform im Unternehmen kontrolliert, sicher und nachhaltig genutzt wird.
-
----
-
-## I
-
-**IOrganizationService** → .NET-Interface in Dataverse für den programmatischen Zugriff auf Dataverse-Operationen aus Plugins. Vergleichbar mit einem SDK-Client.
-
-**Isolation Mode** → Sandbox-Ausführungsmodus für Dataverse-Plugins. Schränkt Dateisystem- und Netzwerkzugriff ein, erhöht Sicherheit und Stabilität.
-
----
-
-## J
-
-**JS** → Abkürzung für **JavaScript** — Skriptsprache für clientseitige Logik in Model-Driven Apps (Web Resources). Wird für Formularvalidierungen, Feldlogik und UI-Anpassungen verwendet.
-
----
-
-## L
-
-**Lab** → Kurseinheit mit Theorie + Übung + Lösung. Jedes Lab ist in einem eigenen Ordner (`XXXX-name/`) gespeichert.
-
-**Layer / Solution Layer** → Ebene im Solution-Layering-System. Wenn mehrere Lösungen dieselbe Komponente definieren, gewinnt die Lösung mit dem höchsten Layer.
-
-**Lösung** → s. **Solution**.
-
----
-
-## M
-
-**Maker** → Nutzer, der mit Power Platform Anwendungen erstellt (oft ohne tiefen Code-Hintergrund). Ein Maker ist nicht dasselbe wie ein Entwickler oder Solution Architect.
-
-**Managed Environment** → Premium-Feature für Power Platform Umgebungen mit erweiterten Governance-Kontrollen: IP-Firewall, Solution Checker Enforcement, Sharing-Limits, Maker-Willkommensinhalt.
-
-**Managed Solution** → Exportierter, geschützter Lösungscontainer für Test- und Produktivumgebungen. Komponenten können nicht direkt bearbeitet werden — nur durch Updates der Lösung.
-
-**MDA** → Abkürzung für **Model-Driven App** (s. dort).
-
-**Model-Driven App (MDA)** → App-Typ in Power Apps, der vollständig auf Dataverse basiert und automatisch ein UI aus dem Datenmodell generiert. Ideal für strukturierte Geschäftsprozesse mit komplexen Datenmodellen.
-
----
-
-## O
-
-**OData** → _Open Data Protocol_ — Standardprotokoll für REST-APIs mit eingebauten Filter-, Sortier- und Paginierungsmechanismen (`$filter`, `$select`, `$orderby`, `$top`). Dataverse Web API basiert auf OData v4.
-
----
-
-## P
-
-**pac** → Abkürzung für **Power Apps CLI** (Command Line Interface) — Kommandozeilenwerkzeug von Microsoft für Power Platform-Entwickler. Ermöglicht Export, Import, Packen und Entpacken von Lösungen, Authentifizierungsverwaltung und vieles mehr. Vollständig: `pac` steht für **P**ower **A**pps **C**LI.
-
-**pac CLI** → s. **pac**.
-
-**Plugin** → Benutzerdefinierter .NET-Code, der in die Dataverse-Verarbeitungspipeline eingehängt wird. Läuft serverseitig, kann synchron (transaktional) oder asynchron ausgeführt werden.
-
-**Plugin Registration Tool (PRT)** → Grafisches Tool von Microsoft zum Registrieren von Plugins und Webhooks in Dataverse. Wird über NuGet heruntergeladen.
-
-**PL-600** → Prüfungsbezeichnung für _Microsoft Power Platform Solution Architect_ — die Zertifizierung, auf die dieser Kurs vorbereitet.
-
-**Power Apps CLI** → s. **pac**.
-
-**Power Automate** → Low-Code-Automatisierungsplattform der Power Platform. Erstellt automatisierte Workflows (Flows) zwischen Apps und Diensten.
-
-**Power Pages** → Portal-Plattform für externe Nutzer (Kunden, Lieferanten, Partner), die keinen Power Platform-Account haben. Verbindet sich mit Dataverse.
-
-**Power Platform** → Microsoft-Produktfamilie: Power Apps, Power Automate, Power BI, Power Pages, Copilot Studio — alle auf Dataverse aufbauend.
-
-**Power Platform Build Tools** → s. **Build Tools**.
-
-**Power Platform Pipelines (PP Pipelines)** → Eingebautes ALM-Feature in Power Platform (ohne Azure DevOps) zum gesteuerten Deployment von Lösungen zwischen Umgebungen. Geeignet für kleinere Teams.
-
-**PP** → Abkürzung für **Power Platform**.
-
-**PP Pipelines** → Abkürzung für **Power Platform Pipelines** (s. dort).
-
-**Pre-Validation** → Erste Phase der Dataverse Plugin-Pipeline. Läuft vor dem Datenbankzugriff. Geeignet für Validierungen, die eine Operation abbrechen sollen.
-
-**Pre-Operation** → Zweite Phase der Dataverse Plugin-Pipeline. Läuft nach dem Datenbankzugriff, aber vor der endgültigen Speicherung. Geeignet zum Ändern von Feldwerten.
-
-**Post-Operation** → Dritte Phase der Dataverse Plugin-Pipeline. Läuft nach der Speicherung. Synchron: kann noch Rollback auslösen. Asynchron: läuft nach der Transaktion, geeignet für Folgeaktionen.
-
-**PRT** → Abkürzung für **Plugin Registration Tool** (s. dort).
-
-**Publisher** → Besitzer-Entität einer Lösung in Dataverse. Legt das **Customization Prefix** fest. Sollte zu Projektbeginn sorgfältig gewählt werden.
-
----
-
-## R
-
-**RLS** → Abkürzung für **Row-Level Security** — Zeilensicherheit (s. dort).
-
-**REST** → _Representational State Transfer_ — Architekturstil für HTTP-APIs. Die meisten modernen APIs (inkl. Dataverse Web API) sind REST-konform.
-
-**Retry-After** → HTTP-Antwort-Header, der bei einer 429-Antwort angibt, wie viele Sekunden gewartet werden soll, bevor erneut versucht werden darf.
-
-**Rollup-Spalte** → Dataverse-Feldtyp, der einen aggregierten Wert über verknüpfte Datensätze berechnet (SUM, COUNT, MIN, MAX, AVG). Wird nicht in Echtzeit, sondern asynchron alle 12 Stunden aktualisiert.
-
-**Row-Level Security (RLS)** → Mechanismus zur Einschränkung des Datenzugriffs auf Datensatz-Ebene (nicht Tabellen-Ebene). In Dataverse über Business Units, Eigentuemer und Zugriffstiefe der Sicherheitsrolle realisiert.
-
----
-
-## S
-
-**SA** → Abkürzung für **Solution Architect** (s. dort).
-
-**Sandbox** → Nicht-Produktive Umgebung für Entwicklung und Tests. Auch: Ausführungsmodus für Plugins (Isolation Mode = Sandbox).
-
-**SAS-Token** → _Shared Access Signature Token_ — Zeitlich begrenzter Zugriffstoken für Azure-Dienste (z. B. Azure Service Bus). Ersatz für vollständige Zugangsdaten bei eingeschränktem Zugriff.
-
-**SDK** → _Software Development Kit_ — Sammlung von Bibliotheken und Tools für die Entwicklung mit einem bestimmten System. Dataverse hat ein .NET-SDK für Plugin-Entwicklung.
-
-**Sicherheitsrolle** → Sammlung von Berechtigungen in Dataverse, die einem Nutzer oder Team zugewiesen werden. Definiert welche Tabellen, Aktionen und Zugriffstiefen erlaubt sind.
-
-**Solution** → _Lösung_ — Container in Power Platform, der Anpassungen und Komponenten für den Transport zwischen Umgebungen bündelt. Basis für ALM.
-
-**Solution Architect (SA)** → Rolle, die für die Gesamtarchitektur einer Power Platform-Lösung verantwortlich ist. Trifft strukturelle und langfristige Architekturentscheidungen.
-
-**Solution Checker** → Automatisches Prüfwerkzeug, das Lösungen auf Best-Practice-Verstöße, Performance-Probleme und Sicherheitslücken analysiert.
-
-**Solution Layering** → Mechanismus, durch den mehrere Lösungen dieselbe Komponente überlagern können. Die Lösung mit dem höchsten Layer (zuletzt importiert / aktiver Layer) gewinnt.
-
-**SPL** → Abkürzung für **Service Protection Limits** (s. dort).
-
-**Service Protection Limits (SPL)** → Eingebaute Schutzmechanismen der Dataverse Web API: max. 6.000 Anfragen / 5 Minuten, max. 20 Minuten Ausführungszeit / 5 Minuten, max. 52 parallele Anfragen — jeweils pro Nutzer/App-User.
-
----
-
-## T
-
-**Tenant** → Microsoft-365-/Azure-Mandant — die logische Organisation eines Unternehmens in der Microsoft-Cloud. Alle Power Platform-Umgebungen eines Unternehmens gehören zu einem Tenant.
-
-**TTL** → _Time to Live_ — Zeitraum, nach dem ein Datensatz oder eine Nachricht automatisch gelöscht wird. In Elastic Tables und Azure Service Bus konfigurierbar.
-
----
-
-## U
-
-**UAT** → _User Acceptance Testing_ — Abnahmetest durch den Fachbereich. Wird in einer dedizierten Test-/UAT-Umgebung durchgeführt, nie in der Produktivumgebung.
-
-**Umgebung** → _Environment_ — Isolierter Container in Power Platform mit eigenem Dataverse, eigenen Apps, Flows und Konfigurationen. Gleichzeitig die stärkste Sicherheitsgrenze.
-
-**Unmanaged Solution** → Nicht geschützte Lösung in der Entwicklungsumgebung. Alle Komponenten sind frei editierbar. Wird für die Entwicklung verwendet, nie in Produktivumgebungen deployt.
-
----
-
-## V
-
-**Virtual Table** → _Virtuelle Tabelle_ — Dataverse-Tabelle, die Daten aus einer externen Quelle (REST-API, SharePoint, etc.) live abfragt und als native Dataverse-Tabelle darstellt. Keine lokale Datenspeicherung.
-
----
-
-## W
-
-**Webhook** → HTTP-Endpunkt, an den Dataverse bei bestimmten Ereignissen automatisch eine Benachrichtigung sendet (HTTP POST mit JSON-Payload).
-
----
-
-## X
-
-**XRM** → Abkürzung für _Extensible Relationship Management_ — historische interne Bezeichnung für die Dataverse-/CRM-Plattform. Taucht noch in älteren SDK-Namespaces auf (z. B. `Microsoft.Xrm.Sdk`).
-
----
-
-## Z
-
-**Zugriffstiefe** → Definiert in einer Sicherheitsrolle, auf welche Datensätze ein Nutzer zugreifen darf: `User` (nur eigene), `Business Unit` (eigene BU), `Parent: Child Business Units` (BU + Untereinheiten), `Organization` (alles).
+| Begriff / Abkürzung                         | PP-Modul / Bereich                | Wann verwendet                                                                         | Primäre Nutzer          | Kursrelevant |
+| ------------------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------- | ----------------------- | ------------ |
+| **AAD** (Azure Active Directory)            | Entra ID / Azure                  | Ältere Dokumente, Code-Namespaces; heute durch Entra ID ersetzt                        | Entwickler, Admins      | Ja           |
+| **ADO** (Azure DevOps)                      | ALM / CI-CD                       | CI/CD-Pipelines, Source Control, Work Items für PP-Projekte                            | Entwickler, SA          | Ja           |
+| **ALM** (Application Lifecycle Management)  | ALM / Deployment                  | Gesamter Entwicklungs- und Auslieferungsprozess: Dev → Test → Prod                     | SA, Entwickler          | Ja           |
+| **API**                                     | Dataverse / Integration           | Kommunikation zwischen Systemen; in PP meist Dataverse Web API oder Connector          | Entwickler, SA          | Ja           |
+| **App Registration**                        | Entra ID / Dataverse              | Service-to-Service-Kommunikation ohne menschliche Anmeldung                            | Entwickler, Admins      | Ja           |
+| **App User**                                | Dataverse / Sicherheit            | Technischer Benutzer für automatisierte API-Aufrufe (z. B. Integrationen)              | Entwickler, Admins      | Ja           |
+| **Azure DevOps (ADO)**                      | ALM / CI-CD                       | Pipelines, Git, Build Tasks für Power Platform ALM                                     | Entwickler, SA          | Ja           |
+| **Azure Event Hub**                         | Integration / Azure               | Hochvolumen-Streaming (IoT, Logs, Telemetrie); kein Exactly-Once-Delivery              | Entwickler, Architekten | Ja           |
+| **Azure Function**                          | Integration / Azure               | Komplexe Logik, externe Bibliotheken, Hochlast jenseits von Plugins/Flows              | Entwickler, SA          | Ja           |
+| **Azure Service Bus (ASB)**                 | Integration / Azure               | Asynchrone Nachrichtenverarbeitung mit Zustellgarantie; Queues & Topics                | Entwickler, SA          | Ja           |
+| **Bearer Token**                            | Entra ID / Dataverse Web API      | HTTP-Authentifizierung bei jedem API-Aufruf gegen Dataverse                            | Entwickler              | Ja           |
+| **BPF** (Business Process Flow)             | Power Apps / MDA                  | Geführter Formular-Workflow in Model-Driven Apps, konfigurierbar ohne Code             | Maker, Entwickler       | Ja           |
+| **BU** (Business Unit)                      | Dataverse / Sicherheit            | Abbildung der Organisationsstruktur; steuert Row-Level Security                        | Admins, SA              | Ja           |
+| **Build Tools** (PP Build Tools)            | ALM / Azure DevOps                | ADO-Tasks für Export, Import, Solution Checker in CI/CD-Pipelines                      | Entwickler, SA          | Ja           |
+| **Canvas App**                              | Power Apps                        | Maßgeschneiderte UI-Apps mit freiem Layout; viele Datenquellen möglich                 | Maker, Entwickler       | Ja           |
+| **CDM** (Common Data Model)                 | Dataverse                         | Standardisiertes Schema für Geschäftsdaten; Basis der Dataverse-Tabellen               | SA, Entwickler          | Ja           |
+| **CI/CD**                                   | ALM / Azure DevOps / PP Pipelines | Automatischer Build, Test und Deployment von Lösungen                                  | Entwickler, SA          | Ja           |
+| **CoE** (Center of Excellence)              | Governance / Admin Center         | Unternehmensweite PP-Governance: DLP, Maker-Onboarding, Inventar                       | Admins, SA              | Ja           |
+| **Connection Reference**                    | Power Automate / ALM              | Umgebungsunabhängige Verbindungsplatzhalter in Lösungen                                | Entwickler, Maker       | Ja           |
+| **Connector**                               | Power Automate / Power Apps       | Fertige Integrationen zu externen Diensten (>1.000 verfügbar)                          | Maker, Entwickler       | Ja           |
+| **Custom Connector**                        | Power Automate / Power Apps       | Eigene REST-API-Integration, wenn kein Standard-Connector existiert                    | Entwickler, SA          | Ja           |
+| **Customization Prefix**                    | Dataverse / Solution              | Namespacing für eigene Tabellen/Spalten; vom Publisher festgelegt                      | Entwickler, SA          | Ja           |
+| **Dataverse**                               | Dataverse (Kernplattform)         | Relationale Datenbank mit Sicherheitsmodell, API und ALM-Integration                   | Alle                    | Ja           |
+| **Dataverse Web API**                       | Dataverse / Integration           | Programmatischer Zugriff auf Dataverse-Daten via OData/REST                            | Entwickler              | Ja           |
+| **DLP** (Data Loss Prevention)              | PP Admin Center / Governance      | Richtlinien für erlaubte Connector-Kombinationen in Umgebungen                         | Admins, SA              | Ja           |
+| **Dead Letter Queue (DLQ)**                 | Azure Service Bus                 | Fehlgeschlagene Nachrichten nach max. Zustellversuchen zur Analyse                     | Entwickler, Ops         | Ja           |
+| **Elastic Table**                           | Dataverse                         | Hochvolumen-Tabellen (Cosmos DB-Backend) für Logs, IoT, Massendaten                    | SA, Entwickler          | Ja           |
+| **Entra ID**                                | Azure / Identität                 | Authentifizierung und Autorisierung für alle PP- und Azure-Dienste                     | Admins, Entwickler      | Ja           |
+| **Environment Variable**                    | Dataverse / ALM                   | Umgebungsspezifische Konfigurationswerte in Lösungen (URLs, Keys)                      | Entwickler, SA          | Ja           |
+| **ExecuteMultiple**                         | Dataverse Web API                 | Massenoperationen (Create/Update/Delete) in einem HTTP-Request                         | Entwickler              | Ja           |
+| **FetchXML**                                | Dataverse                         | Komplexe Abfragen in Plugins, Advanced Find, SSRS-Berichten                            | Entwickler              | Ja           |
+| **Fit-Gap-Analyse**                         | Architektur / Methodik            | Bewertung jeder Anforderung: Fit / Partial Fit / Gap zur Plattform                     | SA                      | Ja           |
+| **Flow** (Power Automate)                   | Power Automate                    | Automatisierte Workflows zwischen Apps und Diensten                                    | Maker, Entwickler       | Ja           |
+| **Go-Live**                                 | ALM / Projektmanagement           | Freischaltung der Anwendung für Endnutzer im Produktivbetrieb                          | SA, Projektleitung      | Ja           |
+| **Governance**                              | PP Admin Center / CoE             | Regelwerk für sichere, nachhaltige PP-Nutzung im Unternehmen                           | Admins, SA              | Ja           |
+| **IOrganizationService**                    | Dataverse SDK / Plugin            | .NET-Interface für Dataverse-Operationen innerhalb von Plugins                         | Entwickler              | Ja           |
+| **Isolation Mode**                          | Dataverse / Plugin                | Sandbox-Ausführung von Plugins; schränkt Dateisystem-/Netzwerkzugriff ein              | Entwickler, Admins      | Ja           |
+| **JS** (JavaScript)                         | Power Apps / MDA                  | Clientseitige Formularlogik und UI-Anpassungen in Model-Driven Apps                    | Entwickler              | Ja           |
+| **Layer / Solution Layer**                  | ALM / Solution                    | Überlagerungsreihenfolge bei mehreren Lösungen für dieselbe Komponente                 | SA, Entwickler          | Ja           |
+| **Maker**                                   | Power Apps / Power Automate       | Low-Code-Ersteller von Apps und Flows; kein tiefer Codehintergrund nötig               | Business Users, Maker   | Ja           |
+| **Managed Environment**                     | PP Admin Center / Governance      | Premium-Governance-Features: IP-Firewall, Sharing-Limits, Solution Checker Enforcement | Admins, SA              | Ja           |
+| **Managed Solution**                        | ALM / Solution                    | Geschützter Lösungscontainer für Test- und Produktivumgebungen                         | Entwickler, SA          | Ja           |
+| **MDA** (Model-Driven App)                  | Power Apps / Dataverse            | Datenmodell-basierte App mit automatisch generiertem UI für Geschäftsprozesse          | Maker, Entwickler       | Ja           |
+| **OData**                                   | Dataverse Web API / Integration   | REST-Abfragestandard (`$filter`, `$select`, `$top`) für Dataverse-API                  | Entwickler              | Ja           |
+| **pac / pac CLI**                           | ALM / Entwicklung                 | Kommandozeilen-Tool für Export, Import, Pack/Unpack von Lösungen                       | Entwickler, SA          | Ja           |
+| **PL-600**                                  | Zertifizierung                    | Prüfungsbezeichnung: _Microsoft Power Platform Solution Architect_                     | SA-Kandidaten           | Ja           |
+| **Plugin**                                  | Dataverse / Erweiterung           | Serverseitiger .NET-Code in der Dataverse-Verarbeitungspipeline                        | Entwickler              | Ja           |
+| **Plugin Registration Tool (PRT)**          | Dataverse / Entwicklung           | Registrierung von Plugins und Webhooks in Dataverse (NuGet-Tool)                       | Entwickler              | Ja           |
+| **Post-Operation**                          | Dataverse / Plugin-Pipeline       | Dritte Pipeline-Phase nach Speicherung; sync (Rollback möglich) oder async             | Entwickler              | Ja           |
+| **Power Automate**                          | Power Automate                    | Low-Code-Automatisierung von Workflows zwischen Diensten und Apps                      | Maker, Entwickler       | Ja           |
+| **Power Pages**                             | Power Pages                       | Portale für externe Nutzer ohne PP-Account; Dataverse-verbunden                        | Entwickler, SA          | Ja           |
+| **Power Platform (PP)**                     | Alle PP-Module                    | Gesamte Produktfamilie: Power Apps, Automate, BI, Pages, Copilot Studio                | Alle                    | Ja           |
+| **PP Pipelines** (Power Platform Pipelines) | ALM / Deployment                  | Eingebautes Deployment ohne Azure DevOps; für kleinere Teams                           | SA, Entwickler          | Ja           |
+| **Pre-Operation**                           | Dataverse / Plugin-Pipeline       | Zweite Pipeline-Phase: nach DB-Zugriff, vor Speicherung; Feldwerte ändern              | Entwickler              | Ja           |
+| **Pre-Validation**                          | Dataverse / Plugin-Pipeline       | Erste Pipeline-Phase vor DB-Zugriff; für frühzeitige Validierungen                     | Entwickler              | Ja           |
+| **Publisher**                               | Dataverse / Solution              | Besitzer einer Lösung; legt Customization Prefix fest                                  | SA, Entwickler          | Ja           |
+| **REST**                                    | Integration / Dataverse           | HTTP-Architekturstil für APIs; Basis der Dataverse Web API                             | Entwickler              | Ja           |
+| **Retry-After**                             | Dataverse Web API / SPL           | HTTP-Header bei 429-Antwort: gibt Wartezeit vor erneutem Versuch an                    | Entwickler              | Ja           |
+| **RLS** (Row-Level Security)                | Dataverse / Sicherheit            | Datensatz-Zugriffsbeschränkung über BU, Eigentümer, Sicherheitsrolle                   | Admins, SA              | Ja           |
+| **Rollup-Spalte**                           | Dataverse / Datenmodell           | Aggregierter Wert über verknüpfte Datensätze (async, alle 12 Stunden)                  | Entwickler, SA          | Ja           |
+| **SA** (Solution Architect)                 | Architektur / Alle Module         | Verantwortung für Gesamtarchitektur; strukturelle Langzeitentscheidungen               | SA                      | Ja           |
+| **Sandbox**                                 | PP Admin Center / Dataverse       | Nicht-produktive Umgebung für Entwicklung/Tests; auch Plugin-Ausführungsmodus          | Alle                    | Ja           |
+| **SAS-Token**                               | Azure Service Bus / Azure         | Zeitlich begrenzter Zugriffstoken für Azure-Dienste                                    | Entwickler              | Ja           |
+| **SDK**                                     | Dataverse / Plugin-Entwicklung    | .NET-Bibliotheken für Plugin- und API-Entwicklung mit Dataverse                        | Entwickler              | Ja           |
+| **Service Protection Limits (SPL)**         | Dataverse Web API                 | Schutz vor API-Überlast: 6.000 Req/5 Min, 52 parallele Req pro Nutzer                  | Entwickler, SA          | Ja           |
+| **Sicherheitsrolle**                        | Dataverse / Sicherheit            | Berechtigungssammlung: Tabellen, Aktionen, Zugriffstiefen pro Nutzer/Team              | Admins, SA              | Ja           |
+| **Solution** (Lösung)                       | ALM / Alle Module                 | Container für Anpassungen und Komponenten; Transporteinheit zwischen Umgebungen        | SA, Entwickler          | Ja           |
+| **Solution Checker**                        | ALM / Power Apps                  | Automatische Prüfung auf Best-Practice-Verstöße, Performance, Sicherheit               | SA, Entwickler          | Ja           |
+| **Solution Layering**                       | ALM / Solution                    | Überlagerungssystem bei mehreren Lösungen; höchster Layer gewinnt                      | SA, Entwickler          | Ja           |
+| **Tenant**                                  | Azure / Entra ID                  | Microsoft-365-/Azure-Mandant eines Unternehmens; enthält alle Umgebungen               | Admins, SA              | Ja           |
+| **TTL** (Time to Live)                      | Dataverse / Azure Service Bus     | Automatisches Löschen von Datensätzen/Nachrichten nach Ablaufzeit                      | Entwickler, SA          | Ja           |
+| **UAT** (User Acceptance Testing)           | ALM / Projektmanagement           | Fachbereichs-Abnahmetest in dedizierter Test-Umgebung vor Go-Live                      | SA, Tester, Business    | Ja           |
+| **Umgebung** (Environment)                  | PP Admin Center / Alle Module     | Isolierter PP-Container mit eigenem Dataverse; stärkste Sicherheitsgrenze              | Admins, SA              | Ja           |
+| **Unmanaged Solution**                      | ALM / Solution                    | Editierbare Entwicklungslösung; nur in Dev-Umgebungen, nie in Prod                     | Entwickler, SA          | Ja           |
+| **Virtual Table**                           | Dataverse / Integration           | Live-Zugriff auf externe Datenquellen als native Dataverse-Tabelle                     | Entwickler, SA          | Ja           |
+| **Webhook**                                 | Dataverse / Integration           | HTTP-Endpunkt für ereignisgetriebene Benachrichtigungen aus Dataverse                  | Entwickler              | Ja           |
+| **XRM**                                     | Dataverse / Plugin-SDK            | Historische Plattformbezeichnung; taucht in älteren SDK-Namespaces auf                 | Entwickler              | Ja           |
+| **Zugriffstiefe**                           | Dataverse / Sicherheitsrolle      | Scope des Datenzugriffs: User / Business Unit / Parent BU / Organization               | Admins, SA              | Ja           |
