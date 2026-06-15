@@ -146,3 +146,13 @@ Es gibt Situationen, in denen weder Rollup noch Formel die richtige Wahl sind. W
 | Zukunft | Stabil | Deprecated-Trend | Empfohlen |
 | Als Trigger nutzbar | Nein | Nein | Nein |
 | Gespeichert in DB | Ja | Nein | Nein |
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Rollup-Spalte erstellen | [make.powerapps.com](https://make.powerapps.com) → **Dataverse** → **Tables** → [Tabelle] → **Columns** → + **Column** → Datentyp: **Rollup** |
+| Formelspalte (Formula Column) erstellen | make.powerapps.com → **Tables** → [Tabelle] → **Columns** → + **Column** → Datentyp: **Formula** |
+| Rollup-Wert manuell neu berechnen | Model-Driven App → [Datensatz öffnen] → Rollup-Feld anklicken → Aktualisierungspfeil |
+| Berechnete Spalte (Calculated, Legacy) anlegen | make.powerapps.com → **Tables** → [Tabelle] → **Columns** → + **Column** → Datentyp: **Calculated** |
+| Plugin für synchrone Berechnung registrieren | Terminal: `pac tool prt` → Plugin Registration Tool → **Register New Step** → Stage: **PreOperation** |

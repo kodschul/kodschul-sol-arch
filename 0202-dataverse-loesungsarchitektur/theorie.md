@@ -96,3 +96,14 @@ Dataverse hat drei verschiedene Speicherpools mit unterschiedlichen Preisen:
 **Log Storage:** Fuer Audit-Logs. Wachst automatisch wenn Auditing aktiviert ist. Kann mit Retention Policies begrenzt werden.
 
 **SA-Implikation:** Der SA plant den Speicherverbrauch. Eine Loesung mit vielen grossen Dateianhangen direkt in Dataverse kann teuer werden. Alternative: SharePoint fuer Dateien, Dataverse fuer strukturierte Daten mit Link-Verweis auf SharePoint.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Tabellen anlegen und bearbeiten | [make.powerapps.com](https://make.powerapps.com) → **Dataverse** → **Tables** → + **New table** |
+| Standardtabellen einsehen (Account, Contact, ...) | make.powerapps.com → **Dataverse** → **Tables** → Filter: **Standard** |
+| Sicherheitsschicht (Rollen, BUs) | [admin.powerplatform.microsoft.com](https://admin.powerplatform.microsoft.com) → **Environments** → [Umgebung] → **Settings** → **Users + permissions** |
+| Dataverse Web API aufrufen/testen | `https://[orgname].crm.dynamics.com/api/data/v9.2/` (Postman, Browser) |
+| Speicherverbrauch überwachen | PPAC → **Resources** → **Capacity** |
+| Audit-Einstellungen konfigurieren | PPAC → **Environments** → [Umgebung] → **Settings** → **Auditing** → **Manage audit settings and logs** |

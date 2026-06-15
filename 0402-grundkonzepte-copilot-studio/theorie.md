@@ -173,3 +173,15 @@ Bevor ein SA mit dem Bau beginnt, sollte folgende Checkliste abgearbeitet werden
 6. Was passiert, wenn der Agent nicht helfen kann? (Escalation-Pfad zu Mensch oder Ticket-System)
 
 Ein Agent der ohne diese Planungsphase gebaut wird, endet oft in einem "Frankenstein-System" das fuer bestimmte Fragen gut funktioniert und fuer andere voellig versagt.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Agent anlegen | [copilotstudio.microsoft.com](https://copilotstudio.microsoft.com) → + **New agent** |
+| Topics verwalten | [Agent] → **Topics** → + **Add a topic** |
+| Trigger Phrases hinzufügen | [Agent] → **Topics** → [Topic] → **Trigger phrases** |
+| Knowledge Sources hinzufügen (Dataverse, Docs, Web) | [Agent] → **Knowledge** → + **Add knowledge** |
+| Agent im Test-Canvas testen | [Agent] → **Test your agent** (rechte Seitenleiste) |
+| Agent veröffentlichen | [Agent] → **Publish** → **Publish** |
+| Kanäle konfigurieren (Teams, Website, ...) | [Agent] → **Channels** → Kanal auswählen |

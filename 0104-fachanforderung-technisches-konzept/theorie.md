@@ -129,3 +129,13 @@ Ein technisches Konzept fuer eine einzelne Fachanforderung beantwortet die folge
 **Nicht-dokumentierte Annahmen:** Jede Annahme, die der SA in einem technischen Konzept macht, muss explizit als Annahme markiert werden. Beispiel: "Annahme: Jeder Mitarbeiter hat genau einen direkten Vorgesetzten im System."
 
 **Zu detailliert zu frueh:** Ein technisches Konzept in der Planungsphase beschreibt das Was, nicht das Wie. Der Developer entscheidet, ob er fuer die E-Mail den Outlook-Connector oder den Office365-Connector nutzt. Der SA legt fest, dass eine E-Mail gesendet wird.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Tabellen und Felder anlegen | [make.powerapps.com](https://make.powerapps.com) → **Dataverse** → **Tables** → + **New table** |
+| Beziehungen zwischen Tabellen konfigurieren | make.powerapps.com → **Tables** → [Tabelle] → **Relationships** → + **Relationship** |
+| Power Automate Flow erstellen | [make.powerautomate.com](https://make.powerautomate.com) → **+ New flow** → **Automated cloud flow** |
+| Flow-Trigger „Wenn Datensatz erstellt wird" | Neuer Flow → Trigger: **When a row is added, modified or deleted (Dataverse)** |
+| Sicherheitsrolle für neue Funktion | PPAC → **Environments** → [Umgebung] → **Settings** → **Users + permissions** → **Security roles** → + **New role** |

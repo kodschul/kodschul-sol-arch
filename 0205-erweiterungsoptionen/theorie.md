@@ -133,3 +133,14 @@ Der SA waehlt die niedrigste Erweiterungsebene, die eine Anforderung zuverlaessi
 | E-Mail bei Datensatzerstellung | Plugin | Power Automate Flow |
 | Kreditlimit-Validierung bei Bestellerstellung | Power Automate | Plugin (PreValidation) |
 | Naechtlicher Batch 100.000 Updates | Power Automate naiv | Azure Function + ExecuteMultiple |
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Business Rule erstellen | [make.powerapps.com](https://make.powerapps.com) → **Dataverse** → **Tables** → [Tabelle] → **Business rules** → + **New business rule** |
+| Formelspalte (Formula Column) erstellen | make.powerapps.com → **Tables** → [Tabelle] → **Columns** → + **Column** → Datentyp: **Formula** |
+| Power Automate Cloud Flow erstellen | [make.powerautomate.com](https://make.powerautomate.com) → **+ New flow** → **Automated cloud flow** |
+| Custom Connector erstellen | make.powerautomate.com → **Data** → **Custom connectors** → + **New custom connector** |
+| Plugin Registration Tool starten | Terminal: `pac tool prt` (pac CLI erforderlich) |
+| Plugin in Solution einbinden | make.powerapps.com → **Solutions** → [Lösung] → **+ Add existing** → **More** → **Developer** → **Plug-in assembly** |

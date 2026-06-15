@@ -136,3 +136,13 @@ Das groeesste Governance-Risiko entsteht nicht durch einen einzigen unkontrollie
 Mit Power Apps und Copilot Studio ist das einfacher denn je. Ein Mitarbeiter mit einer Power Apps Premium Lizenz kann in einer Stunde einen Agent bauen und in Teams deployed haben.
 
 **Gegenmassnahme:** DLP-Richtlinien im Power Platform Admin Center koennen steuern, auf welche Connectoren und Datenquellen Agents zugreifen duerfen. Eine DLP-Richtlinie kann verhindern, dass Agents auf externe Systeme zugreifen oder bestimmte Connectors nutzen.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| DLP-Richtlinien für Copilot Studio | [admin.powerplatform.microsoft.com](https://admin.powerplatform.microsoft.com) → **Policies** → **Data policies** → Connectors für Copilot Studio konfigurieren |
+| Wer darf Agents erstellen (Tenant) | PPAC → **Settings** → **Tenant settings** → Abschnitt **Copilot Studio** |
+| Agent-Nutzungsstatistiken | [copilotstudio.microsoft.com](https://copilotstudio.microsoft.com) → [Agent] → **Analytics** |
+| Managed Environments für Agent-Governance | PPAC → **Environments** → [Umgebung] → **Enable Managed Environment** |
+| CoE Starter Kit installieren (Governance-Übersicht) | [aka.ms/CoEStarterKit](https://aka.ms/CoEStarterKit) → über AppSource installieren |

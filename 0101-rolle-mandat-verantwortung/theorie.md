@@ -84,3 +84,13 @@ Das Projekt laeuft seit drei Monaten, alle entwickeln in der Produktivumgebung. 
 "Wenn diese Loesung in zwei Jahren von jemandem uebernommen wird, der jetzt noch nicht im Projekt ist, versteht er dann, warum das so gebaut wurde, und kann er es ohne grossen Aufwand weiterentwickeln?"
 
 Wenn die Antwort nein ist, ist die Architekturentscheidung noch nicht gut genug.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Umgebungsübersicht | [admin.powerplatform.microsoft.com](https://admin.powerplatform.microsoft.com) → **Environments** |
+| DLP-Richtlinien (Governance-Leitplanken) | PPAC → **Policies** → **Data policies** |
+| Lösungen (Solution-Struktur prüfen) | [make.powerapps.com](https://make.powerapps.com) → **Solutions** |
+| Sicherheitsrollen (wer hat welche Rechte) | PPAC → **Environments** → [Umgebung] → **Settings** → **Users + permissions** → **Security roles** |
+| Tenant-Einstellungen (wer darf Umgebungen erstellen) | PPAC → **Settings** → **Tenant settings** |

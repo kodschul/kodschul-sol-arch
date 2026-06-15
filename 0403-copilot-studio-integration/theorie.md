@@ -128,3 +128,14 @@ Flows koennen scheitern. APIs koennen nicht erreichbar sein. Dataverse kann voru
 - Optional: Agent loest ein Fallback-Topic aus (z.B. Ticket anlegen)
 
 Diese Fehlerbehandlung muss bei der Konzeption geplant werden, nicht als Nachgedanke.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Power Automate-Flow als Agent-Action verknüpfen | [copilotstudio.microsoft.com](https://copilotstudio.microsoft.com) → [Agent] → **Actions** → + **Add an action** → **Power Automate** |
+| Direkter Dataverse-Connector im Agent | [Agent] → **Actions** → + **Add an action** → **Dataverse** |
+| Agent-Authentifizierung konfigurieren | [Agent] → **Settings** → **Security** → **Authentication** |
+| Connection References in der Lösung | [make.powerapps.com](https://make.powerapps.com) → **Solutions** → [Lösung] → **Connection references** |
+| Agent-Konversationen und Fehler einsehen | [Agent] → **Analytics** → **Sessions** |
+| Agent zu einer Solution hinzufügen | make.powerapps.com → **Solutions** → [Lösung] → **+ Add existing** → **Chatbot** |

@@ -129,3 +129,13 @@ Der groesste Fehler, den ein SA machen kann, ist, einen Agent als Allzweckloesun
 **Nutzererlebnis bei Komplexitaet:** Ein Agent wird frustrant, wenn er zu viele Fragen stellt oder Anliegen nicht versteht. Wenn der Prozess komplex ist (viele Felder, viele Abhaengigkeiten), ist eine App die bessere Wahl.
 
 **Wartungsaufwand:** Ein klassischer Topic-basierter Agent muss kontinuierlich gepflegt werden (neue Fragen, geaenderte Prozesse). Das ist kein Einmal-Projekt.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Agent erstellen und testen | [copilotstudio.microsoft.com](https://copilotstudio.microsoft.com) → + **New agent** |
+| Agent aus Power Apps heraus erstellen | [make.powerapps.com](https://make.powerapps.com) → **+ Create** → **Agent** |
+| AI Builder-Modelle evaluieren | [make.powerapps.com](https://make.powerapps.com) → **AI models** |
+| Wer darf Agents erstellen (Tenant-Einschränkung) | PPAC → **Settings** → **Tenant settings** → Abschnitt **Copilot Studio** |
+| DLP-Policies für Copilot Studio Connectors | PPAC → **Policies** → **Data policies** |

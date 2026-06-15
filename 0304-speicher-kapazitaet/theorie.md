@@ -126,3 +126,13 @@ flowchart TD
     I --> J
     J --> K[Im Tenant-Kapazitaetsplan beruecksichtigen]
 ```
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Speicherverbrauch (Tenant-Übersicht) | [admin.powerplatform.microsoft.com](https://admin.powerplatform.microsoft.com) → **Resources** → **Capacity** |
+| Speicher je Umgebung aufschlüsseln | PPAC → **Resources** → **Capacity** → Reiter **Dataverse** → [Umgebung auswählen] |
+| Audit aktivieren/konfigurieren | PPAC → **Environments** → [Umgebung] → **Settings** → **Auditing** → **Manage audit settings and logs** |
+| Audit selektiv für Felder aktivieren | make.powerapps.com → **Tables** → [Tabelle] → **Columns** → [Spalte] → **Edit** → **Enable auditing** |
+| Long-Term Retention konfigurieren | PPAC → **Environments** → [Umgebung] → **Settings** → **Data management** → **Long term retention** |

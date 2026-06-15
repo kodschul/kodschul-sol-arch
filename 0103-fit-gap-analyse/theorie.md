@@ -94,3 +94,13 @@ Ein Beispiel:
 Eine Fit-Gap-Analyse schuetzt vor Scope-Creep. Wenn ein Stakeholder in der Entwicklungsphase eine neue Anforderung einbringt, kann der SA sie sofort durch die Fit-Gap-Analyse laufen lassen: Ist es ein Fit, kein Problem. Ist es ein Gap, muss der Stakeholder entscheiden, was dafuer aus dem Scope herausgenommen wird.
 
 Diese klare Sprache verhindert, dass das Projekt endlos waechst.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Connector-Katalog (verfügbare Standard-Connectors) | [make.powerautomate.com](https://make.powerautomate.com) → **Connectors** |
+| Power Platform-Features je Umgebung prüfen | [make.powerapps.com](https://make.powerapps.com) → [Umgebung wählen] → **Tables / Flows / Apps** |
+| AI Builder-Modelle evaluieren | [make.powerapps.com](https://make.powerapps.com) → **AI models** |
+| SAP-Connector Details | [make.powerautomate.com](https://make.powerautomate.com) → **Connectors** → Suche: „SAP" |
+| Lizenz-/Feature-Übersicht | [learn.microsoft.com/power-platform/admin/pricing-billing-skus](https://learn.microsoft.com/power-platform/admin/pricing-billing-skus) |

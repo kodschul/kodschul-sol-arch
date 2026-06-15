@@ -97,3 +97,13 @@ Alle Werte, die sich zwischen Umgebungen unterscheiden, kommen in Umgebungsvaria
 
 **Solutions als Deployment-Einheit:**
 Alle Komponenten einer Loesung gehoeren in eine Solution. Die Solution ist die Einheit, die zwischen Umgebungen transportiert wird. Eine Loesung ohne Solution ist nicht deploybar.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Umgebungsvariablen anlegen | [make.powerapps.com](https://make.powerapps.com) → **Solutions** → [Lösung] → **+ Add** → **More** → **Environment variable** |
+| Umgebungsvariable im Flow verwenden | Power Automate Flow → Aktion: **Get environment variable value (Dataverse)** |
+| Connection References verwalten | make.powerapps.com → **Solutions** → [Lösung] → **Connection references** |
+| Lösungen als Deployment-Einheit anlegen | make.powerapps.com → **Solutions** → + **New solution** |
+| Publisher-Prefix festlegen | make.powerapps.com → **Solutions** → **Publishers** → + **New publisher** |

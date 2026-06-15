@@ -193,3 +193,14 @@ Ein Unternehmen baut einen Kundendienst:
 - Telefonate: Standard Activity-Tabelle PhoneCall (integriert in Timeline)
 - Besuchsberichte: Custom Activity-Tabelle cr_Besuchsbericht (eigene Felder, in Timeline sichtbar)
 - Kategorien: Custom-Tabelle cr_Kategorie (Organization owned, kein Benutzer-Zugriff noetig)
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Custom-Tabelle (User/Team owned) anlegen | [make.powerapps.com](https://make.powerapps.com) → **Dataverse** → **Tables** → + **New table** → **Advanced options** → Record ownership: **User or team** |
+| Organization-owned Tabelle anlegen | make.powerapps.com → + **New table** → **Advanced options** → Record ownership: **Organization** |
+| Custom Activity-Tabelle anlegen | make.powerapps.com → + **New table** → **Advanced options** → Type: **Activity table** |
+| Virtuelle Tabelle erstellen | make.powerapps.com → + **New table** → **Advanced options** → Type: **Virtual** → External data source wählen |
+| Elastic Table erstellen (wenn verfügbar) | make.powerapps.com → + **New table** → **Advanced options** → Type: **Elastic** |
+| Standardtabellen einsehen | make.powerapps.com → **Dataverse** → **Tables** → Filter: **Standard** |

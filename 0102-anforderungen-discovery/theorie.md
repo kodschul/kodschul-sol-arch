@@ -126,3 +126,13 @@ Ein Discovery ohne diese Weiterverwertung ist Zeitverschwendung. Die Discovery i
 **Nicht-funktionale Anforderungen vergessen:** Performance, Sicherheit, Verfuegbarkeit, Datenschutz. Diese Anforderungen sind fuer die Architektur oft wichtiger als funktionale Anforderungen, werden aber selten spontan genannt.
 
 **Keine Priorisierung vornehmen:** Wenn alle Anforderungen gleich wichtig sind, kann keine Architekturentscheidung getroffen werden. Priorisierung ist Pflicht.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Vorhandene Umgebungen und Apps (Ist-Zustand) | [admin.powerplatform.microsoft.com](https://admin.powerplatform.microsoft.com) → **Environments** |
+| Vorhandene Lösungen und Komponenten prüfen | [make.powerapps.com](https://make.powerapps.com) → **Solutions** |
+| Connector-Verfügbarkeit prüfen | [make.powerautomate.com](https://make.powerautomate.com) → **Connectors** |
+| Capacity-Verbrauch (Tenant-Baseline) | PPAC → **Resources** → **Capacity** |
+| Lizenzen im Tenant | [admin.microsoft.com](https://admin.microsoft.com) → **Billing** → **Licenses** |

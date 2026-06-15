@@ -144,3 +144,14 @@ Am Ende jedes Sprint-Reviews oder Architektur-Reviews stellt der SA folgende Fra
 3. Was ist der Plan, es zu beheben, bevor es zum echten Problem wird?
 
 Diese Fragen sind unangenehm, aber notwendig. Ein SA, der diese Fragen nicht stellt, erledigt seinen Job nicht vollstaendig.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Lösungen anlegen (alles in Solutions verpacken) | [make.powerapps.com](https://make.powerapps.com) → **Solutions** → + **New solution** |
+| DLP-Richtlinien konfigurieren | [admin.powerplatform.microsoft.com](https://admin.powerplatform.microsoft.com) → **Policies** → **Data policies** |
+| Flow-Monitoring (Fehler und Läufe einsehen) | [make.powerautomate.com](https://make.powerautomate.com) → **Monitor** → **Cloud flow activity** |
+| Delegations-Warnungen in Canvas Apps | Power Apps Studio → Formelleiste → gelbes Warnsymbol bei nicht-delegierbaren Ausdrücken |
+| Umgebungsstrategie (Dev/Test/Prod) einrichten | PPAC → **Environments** → + **New** |
+| Komponenten ohne Solution finden | make.powerapps.com → **Solutions** → **Default solution** → alle unpackaged components |

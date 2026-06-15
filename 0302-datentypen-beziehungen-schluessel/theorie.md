@@ -188,3 +188,14 @@ flowchart TD
     J -->|Ja, nicht filterbar| K[Multi Line of Text]
     J -->|Nein oder filterbar noetig| L[Single Line of Text]
 ```
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Spalte (Datentyp) anlegen | [make.powerapps.com](https://make.powerapps.com) → **Dataverse** → **Tables** → [Tabelle] → **Columns** → + **Column** |
+| 1:N-Beziehung erstellen | make.powerapps.com → **Tables** → [Tabelle, übergeordnet] → **Relationships** → + **Relationship** → **One-to-many** |
+| N:N-Beziehung erstellen | make.powerapps.com → **Tables** → [Tabelle] → **Relationships** → + **Relationship** → **Many-to-many** |
+| Alternativschlüssel (Alternate Key) anlegen | make.powerapps.com → **Tables** → [Tabelle] → **Keys** → + **New key** |
+| Kaskadierungsverhalten einer Beziehung ändern | make.powerapps.com → **Tables** → [Tabelle] → **Relationships** → [Beziehung] → **Advanced options** → Cascade type |
+| Währungseinstellungen der Umgebung | PPAC → **Environments** → [Umgebung] → **Settings** → **Business** → **Currencies** |

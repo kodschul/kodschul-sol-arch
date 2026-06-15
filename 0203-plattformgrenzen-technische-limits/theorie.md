@@ -109,3 +109,13 @@ Filter(Bestellungen, StartsWith(Bestellnummer, "OR"))
 - Maximale Laufzeit eines einzelnen Flow-Runs: 30 Tage
 - Maximale Anzahl von Aktionen in einem Flow: 500
 - Maximale Parallelitaet in Foreach-Loops: 50 parallele Branches
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| API-Aufrufstatistiken überwachen | [admin.powerplatform.microsoft.com](https://admin.powerplatform.microsoft.com) → **Analytics** → **Dataverse** → **API calls** |
+| Flow-Fehler durch 429 einsehen | [make.powerautomate.com](https://make.powerautomate.com) → **My flows** → [Flow] → **Run history** → [fehlgeschlagener Run] |
+| Power Automate-Nutzung überwachen | PPAC → **Analytics** → **Power Automate** |
+| Delegations-Warnungen in Canvas Apps | Power Apps Studio → Formelleiste → gelbes Warnsymbol |
+| Rollup-Spalte manuell neu berechnen | Model-Driven App → [Datensatz] → Rollup-Feld → Aktualisierungspfeil |

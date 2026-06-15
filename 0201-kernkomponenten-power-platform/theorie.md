@@ -110,3 +110,15 @@ Dataverse ist nicht das einzige Datenspeichersystem, das mit der Power Platform 
 | Kosten | Lizenzbasiert | In M365 enthalten | Separat |
 
 **SA-Entscheidungsregel:** Wenn die Loesung ein Row-Level-Sicherheitsmodell, Plugins, Auditing oder Offline-Faehigkeit braucht, ist Dataverse die richtige Wahl. Wenn es sich um eine einfache Datenliste ohne komplexe Anforderungen handelt und alle Nutzer bereits M365 haben, kann SharePoint die guenstigere Option sein.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Canvas App erstellen | [make.powerapps.com](https://make.powerapps.com) → **+ Create** → **Canvas app** |
+| Model-Driven App erstellen | [make.powerapps.com](https://make.powerapps.com) → **+ Create** → **Model-driven app** |
+| Power Automate Flow erstellen | [make.powerautomate.com](https://make.powerautomate.com) → **+ New flow** |
+| Dataverse-Tabellen verwalten | [make.powerapps.com](https://make.powerapps.com) → **Dataverse** → **Tables** |
+| Power BI | [app.powerbi.com](https://app.powerbi.com) |
+| Copilot Studio (Agents) | [copilotstudio.microsoft.com](https://copilotstudio.microsoft.com) |
+| AI Builder-Modelle | [make.powerapps.com](https://make.powerapps.com) → **AI models** |

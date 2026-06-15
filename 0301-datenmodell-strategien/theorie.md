@@ -173,3 +173,12 @@ Warum dieses Modell? Die Kategorie ist eine eigene Tabelle, weil daran SLA-Zeite
 Dieses Lab bildet das Fundament fuer Lab 3.2 (Datentypen und Beziehungen), Lab 3.3 (Berechnungslogik) und Lab 3.4 (Speicher). Ohne ein durchdachtes Datenmodell koennen diese Einzelentscheidungen nicht sinnvoll getroffen werden.
 
 Der Solution Architect verantwortet das Gesamtmodell. Einzelne Felder und Tabellen entscheiden Entwickler. Die Strategie und Struktur entscheidet der SA.
+
+## Wo konfigurieren und überwachen?
+
+| Thema | Navigation |
+|---|---|
+| Neue Tabelle anlegen | [make.powerapps.com](https://make.powerapps.com) → **Dataverse** → **Tables** → + **New table** |
+| Publisher-Prefix festlegen (für Namespacing) | make.powerapps.com → **Solutions** → **Publishers** → + **New publisher** |
+| Vorhandene Tabellen und Felder einsehen | make.powerapps.com → **Dataverse** → **Tables** → [Tabelle] → **Columns** |
+| Lösung mit Publisher anlegen | make.powerapps.com → **Solutions** → + **New solution** → Publisher auswählen |
