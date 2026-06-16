@@ -1,233 +1,201 @@
-# Theorie: Canvas Apps mit KI
+# Theorie: Canvas Apps mit AI im Editor bauen
 
 <details>
 <summary>🎯 Einstiegsfragen — vor der Erklärung stellen</summary>
 
-1. Was ist der Unterschied zwischen AI Builder und Copilot in Canvas Apps?
-2. Wann ist es besser, einen Copilot Studio Agent zu nutzen statt KI direkt in einer Canvas App?
-3. Was sind die Kosten-Implikationen von AI Builder in einer Canvas App?
+1. Was ist der Unterschied zwischen KI als Feature in einer App und KI als Builder der App?
+2. Welche Teile einer Canvas App kann ein AI-Editor sinnvoll generieren — welche nicht?
+3. Was passiert wenn du einen generierten Power Fx-Ausdruck blind übernimmst?
 
 <details>
 <summary>💡 Musterlösung</summary>
 
-**1.** AI Builder ist ein Satz trainierter Modelle für strukturierte Aufgaben (Formularextraktion, Objekterkennung, Sentimentanalyse) — aufrufbar als Power Fx-Funktion. Copilot in Canvas ist der eingebettete Chat-Assistent (Copilot Studio Agent) der in eine Canvas App integriert wird. AI Builder ist für automatisierte Verarbeitung, Copilot für interaktive Dialoge.
+**1.** KI als Feature: AI Builder in der App, Copilot Chat eingebettet — der Nutzer interagiert mit KI. KI als Builder: GitHub Copilot, Claude Code, Codex generieren die App selbst — der Entwickler interagiert mit KI. Dieses Modul behandelt ausschließlich KI als Builder.
 
-**2.** Canvas App wenn: strukturierte Dateneingabe, viele Felder, Validierungsregeln, der Nutzer braucht eine klare Oberfläche. Copilot Studio Agent wenn: freie Sprachinteraktion, Questions & Answers, der Nutzer weiß nicht was er eingeben soll.
+**2.** Sinnvoll generierbar: Screen-Struktur, Control-Namen, Power Fx-Formeln für Filter/Patch/If, Navigation, Offline-Patterns, PAC CLI-Kommandos. Nicht generierbar ohne Review: Berechtigungen, Row-Level Security, Validierungslogik mit fachlichen Ausnahmen, Lizenzentscheidungen.
 
-**3.** AI Builder nutzt AI Credits (separat von Power Platform Lizenzen). Pro Seite Dokumentenverarbeitung ca. 1 Credit. 1 Million Credits kostet ca. 500 €. Muss pro Umgebung separat zugeteilt werden.
+**3.** Generierte Formeln sind syntaktisch meist korrekt aber semantisch riskant — z.B. ein `Patch()` ohne Error-Handling, ein `Filter()` ohne Delegation-Warning zu beachten. Jede Formel muss auf Delegation, Performance und Security geprüft werden.
 
 </details>
 </details>
 
-## AI Builder — Strukturierte KI-Funktionen
+## Das Konzept: AI als Builder
 
-AI Builder stellt vortrainierte Modelle als Power Fx-Funktionen bereit:
-
-```
-// Dokument verarbeiten (Rechnung, Formular, ID)
-AIFormRecognizer.Predict(uploadedFile)
-→ { fields: { invoice_number, total_amount, vendor_name, ... } }
-
-// Objekte in Bild erkennen
-AIObjectDetector.Predict(cameraPhoto)
-→ { objects: [{ label: "Medikament X", confidence: 0.97, boundingBox: ... }] }
-
-// Text analysieren
-AISentimentAnalysis.Predict(reviewText)
-→ { sentiment: "positive", confidence: 0.89 }
-
-// Eigenes Custom Model (trainiert auf eigene Daten)
-MyCustomClassifier.Predict(inputText)
-→ { label: "Kategorie A", confidence: 0.91 }
-```
-
-**Typische Use Cases in VisitTrack:**
-
-| Use Case                          | AI Builder Funktion               | Einsparung                       |
-| --------------------------------- | --------------------------------- | -------------------------------- |
-| ADM fotografiert Arztvisitenkarte | Object Detector + Form Recognizer | Arzt manuell eintippen entfällt  |
-| ADM scannt Rezept/Dokument        | Document Processing               | Strukturierte Daten ohne Eingabe |
-| Manager bewertet Besuchsnotizen   | Sentiment Analysis                | Früherkennung von Problemen      |
-
-## Copilot in Canvas App integrieren
-
-Ab Power Apps 2024 kann ein Copilot Studio Agent direkt in eine Canvas App eingebettet werden:
-
-```
-// Canvas App Struktur mit eingebettetem Copilot
-Screen: VisitDashboard
-├── Gallery: Visit List (links)
-│   └── Items: Filter(vt_visits, owner = User())
-├── Details Panel (Mitte)
-│   └── Form: Visit Details
-└── Copilot Chat Panel (rechts)
-    └── Component: CopilotChat
-        ├── Agent: "VisitTrack Assistant"
-        └── Context: {selected_visit: Gallery.Selected}
-```
-
-Der eingebettete Agent bekommt den App-Kontext übergeben — er weiß welcher Besuch gerade ausgewählt ist:
-
-```powerfx
-// Context an Copilot übergeben
-CopilotChat.Send({
-    message: "Analysiere diesen Besuch",
-    context: {
-        visit_id: Gallery1.Selected.visit_id,
-        physician_name: Gallery1.Selected.physician_name,
-        notes: Gallery1.Selected.notes
-    }
-})
-```
-
-## Canvas App agentisch bauen
-
-Eine Canvas App kann nicht nur KI enthalten, sondern auch **agentisch erzeugt** werden. Der Agent übernimmt dann den ersten Entwurf, damit der Mensch sich auf Architektur, Datenmodell und Validierung konzentriert.
-
-```mermaid
-flowchart TD
-    A["Anforderung in natürlicher Sprache"] --> B["Agent erstellt App-Skizze"]
-    B --> C["Screens, Controls, Navigation"]
-    C --> D["Power Fx und Datenbindungen"]
-    D --> E["Canvas App in Power Apps"]
-    E --> F["Human Review und Feinschliff"]
-```
-
-**Typischer agentischer Ablauf:**
-
-1. Du gibst dem Agenten einen klaren Kontext: Nutzergruppe, Datenquelle, Kern-Use-Cases, Offline-Bedarf und gewünschte KI-Funktionen.
-2. Der Agent erzeugt die Informationsarchitektur: welche Screens es braucht, wie die Navigation aussieht und welche Komponenten wiederverwendet werden.
-3. Der Agent generiert die ersten Power Fx-Formeln für Filter, Validierung, Patch, Summarize und Sichtbarkeit.
-4. Der Mensch prüft das Ergebnis, korrigiert Datenmodell, Security und Usability und veröffentlicht erst danach.
-
-**Was der Agent konkret vorbereiten kann:**
-
-- Screen-Struktur mit Hauptansicht, Detailansicht und Eingabemaske
-- Benennung von Controls und Variablen nach Konvention
-- Beispiel-Formeln für `Filter`, `Patch`, `If`, `Summarize` und `Connection.Connected`
-- Vorschläge für Offline-Verhalten und Fallback-UI
-- Vorschlag, welche Teile in Canvas App bleiben und welche besser als Agent ausgelagert werden
-
-**Was der Agent nicht allein entscheiden sollte:**
-
-- Berechtigungen und Row-Level Security
-- produktive Schreibaktionen ohne Review
-- komplexe Validierungslogik mit fachlichen Ausnahmen
-- Kosten- und Lizenzentscheidung für AI Builder oder Copilot
-
-**Praktisches Muster für VisitTrack:**
-
-```mermaid
-flowchart TD
-    A["Input an den Agent"] --> B["App-Ziel: Besuche erfassen, Arzt anlegen, KI-Assistenz anzeigen"]
-    B --> C["Datenquelle: Dataverse"]
-    C --> D["Rollen: ADM, Manager, SA"]
-    D --> E["KI-Features: Visitenkarten-Scan, Chat, Zusammenfassung"]
-    E --> F["Offline: Ja, zumindest für die Erfassung"]
-    F --> G["Agent erzeugt App-Blueprint"]
-    G --> H["3 Screens: VisitList, VisitDetail, NewPhysician"]
-    H --> I["1 Copilot Panel + 1 Offline Banner"]
-    I --> J["1 Scan-Workflow + erste Power Fx Formeln"]
-```
+Statt eine Canvas App manuell Screen für Screen aufzubauen, nutzt du AI-Editoren als ersten Entwurfs-Generator:
 
 ```mermaid
 flowchart LR
-    A["Agent Prompt"] --> B["App-Skizze"]
-    B --> C["Screens & Navigation"]
-    C --> D["Power Fx"]
-    D --> E["Canvas App"]
-    E --> F["Human Review"]
+    REQ["Anforderungen\n(natürliche Sprache)"] --> AI["AI-Editor\n(Copilot / Claude / Codex)"]
+    AI --> STRUCT["App-Struktur\n(Screens, Controls, Navigation)"]
+    AI --> FX["Power Fx Formeln\n(Filter, Patch, If, Summarize)"]
+    AI --> CLI["PAC CLI-Kommandos\n(Solution, Deploy)"]
+    STRUCT --> REVIEW["Human Review\n(SA / Developer)"]
+    FX --> REVIEW
+    CLI --> REVIEW
+    REVIEW --> APP["Canvas App\nin Power Apps"]
 ```
 
-Mermaid ist hier das Standardformat fuer alle Architektur- und App-Showcases, damit der Ablauf sofort visuell pruefbar ist.
+Der AI-Editor übernimmt den **ersten Entwurf** — der Mensch übernimmt **Architektur, Sicherheit und fachliche Korrektheit**.
 
-## Power Fx KI-Funktionen (2024+)
+## Die drei AI-Tools im Vergleich
 
-Power Apps hat native AI-Funktionen direkt in Power Fx:
+| Tool                         | Stärke                                            | Schwäche                            | Ideal für                                    |
+| ---------------------------- | ------------------------------------------------- | ----------------------------------- | -------------------------------------------- |
+| **GitHub Copilot** (VS Code) | Workspace-Kontext, inline Vervollständigung       | Kein direktes Power Apps-Deployment | `.pa.yaml`, PAC CLI-Scripts, Dokumentation   |
+| **Claude Code** (Terminal)   | Große Kontextfenster, komplexe Reasoning-Aufgaben | Kein IDE-Integration                | Architekturanalyse, große Refactorings, ADRs |
+| **Codex CLI** (OpenAI)       | Schnell, API-direkt nutzbar                       | Weniger Kontext über Workspace      | Einmalige Formel-Generierung, Snippets       |
 
-```powerfx
-// Text generieren
-Set(visitSummary,
-    Summarize(visitNotes, "Fasse in 2 Sätzen zusammen")
-)
+Alle drei können mit einer guten `copilot-instructions.md` / `CLAUDE.md` auf den Projektkontext ausgerichtet werden.
 
-// Klassifizieren
-Set(visitCategory,
-    Classify(visitNotes, ["Produktpräsentation", "Reklamation", "Nachfolge", "Erstbesuch"])
-)
+## Power Apps Source Format (.pa.yaml)
 
-// Entitäten extrahieren
-Set(extractedData,
-    Extract(scannedText, {date: "Datum des Besuchs", duration: "Dauer"})
-)
+Canvas Apps können als YAML-Quelltext verwaltet werden — das ist das Format das AI-Editoren generieren:
 
-// Antwort auf Frage generieren (RAG-ähnlich)
-Set(answer,
-    Ask(userQuestion, Filter(vt_documents, category = "compliance"))
-)
+```bash
+# Canvas App zu YAML exportieren
+pac canvas unpack --msapp VisitTrack.msapp --sources ./src
+
+# Struktur nach Export:
+src/
+  VisitListScreen.fx.yaml   # Screen als YAML
+  VisitDetailScreen.fx.yaml
+  App.fx.yaml               # App-Ebene (OnStart, Themes)
+  DataSources/
+    vt_visits.json          # Dataverse Connector-Konfiguration
 ```
 
-**Wichtig:** Diese Funktionen sind async — immer mit `ClearCollect` + `Loading`-State kombinieren.
+**Beispiel: Screen als YAML (generiert durch Copilot)**
 
-## Beispiel: Visitenkarten-Scanner
+```yaml
+# VisitListScreen.fx.yaml
+As: screen
 
-```powerfx
-// Screen: NewPhysician
-// Button: "Visitenkarte scannen"
+Fill: =RGBA(248, 249, 250, 1)
 
-OnSelect =
-    // 1. Kamera öffnen oder Foto nehmen
-    Set(capturedPhoto, Camera1.Photo);
+galVisits As gallery:
+  Items: =Filter(vt_visits, vt_owner = User().Email)
+  Layout: =Layout.Vertical
+  TemplateSize: =80
 
-    // 2. AI Builder Form Recognizer aufrufen
-    Set(
-        cardData,
-        AIFormRecognizer.Predict(capturedPhoto, "business-card-model")
-    );
+  lblPhysicianName As label:
+    Text: =ThisItem.vt_physician_name
+    FontSize: =16
 
-    // 3. Felder befüllen
-    Set(newPhysicianName, cardData.fields.name.value);
-    Set(newPhysicianPhone, cardData.fields.phone.value);
-    Set(newPhysicianEmail, cardData.fields.email.value);
-    Set(newPhysicianAddress, cardData.fields.address.value);
+  lblVisitDate As label:
+    Text: =Text(ThisItem.vt_visit_date, "[$-de-DE]DD.MM.YYYY")
+    FontSize: =12
 
-    // 4. Zur Bestätigungs-Ansicht navigieren
-    Navigate(ConfirmPhysicianScreen, ScreenTransition.Slide)
+btnNewVisit As button:
+  Text: ="+ Neuer Besuch"
+  OnSelect: =Navigate(VisitDetailScreen, ScreenTransition.Slide)
 ```
 
-Der Nutzer fotografiert eine Visitenkarte → alle Felder sind vorausgefüllt → er prüft und speichert.
+Dieses YAML kann Copilot generieren — der SA prüft Delegation, Sicherheit und Konventionen.
 
-## Architekturentscheidung: KI in App vs. Agent
+## Prompt-Muster für Canvas App Generierung
 
-```mermaid
-flowchart TD
-    R["Anforderung"] --> Q1{"Ist die Interaktion\nstrukturiert?"}
-    Q1 -->|Ja: Formular| Q2{"Braucht der Nutzer\nKI-Unterstützung\nbeim Eingeben?"}
-    Q1 -->|Nein: Freie Frage| A1["Copilot Studio Agent\nIn App einbetten"]
-    Q2 -->|Ja: Auto-Ausfüllen| A2["AI Builder in Canvas App\n(Form Recognizer, OCR)"]
-    Q2 -->|Nein| A3["Standard Canvas App\nohne KI"]
-    Q2 -->|Ja: Assistenz| A4["Copilot Chat Panel\nin Canvas App"]
-```
-
-## Offline-Kompatibilität beachten
-
-AI Builder-Aufrufe und Copilot sind **nicht offline-fähig**.
-
-Für VisitTrack (Offline-Anforderung):
+### Screen-Struktur generieren
 
 ```
-Offline-kompatibel:
-  ✓ Besuch erfassen (Canvas + Dataverse Offline)
-  ✓ Arzt-Daten lesen (aus lokalem Cache)
+Prompt an Copilot / Claude:
 
-Nicht Offline-kompatibel:
-  ✗ Visitenkarte scannen (AI Builder braucht Cloud)
-  ✗ Copilot Chat (Agent braucht Cloud)
+"Ich baue eine Canvas App für VisitTrack (MedPharma).
+ Zielgruppe: Außendienstmitarbeiter auf Mobilgeräten.
+ Datenquelle: Dataverse, Tabellen vt_visits und vt_physicians.
 
-Lösung: Graceful Degradation
-  IF Connection.Connected:
-    SHOW CameraScanner + CopilotPanel
-  ELSE:
-    HIDE CameraScanner + CopilotPanel
-    SHOW: "Offline-Modus: KI-Funktionen nicht verfügbar"
+ Generiere die YAML-Struktur für einen VisitListScreen:
+ - Gallery mit Besuchen des aktuellen Nutzers (gefiltert nach Owner)
+ - Je Visit: Arztname, Datum, Dauer in Minuten
+ - Button 'Neuer Besuch' → navigiert zu VisitDetailScreen
+ - Offline-Banner wenn Connection.Connected = false
+
+ Konventionen: gbl/loc/col Variablen, btnX/lblX/galX Control-Namen, vt_ Präfix
+ Output: .pa.yaml Format"
+```
+
+### Power Fx Formeln generieren
+
+```
+Prompt:
+
+"Schreibe die Power Fx OnSelect-Formel für einen 'Besuch speichern' Button.
+ Anforderungen:
+ - Validierung: Arzt muss ausgewählt sein, Datum darf nicht in der Zukunft liegen
+ - Patch() in vt_visits mit den Formularfeldern
+ - Fehlerhandling: Notify() bei Fehler, Navigate() bei Erfolg
+ - Offline: auch ohne Verbindung in lokale Collection speichern
+
+ Dataverse-Tabelle: vt_visits
+ Felder: vt_physician_id (Lookup), vt_visit_date (Date), vt_duration (Number), vt_notes (Text)
+ Output: kommentierten Power Fx Code"
+```
+
+### PAC CLI-Script generieren
+
+```
+Prompt:
+
+"Generiere ein PowerShell-Script das:
+ 1. PAC CLI Auth gegen DEV-Environment aufbaut
+ 2. Solution 'VisitTrack' exportiert (Unmanaged)
+ 3. Als Managed Solution in TEST importiert
+ 4. Fehler abbricht (ErrorActionPreference Stop)
+
+ Variablen: $DEV_ENV, $TEST_ENV als Parameter
+ Publisher: medpharma, Solution: VisitTrack
+ Output: kommentiertes PowerShell-Script"
+```
+
+## CLAUDE.md — Kontext für Claude Code
+
+Claude Code liest eine `CLAUDE.md` Datei im Workspace-Root analog zu `copilot-instructions.md`:
+
+```markdown
+# CLAUDE.md — VisitTrack Power Platform Project
+
+## Project
+
+Canvas App for field reps (ADMs) at MedPharma GmbH.
+Stack: Power Apps Canvas, Dataverse, Power Automate, PAC CLI.
+
+## Conventions
+
+- Table prefix: vt\_ (publisher: medpharma)
+- Power Fx: gbl* globals, loc* locals, col\* collections
+- Controls: btnX, lblX, galX, frmX, txtX
+- Diagrams: Mermaid only
+
+## Key Tables
+
+- vt_visits: visit records (owner-based RLS)
+- vt_physicians: physician master data (read for all)
+- vt_users: ADM profiles (linked to systemuser)
+
+## What Claude should NOT do
+
+- Deploy directly to production
+- Write RLS rules without asking for review
+- Assume online connectivity (offline patterns required)
+```
+
+## Was prüfen — was blind übernehmen?
+
+```
+✓ Blind übernehmen (nach kurzer Sichtprüfung):
+  - Screen-Namen und Control-Benennung nach Konvention
+  - Navigations-Logik zwischen Screens
+  - Text-Formatierungen (Datum, Zahl)
+  - PAC CLI-Syntax für bekannte Kommandos
+
+⚠ Immer prüfen:
+  - Filter()-Formeln: Delegation-Warning in Power Apps prüfen
+  - Patch()-Formeln: Pflichtfelder und Error-Handling vollständig?
+  - LookUp(): Was passiert wenn kein Ergebnis?
+  - Connection.Connected: Offline-Zweig korrekt implementiert?
+
+✗ Nie blind übernehmen:
+  - Sicherheitsrollen und Row-Level Security
+  - Production-Deployments ohne manuelle Review
+  - Validierungslogik mit fachlichen Ausnahmen
+  - Lizenz- und Kostenentscheidungen
 ```

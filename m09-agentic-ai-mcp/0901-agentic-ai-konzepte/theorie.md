@@ -158,251 +158,219 @@ Gegenmaßnahmen:
 
 ---
 
-## Agentic AI in Power Apps umsetzen
+## Als Solution Architect mit AI arbeiten
 
-### Pattern 1: Copilot Studio Agent
+Ein SA nutzt Agentic AI nicht nur um Produkte zu bauen — er nutzt sie täglich als **Arbeitsassistenten für Architekturentscheidungen, Dokumentation und Code-Generierung**. Der entscheidende Hebel: AI-Tools die den Kontext des Projekts kennen.
 
-**Szenario:** Nutzer stellt Frage in Copilot Studio, Agent soll Dataverse abfragen, entscheidet zwischen mehreren Abfragen, und generiert strukturierte Antwort.
+### copilot-instructions.md: Kontext einmalig definieren
+
+VS Code Copilot liest automatisch `.github/copilot-instructions.md` im Workspace-Root. Diese Datei gibt dem Modell den Projektkontext — einmal geschrieben, immer aktiv:
+
+```markdown
+# Projekt: VisitTrack — Power Platform Solution Architecture
+
+## Kontext
+
+Solution Architect bei MedPharma GmbH. Power Platform Projekt.
+Stack: Canvas Apps, Model-Driven Apps, Dataverse, Power Automate, Copilot Studio.
+
+## Konventionen
+
+- Tabellenpräfix: vt\_ (z.B. vt_visits, vt_physicians)
+- Power Fx Variablen: gbl* (global), loc* (local), col\* (collections)
+- Diagramme: immer als Mermaid
+- Entscheidungen: ADR-Format (Title, Status, Context, Decision, Consequences)
+
+## Arbeitsweise
+
+- Gib Vor- und Nachteile bei Architekturentscheidungen an
+- Erkläre Lizenzimplikationen wenn relevant
+- Weise auf Service Protection Limits hin
+```
+
+Copilot kennt jetzt immer das Projekt, die Konventionen und die Erwartungen — ohne jeden Prompt neu zu erklären. Die fertige Referenzdatei liegt in diesem Ordner: `copilot-instructions.md`.
+
+### agents.md: Spezialisierte Agents konfigurieren
+
+In VS Code Copilot (Agent Mode) lassen sich spezialisierte Agents mit definierten Fähigkeiten und Einschränkungen konfigurieren. Die `agents.md`-Datei beschreibt diese Konfiguration als Code im Repository:
+
+```markdown
+## schema-agent
+
+Kontext: Dataverse Datenmodell für VisitTrack
+Kann: Tabellendefinitionen, Beziehungen, Sicherheitsrollen generieren
+Einschränkungen: Generiert nur YAML/Markdown — kein direktes Deployen
+
+## requirement-analyst
+
+Kontext: Power Platform Capabilities vs. Kundenanforderungen
+Kann: Fit/Gap-Analyse, User Stories, Risiko-Identifizierung
+Einschränkungen: Keine Implementierungsdetails ohne Anforderungsklarheit
+```
+
+Die fertige Referenzdatei mit 4 konfigurierten Agents liegt in diesem Ordner: `agents.md`.
+
+### Typische SA-Workflows mit AI
+
+**1. Datenmodell-Review**
 
 ```
-[Nutzer] "Wie viele Besuche hatte Arzt Dr. Schmidt in den letzten 30 Tagen?"
-        ↓
-[Copilot Agent Topic]
-        ↓
-[Reason] "Ich brauche: 1) Arzt-ID für 'Dr. Schmidt' 2) Besuche für die letzten 30 Tage"
-        ↓
-[Act] Topic ruft Cloud Flow auf → Dataverse Query
-        ↓
-[Observe] Ergebnis: "14 Besuche"
-        ↓
-[Respond] "Dr. Schmidt hatte 14 Besuche in den letzten 30 Tagen (03.06–13.06.2026)"
+SA Prompt: "Review das Datenmodell in m03/0301/ auf
+            Normalisierungsprobleme und fehlende Cascade-Regeln"
+→ Agent liest Dateien, gibt strukturiertes Review zurück
+→ SA nimmt Änderungen vor, Agent generiert Update-Dokumentation
 ```
 
-**Copilot Studio Implementation:**
+**2. Architekturentscheidung treffen**
+
+```
+SA Prompt: "Soll ich für den ADM-Report einen
+            Power BI Report oder eine Canvas App bauen?
+            Kontext: 200 ADMs, offline-Anforderung, monatliche Nutzung"
+→ Agent gibt Entscheidungsmatrix mit Lizenzkosten, Complexity, Pros/Cons
+→ SA dokumentiert als ADR — Agent schreibt den ADR-Entwurf
+```
+
+**3. Solution-Komponenten scaffolden**
+
+```
+SA Prompt: "Erstelle die PAC CLI-Kommandos um die VisitTrack
+            Solution mit den Tabellen vt_visits, vt_physicians
+            und vt_visit_products anzulegen"
+→ Agent generiert vollständige CLI-Sequenz
+→ SA prüft, passt Publisher-Prefix an, führt aus
+```
+
+**4. Sicherheitsrollen entwerfen**
+
+```
+SA Prompt: "Entwirf 3 Sicherheitsrollen für VisitTrack:
+            ADM (eigene Daten), Manager (Team-Daten), Admin (alles)
+            Output: Privilege-Matrix pro Tabelle"
+→ Agent gibt strukturierte Matrix für alle Tabellen und Rollen
+→ SA reviewt auf Row-Level Security, passt Column-Level an
+```
+
+### Was AI im SA-Kontext kann und nicht kann
+
+| Aufgabe                   | AI kann                                | Mensch muss                         |
+| ------------------------- | -------------------------------------- | ----------------------------------- |
+| Datenmodell generieren    | ✓ Erste Version aus Requirements       | Beziehungstiefe, Cascade prüfen     |
+| Power Fx schreiben        | ✓ Standard-Formeln (Filter, Patch, If) | Komplexe Performance-Fälle          |
+| Architekturentscheidungen | ✓ Optionen und Trade-offs benennen     | Finales Urteil + Verantwortung      |
+| Sicherheitskonzept        | ✓ Rollenmatrix entwerfen               | RLS-Tiefe, Compliance-Anforderungen |
+| Dokumentation             | ✓ Ersten Entwurf schreiben             | Fachliche Korrektheit prüfen        |
+| PAC CLI-Scripte           | ✓ Vollständige Sequenzen generieren    | Review vor Ausführung in PROD       |
+
+### Prompt-Engineering für SA-Aufgaben
+
+Die Qualität der Ausgabe hängt direkt von der Qualität des Inputs ab:
+
+**Schlecht:**
+
+```
+"Erstelle ein Datenmodell für VisitTrack"
+```
+
+**Gut:**
+
+```
+"Erstelle ein Dataverse-Datenmodell für VisitTrack.
+ Entitäten: Besuche, Ärzte, Produkte, Außendienstmitarbeiter.
+ Anforderungen:
+ - Ein ADM hat viele Besuche (1:n)
+ - Ein Besuch kann mehrere Produkte haben (n:m)
+ - Arzt gehört zu einer Praxis (optional, n:1)
+ Konventionen: Tabellenpräfix vt_, Publisher medpharma
+ Output: Markdown-Tabelle mit Spaltenname/Typ/Pflichtfeld + Mermaid ER-Diagramm"
+```
+
+Gute SA-Prompts enthalten immer: **Kontext, Entitäten, Constraints, Konventionen, Output-Format**.
+
+---
+
+## Skills und Prompts — VS Code Copilot Customization
+
+Neben `copilot-instructions.md` (immer aktiv) gibt es zwei weitere Mechanismen die den SA-Alltag beschleunigen:
+
+```
+.github/
+  copilot-instructions.md   ← immer geladen, Projektkontext
+  instructions/             ← on-demand Instructions ("Skills")
+    dataverse-schema.instructions.md
+    power-fx.instructions.md
+    architecture-decision.instructions.md
+  prompts/                  ← wiederverwendbare Prompt-Templates
+    generate-dataverse-schema.prompt.md
+    fit-gap-analysis.prompt.md
+    generate-adr.prompt.md
+    review-architecture.prompt.md
+    generate-pac-cli.prompt.md
+```
+
+### Instructions (.instructions.md) — domänenspezifische Regeln
+
+Instructions werden on-demand geladen wenn Copilot erkennt dass eine Aufgabe relevant ist. Alternativ kann man sie per `applyTo`-Glob automatisch für bestimmte Dateitypen aktivieren.
 
 ```yaml
-Topic: "Arzt Aktivität analysieren"
-
-Nodes:
-  1. Trigger (Nutzer-Input erfassen)
-  2. "Arzt suchen" (Cloud Flow → Dataverse)
-  3. Bedingung: Arzt gefunden?
-     - Ja: "Besuche abfragen" (Cloud Flow)
-     - Nein: "Nicht gefunden" → Antwort
-  4. Variable: physician_id = Flow-Output
-  5. Cloud Flow: "Visits für Arzt" (die letzten 30 Tage)
-  6. MessageCard erzeugen:
-     "Dr. {physician_name} hatte {visit_count} Besuche."
-  7. Antwort an Nutzer
+---
+description:
+  "Use when designing, reviewing, or generating Dataverse table schemas,
+  entity relationships, columns, keys, or security roles."
+---
+# Dataverse Schema Guidelines
+- Table prefix: vt_
+- Always include vt_name as primary column
+- Cascade rules: Cascade / RemoveLink / Restrict / None
+...
 ```
 
-**Cloud Flow Orchestrierung (Multi-Tenant kompatibel):**
+**Drei fertige Instructions für VisitTrack** liegen in `.github/instructions/`:
 
-```powerapps
-Trigger: CloudFlow (from Copilot Studio)
+| Datei                                   | Wann lädt Copilot sie?                                |
+| --------------------------------------- | ----------------------------------------------------- |
+| `dataverse-schema.instructions.md`      | Bei Schema-Design, Tabellenstruktur, Beziehungen      |
+| `power-fx.instructions.md`              | Bei Power Fx Formeln, Delegation, Offline-Pattern     |
+| `architecture-decision.instructions.md` | Bei ADRs, Technologie-Vergleichen, Trade-off-Analysen |
 
-Inputs:
-  - physician_id: string
-  - date_range_days: integer (default: 30)
+### Prompts (.prompt.md) — wiederverwendbare Aufgaben-Templates
 
-Steps:
-  1. Parse Physician Record
-     GET /tables/physicians({physician_id})
-
-  2. Calculate Date Range
-     Set variable: date_from = addDays(utcNow(), -date_range_days)
-
-  3. Query Visits (Filtered + Sorted)
-     GET /tables/visits?$filter=physician_id eq '{physician_id}'
-                        and visit_date ge {date_from}
-                     &$orderby=visit_date desc
-
-  4. Aggregate
-     Set output:
-       physician_name: {physician_name}
-       visit_count: length(filter_array)
-       total_duration: sum(durations)
-       last_visit_date: first(visits).visit_date
-
-Output:
-  - physician_name
-  - visit_count
-  - total_duration_minutes
-  - last_visit_date
-```
-
-### Pattern 2: Canvas App mit eingebettetem Agent
-
-**Architektur:**
+Prompts sind parametrierbare Aufgaben-Templates — aufrufbar per `/` in Copilot Chat:
 
 ```
-┌─────────────────────────────────────────┐
-│         Canvas App (PowerApps)          │
-├─────────────────────────────────────────┤
-│  [Input: Doctor Name]                   │
-│  [Button: "Analyze"]                    │
-│         ↓                               │
-│  [Copilot Chat Container]               │
-│  (System Instructions embedded)         │
-│         ↓                               │
-│  [Output: Structured Results Table]     │
-│  (Formulas parse Agent-Antwort)         │
-└─────────────────────────────────────────┘
-         ↓                    ↓
-    [Dataverse]         [Azure OpenAI]
-    (Records)           (Reasoning)
+/generate-dataverse-schema   Besuche mit Arzt-Lookup und 3 Status-Werten
+/fit-gap-analysis            [requirements list einfügen]
+/generate-adr                Canvas App vs. Model-Driven App für ADM Dashboard
+/review-architecture         [Dokument referenzieren]
+/generate-pac-cli            Export DEV → Import TEST als Managed Solution
 ```
 
-**Canvas-Code Beispiel:**
+**Fünf fertige Prompts für VisitTrack** liegen in `.github/prompts/`:
 
-```powerapps
-// App Startup
-OnVisible:
-  Set(gblAgentSystemPrompt, "
-    Du bist ein Assistent für VisitTrack.
-    - Nutzer gibt Arztnamen ein
-    - Du fragst Zwischenfragen falls nötig
-    - Du gibst nur Daten aus der Dataverse an
-    - Format: Strukturiertes JSON am Ende
-  ");
+| Prompt                      | Was er generiert                                                           |
+| --------------------------- | -------------------------------------------------------------------------- |
+| `generate-dataverse-schema` | Schema-Tabelle + Beziehungen + Mermaid erDiagram + RLS-Empfehlung          |
+| `fit-gap-analysis`          | Fit/Gap-Tabelle + MoSCoW + Lizenzkosten-Übersicht + Top-3-Risiken          |
+| `generate-adr`              | Vollständiges ADR mit Alternativen, Konsequenzen, License & ALM Impact     |
+| `review-architecture`       | SA-Review-Checkliste mit ✓/⚠/✗ + Findings-Tabelle + Genehmigungsempfehlung |
+| `generate-pac-cli`          | Kommentiertes PowerShell-Script mit Error-Handling + PROD-Review-Hinweis   |
 
-// Button: "Arzt analysieren"
-OnSelect:
-  Set(gblLoading, true);
+### Zusammenspiel der drei Ebenen
 
-  // Step 1: Dataverse abfragen
-  Set(
-    gblPhysician,
-    LookUp(
-      Physicians,
-      physician_name = Trim(TextInput_PhysicianName.Value)
-    )
-  );
-
-  If(IsBlank(gblPhysician),
-    Notify("Arzt nicht gefunden", NotificationType.Error);
-    Set(gblLoading, false);
-    Exit;
-  );
-
-  // Step 2: Visits abfragen
-  Set(
-    gblVisits,
-    Filter(
-      Visits,
-      And(
-        physician_id = gblPhysician.physician_id,
-        visit_date >= Today() - 30
-      )
-    )
-  );
-
-  // Step 3: Agentic Processing via Cloud Flow
-  Set(
-    gblAgentResult,
-    'Cloud Flow - Physician Agent'.Run(
-      gblPhysician.physician_id,
-      "analyze_activity",
-      Concat(gblVisits, visit_id & ",")
-    )
-  );
-
-  Set(gblLoading, false);
-  Notify("Analyse abgeschlossen", NotificationType.Success);
-
-// Ergebnis-Tabelle (parst Agent-Output)
-Items: ParseJSON(gblAgentResult.output).visits
-Columns:
-  - visit_date
-  - patient_name
-  - duration_minutes
-  - visit_type
+```mermaid
+flowchart TD
+    CI["copilot-instructions.md\n(immer aktiv)\nProjektkontext, Konventionen"] --> ALL["Alle Copilot-Anfragen"]
+    INS["instructions/*.instructions.md\n(on-demand)\nDomänen-Regeln"] --> TASK["Spezifische Aufgaben\nz.B. Schema, Power Fx"]
+    PR["prompts/*.prompt.md\n(per /Befehl)\nParametrierte Templates"] --> OUT["Strukturierte Outputs\nz.B. ADR, Fit/Gap, Deploy-Script"]
 ```
 
-### Pattern 3: Tool-Definition für Agents
+**Faustregel:**
 
-In Copilot Studio / Azure AI Foundry:
+- `copilot-instructions.md` → was Copilot _immer wissen_ soll
+- `.instructions.md` → was Copilot _bei dieser Art von Aufgabe_ beachten soll
+- `.prompt.md` → _diese konkrete Aufgabe_ mit diesem Output-Format ausführen
 
-```json
-{
-  "name": "query_physician_visits",
-  "description": "Ruft alle Besuche eines Arztes für einen Zeitraum ab",
-  "parameters": {
-    "physician_id": {
-      "type": "string",
-      "description": "Eindeutige ID des Arztes in Dataverse"
-    },
-    "start_date": {
-      "type": "string",
-      "format": "date (YYYY-MM-DD)",
-      "description": "Startdatum des Zeitraums"
-    },
-    "end_date": {
-      "type": "string",
-      "format": "date (YYYY-MM-DD)",
-      "description": "Enddatum des Zeitraums"
-    },
-    "group_by": {
-      "type": "string",
-      "enum": ["day", "week", "patient", "visit_type"],
-      "description": "Aggregation der Ergebnisse"
-    }
-  },
-  "required": ["physician_id", "start_date", "end_date"],
-  "implementation": "Cloud Flow: 'Physician Visits Query'"
-}
 ```
 
-Der Agent ruft dieses Tool auf, wenn er eine Frage wie "Wie viele Patienten hat Dr. Schmidt letzte Woche gesehen?" erhält — und die Cloud Flow führt die Dataverse-Abfrage durch.
-
-### Fehlerbehandlung & Guardrails
-
-```powerapps
-// Guardrail 1: Input-Validierung
-If(
-  Or(
-    Len(physician_id) = 0,
-    Not(IsValid(start_date)),
-    start_date > end_date
-  ),
-  {
-    success: false,
-    error: "Invalid parameters",
-    code: "INVALID_INPUT"
-  };
-  // Continue...
-);
-
-// Guardrail 2: Rate Limiting
-If(
-  CountRows(Filter('API Calls', created >= Now() - 1/24/60)) > 100,
-  {
-    success: false,
-    error: "Rate limit exceeded",
-    code: "RATE_LIMITED"
-  };
-  // Continue...
-);
-
-// Guardrail 3: Permission Check
-If(
-  Not(User() in 'Physician Access'.created_by),
-  {
-    success: false,
-    error: "Access denied",
-    code: "UNAUTHORIZED"
-  };
-  // Continue...
-);
+Gute SA-Prompts enthalten immer: **Kontext, Entitäten, Constraints, Konventionen, Output-Format**.
 ```
-
-### Entscheidungsmatrix: Wann Agentic in Power Apps?
-
-| Anforderung                   | Lösung                          | Grund                          |
-| ----------------------------- | ------------------------------- | ------------------------------ |
-| Einfache Datenabfrage         | Power Automate Flow             | Agentic overhead nicht nötig   |
-| Strukturierte, feste Logik    | Power Automate Flow + Bedingung | Vorhersehbar, keine LLM nötig  |
-| Freetext-Analyse              | **Agentic (Copilot Studio)**    | LLM kann Variationen verstehen |
-| Multi-Step-Entscheidungen     | **Agentic (Copilot Studio)**    | Agent optimiert Pfade          |
-| Nutzer-Dialog, Kontext        | **Agentic (Copilot Studio)**    | Agent hält State, fragt nach   |
-| Sehr hohe Kosten-Sensibilität | Power Automate Flow             | LLM-Aufrufe kosten mehr        |

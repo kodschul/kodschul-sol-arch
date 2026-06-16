@@ -1,169 +1,114 @@
-# Übung: Canvas App mit KI-Integration bauen
+# Übung: Canvas App mit AI-Editor bauen
 
 ## Szenario
 
-Der VisitTrack ADM soll beim Arztbesuch schneller Daten erfassen können. Heute tippt er alles manuell. Du baust eine enhanced Canvas App mit KI-Unterstützung.
+Du baust den ersten Entwurf der VisitTrack Canvas App nicht manuell — du nutzt GitHub Copilot (oder Claude Code) als Builder-Assistenten. Ziel ist ein funktionsfähiges App-Skelett das du danach manuell verfeinern kannst.
 
 ---
 
-## Aufgabe 1: KI-Feature Priorisierung (15 Minuten)
+## Aufgabe 1: App-Blueprint per Prompt generieren (15 Minuten)
 
-Bewertet als Team folgende KI-Features für die VisitTrack Canvas App:
+Schicke diesen Prompt an Copilot Chat (oder Claude):
 
-| Feature                                           | AI-Technologie | Complexity | Business Value | Offline-fähig? | Empfehlung |
-| ------------------------------------------------- | -------------- | ---------- | -------------- | -------------- | ---------- |
-| Visitenkarte fotografieren → Arzt-Felder autofill |                |            |                |                |            |
-| Chat: "Zeige mir alle Besuche bei Dr. Mueller"    |                |            |                |                |            |
-| Besuchsnotizen automatisch zusammenfassen         |                |            |                |                |            |
-| Stimmungsanalyse von Besuchsnotizen für Manager   |                |            |                |                |            |
-| Spracheingabe für Besuchsnotiz                    |                |            |                |                |            |
+```
+Du bist ein Power Apps Architekt.
 
-Fülle die Tabelle aus. Nutze für Complexity und Value: `Low / Medium / High`.
-
-Ergänze zusätzlich eine Spalte `Agentisch?` und entscheide, ob das Feature besser von einem Agenten vorbereitet, direkt in der App gebaut oder komplett als eigenständiger Agent umgesetzt wird.
-
----
-
-## Aufgabe 2: Canvas App agentisch entwerfen (20 Minuten)
-
-Schreibe einen Prompt für einen App-Design-Agenten, der aus den Anforderungen eine Canvas App-Skizze erzeugt.
-
-Der Agent soll ausgeben:
-
-- Screens und Navigation
-- Controls je Screen
-- Datenbindungen zu Dataverse
-- erste Power Fx Formeln
-- Offline-Verhalten
-- Stellen, an denen ein Copilot Panel sinnvoll ist
-- mindestens ein Mermaid-Diagramm für den App-Blueprint
-
-Nutze dieses Format als Ausgangspunkt:
-
-```text
-Du bist ein Power Apps App Builder Agent.
-
-Input:
-- App-Ziel: VisitTrack für Außendienstmitarbeiter
-- Datenquelle: Dataverse
-- Kernaufgaben: Besuch erfassen, Arzt anlegen, Besuche ansehen
-- KI-Funktionen: Visitenkarten-Scan, Chat, Zusammenfassung
-- Offline: Ja
+Erstelle einen App-Blueprint für VisitTrack:
+- Zielgruppe: Außendienstmitarbeiter (ADM) auf Mobilgeräten
+- Datenquelle: Dataverse (vt_visits, vt_physicians)
+- Kernaufgaben: Besuche ansehen, neuen Besuch anlegen, Arzt suchen
+- Anforderungen: Offline-fähig, Touch-optimiert
 
 Output:
-1. Screens mit Zweck
-2. Controls mit Namen und Zweck
-3. Navigation zwischen Screens
-4. Power Fx Startformeln
-5. Vorschlag für Copilot-Integration
-6. Vorschlag für Offline-Fallback
+1. Screen-Liste mit Zweck je Screen (Mermaid flowchart)
+2. Controls je Screen (als Tabelle: Name | Typ | Zweck)
+3. Navigationsfluss zwischen Screens
+4. Welche Screens sind offline-fähig, welche nicht
 ```
 
----
+Bewerte das Ergebnis:
 
-## Aufgabe 3: App-Skelett in Power Apps umsetzen (20 Minuten)
-
-Erstelle in Power Apps ein erstes Skelett der VisitTrack App:
-
-1. Screen `VisitListScreen` mit einer Gallery für Besuche
-2. Screen `VisitDetailScreen` mit Formular und Zusammenfassung
-3. Screen `NewPhysicianScreen` mit Visitenkarten-Upload
-4. Eine Navigationsleiste zwischen den Screens
-5. Ein leeres Copilot Panel als Platzhalter
-
-Nutze möglichst wenig manuelle Detailarbeit. Der Fokus liegt darauf, dass der App-Aufbau durch den agentischen Entwurf bereits vorstrukturiert ist.
-
-Stelle dein Ergebnis als Mermaid-Flowchart dar, bevor du die Screens in Power Apps anlegst.
+- Sind alle notwendigen Screens vorhanden?
+- Fehlt etwas Wichtiges?
+- Was hat Copilot/Claude falsch eingeschätzt?
 
 ---
 
-## Aufgabe 4: Visitenkarten-Scanner bauen (15 Minuten)
+## Aufgabe 2: Power Fx Formeln generieren (20 Minuten)
 
-Baue in einer Canvas App einen Screen `NewPhysicianScreen`:
+Generiere mit Copilot/Claude folgende drei Formeln:
 
-1. Ein `Camera`-Steuerelement oder `Add Media`-Button
-2. Einen Button "Visitenkarte scannen"
-3. `OnSelect` des Buttons: AI Builder Form Recognizer aufrufen (nutze das vorgefertigte Business Card Modell)
-4. Die extrahierten Felder in Input-Felder übertragen: Name, Telefon, E-Mail, Adresse
-5. Einen "Arzt speichern" Button, der den Arzt in Dataverse anlegt
-
-Nutze Mock-Daten wenn AI Builder Credits nicht verfügbar sind:
-
-```powerfx
-// Mock: Simuliere AI Builder Ergebnis
-Set(cardData, {
-    fields: {
-        name: {value: "Dr. Anna Bauer"},
-        phone: {value: "+49 89 12345678"},
-        email: {value: "a.bauer@praxis-bauer.de"},
-        address: {value: "Maximilianstr. 12, 80539 München"}
-    }
-});
-```
-
----
-
-## Aufgabe 5: Copilot Chat Panel integrieren (15 Minuten)
-
-Füge zur VisitTrack-Hauptapp ein Copilot Chat Panel hinzu:
-
-1. Erstelle einen Copilot Studio Agent `VisitTrack Assistant` (aus M04)
-2. Füge in der Canvas App eine `Copilot` Komponente ein
-3. Verbinde den Agent mit der Komponente
-4. Übergib den Kontext: aktuell ausgewählter Arzt + Besuch
-
-Teste folgende User Stories im Chat:
-
-- "Wie viele Besuche hatte ich diese Woche?"
-- "Erstelle einen neuen Besuch für den ausgewählten Arzt"
-- "Was ist die Spezialität von Dr. Mueller?"
-
----
-
-## Aufgabe 6: Offline Graceful Degradation (10 Minuten)
-
-Implementiere Offline-Handling für die KI-Features:
-
-```powerfx
-// Formel: KI-Features nur wenn online
-Visible = Connection.Connected
-```
-
-Baue eine `OfflineBanner`-Komponente:
-
-- Anzeige wenn `!Connection.Connected`
-- Text: "Offline-Modus — KI-Funktionen nicht verfügbar"
-- KI-Buttons (Visitenkarte, Chat) verstecken wenn offline
-- Standard-Felder bleiben weiterhin editierbar
-
----
-
-## Aufgabe 7: Architekturentscheidung dokumentieren (15 Minuten)
-
-Dokumentiere deine Architekturentscheidungen für VisitTrack KI-Features in diesem Format:
+**Formel A — Gefilterte Gallery:**
 
 ```
-Feature: Visitenkarten-Scanner
-  Technologie: AI Builder Form Recognizer
-  Begründung: ...
-  Alternative: ...
-  Warum nicht Alternative: ...
-  Risiko: ...
-  Kosten-Schätzung (AI Credits): ...
-
-Feature: Copilot Chat Panel
-  Technologie: ...
-  Begründung: ...
-  ...
+Prompt: "Schreibe die Items-Formel für eine Gallery die nur Besuche
+         des aktuellen Nutzers aus vt_visits anzeigt,
+         sortiert nach vt_visit_date absteigend,
+         mit Offline-Fallback auf eine lokale Collection colOfflineVisits."
 ```
+
+**Formel B — Besuch speichern:**
+
+```
+Prompt: "Schreibe die OnSelect-Formel für 'Besuch speichern'.
+         Felder: vt_physician_id (Lookup aus drpPhysician),
+                 vt_visit_date (aus datePicker),
+                 vt_duration (aus txtDuration, Number),
+                 vt_notes (aus txtNotes).
+         Validierung: Arzt pflichtfeld, Datum darf nicht in der Zukunft liegen.
+         Fehlerhandling: Notify() bei Fehler, Navigate() zurück bei Erfolg."
+```
+
+**Formel C — Arzt suchen:**
+
+```
+Prompt: "Schreibe die Items-Formel für eine Physician-Gallery
+         die live nach vt_physician_name filtert
+         basierend auf dem Text in txtSearch.
+         Zeige max. 20 Ergebnisse."
+```
+
+Für jede Formel: Prüfe auf Delegation-Warnings, Pflichtfelder, Offline-Tauglichkeit.
 
 ---
 
-## Abgabe
+## Aufgabe 3: PAC CLI-Script generieren (15 Minuten)
 
-- Der Prompt für den App-Design-Agenten
-- Screenshot oder Export des App-Skeletts
-- Screenshot der Canvas App mit Visitenkarten-Scanner
-- Screenshot des Copilot Chat Panels
-- Power Fx-Code für Offline-Handling
-- Architektur-Dokumentation (Aufgabe 7)
+Generiere mit Copilot/Claude ein PowerShell-Script für:
+
+```
+Prompt: "Generiere ein PowerShell-Script für das VisitTrack Deployment:
+         1. pac auth create für DEV ($DEV_ENV) und TEST ($TEST_ENV)
+         2. Solution 'VisitTrack' aus DEV exportieren (Unmanaged)
+         3. Als Managed Solution in TEST importieren
+         4. Bei Fehler: Script abbricht, Fehlermeldung ausgeben
+         Publisher: medpharma
+         Output: kommentiertes PowerShell mit Variablen-Block am Anfang"
+```
+
+Prüfe das generierte Script:
+
+- Sind die PAC CLI-Befehle syntaktisch korrekt?
+- Fehlt der Unterschied Managed/Unmanaged?
+- Ist der Error-Handling-Block vollständig?
+
+---
+
+## Aufgabe 4: CLAUDE.md / copilot-instructions.md für das Projekt (10 Minuten)
+
+Erstelle eine `CLAUDE.md` Datei die Claude Code auf den VisitTrack-Kontext ausrichtet.
+
+Pflicht-Abschnitte:
+
+- Project (Ziel, Stack)
+- Conventions (Tabellenpräfix, Power Fx Naming, Control-Benennung)
+- Key Tables (die 3 wichtigsten Tabellen mit kurzem Zweck)
+- What AI should NOT do (3 explizite Verbote)
+
+Teste: Schicke ohne weiteren Kontext die Frage:
+
+```
+"Erstelle eine Filter-Formel für vt_visits"
+```
+
+Nutzt der AI-Editor automatisch `vt_`-Präfix und die richtigen Variablennamen?

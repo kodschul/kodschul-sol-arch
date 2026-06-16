@@ -85,3 +85,33 @@ Azure AI Search unterstützt Hybrid Search + RRF nativ — kein Custom Code nöt
 - Groundedness: Prüfe ob jede Aussage im Chunk-Kontext belegbar ist
 - Halluzinations-Check: Vergleiche Antwort mit tatsächlichem Dokumentinhalt
 - Precision@3: Bei 10 Fragen — wie viele der 3 zurückgegebenen Chunks sind wirklich relevant?
+
+---
+
+## Aufgabe 6: RAG-Option für Power Platform
+
+**Entscheidung: Copilot Studio Knowledge Source**
+
+Begründung: Nur 3 Dokumente, kein Azure-Budget, 2-Wochen-Timeline — Azure AI Search wäre over-engineered. Copilot Studio Knowledge Source ist in 15 Minuten live.
+
+**System Prompt:**
+
+```
+Du bist der VisitTrack Wissens-Assistent für ADMs der MedPharma GmbH.
+Antworte ausschließlich basierend auf deiner Knowledge Base (Produktkatalog, Compliance, Onboarding).
+Wenn die Antwort nicht in den Dokumenten steht:
+  "Diese Information habe ich nicht. Bitte wende dich ans Regionalbüro."
+Zitiere die Quelle: (Quelle: [Dokumentname])
+Sprache: Deutsch, freundlich, direkt.
+```
+
+**In-Scope Test-Fragen:**
+
+1. Was sind die Nebenwirkungen von Produkt X?
+2. Wie läuft ein Erstbesuch beim Arzt ab?
+3. Welche Compliance-Regeln gelten bei Produktproben?
+
+**Out-of-Scope Test-Fragen (müssen abgelehnt werden):**
+
+1. Wie hoch ist mein Gehalt?
+2. Welche Aktien sollte ich kaufen?

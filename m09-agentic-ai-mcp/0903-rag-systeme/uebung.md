@@ -87,3 +87,25 @@ Erstelle einen Evaluierungsplan für das RAG-System:
 - System Prompt Dokument (Aufgabe 3)
 - Hybrid-Search Beschreibung (Aufgabe 4)
 - Evaluierungsplan (Aufgabe 5)
+- Power Platform Entscheidung (Aufgabe 6)
+
+---
+
+## Aufgabe 6: RAG-Option für Power Platform entscheiden (15 Minuten)
+
+VisitTrack bekommt eine Knowledge-Funktion. Die Anforderungen:
+
+- **Dokumente:** 3 Word-Dokumente in SharePoint (Produktkatalog, Compliance, Onboarding)
+- **Nutzer:** Außendienstmitarbeiter, ca. 200 Personen
+- **Fragen:** "Was sind die Nebenwirkungen von Produkt X?" / "Wie läuft ein Erstbesuch ab?"
+- **Budget:** Kein separates Azure-Budget genehmigt
+- **Timeline:** Live in 2 Wochen
+
+Entscheide:
+
+1. **Copilot Studio Knowledge Source** oder **Azure AI Search** — welche Option passt?
+2. Schreibe den System Prompt für den Knowledge Agent (max. 10 Zeilen)
+3. Definiere 3 Test-Fragen die beantwortet werden müssen
+4. Definiere 2 Test-Fragen die der Agent ablehnen muss (Out-of-Scope)
+
+Begründe deine Option-Entscheidung in 2 Sätzen.

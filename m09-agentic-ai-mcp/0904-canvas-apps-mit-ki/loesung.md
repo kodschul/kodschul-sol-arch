@@ -1,138 +1,201 @@
-# Lösung: Canvas App mit KI-Integration
+# Lösung: Canvas App mit AI-Editor bauen
 
-## Aufgabe 1: KI-Feature Priorisierung
+## Aufgabe 1: App-Blueprint
 
-| Feature                       | AI-Technologie             | Complexity | Business Value | Offline-fähig? | Empfehlung               |
-| ----------------------------- | -------------------------- | ---------- | -------------- | -------------- | ------------------------ |
-| Visitenkarte → Arzt autofill  | AI Builder Form Recognizer | Medium     | High           | Nein           | Implementieren (Phase 1) |
-| Chat: "Zeige Besuche bei..."  | Copilot Studio + Canvas    | Medium     | Medium         | Nein           | Implementieren (Phase 2) |
-| Besuchsnotizen zusammenfassen | Power Fx `Summarize()`     | Low        | Medium         | Nein           | Implementieren (Phase 1) |
-| Stimmungsanalyse für Manager  | AI Builder Sentiment       | Low        | Low            | Nein           | Optional (nice to have)  |
-| Spracheingabe für Notiz       | Native OS Spracherkennung  | Low        | High           | Ja (lokal)     | Implementieren (Phase 1) |
-
-## Aufgabe 2: Agentischer App-Blueprint
-
-```text
-Input an den App-Design-Agenten:
-- App-Ziel: VisitTrack für Außendienstmitarbeiter
-- Kern-Use-Cases: Besuche erfassen, Arzt anlegen, Besuche prüfen
-- Datenquelle: Dataverse
-- KI-Funktionen: Visitenkarten-Scan, Copilot Chat, Zusammenfassung
-- Offline: Ja
-
-Output:
-- Screens: VisitListScreen, VisitDetailScreen, NewPhysicianScreen
-- Navigation: Bottom Bar oder Left Nav
-- Controls: Gallery, Form, Camera/Add Media, Copilot Panel, Offline Banner
-- Formeln: Filter, Patch, Summarize, Connection.Connected
-- Review-Punkte: Security, RLS, Kosten, Offline-Fallback
-```
+**Erwartetes Ergebnis (Referenz-Mermaid):**
 
 ```mermaid
 flowchart TD
-    A["VisitTrack App Prompt"] --> B["App-Design-Agent"]
-    B --> C["VisitListScreen"]
-    B --> D["VisitDetailScreen"]
-    B --> E["NewPhysicianScreen"]
-    B --> F["Copilot Panel"]
-    B --> G["Offline Banner"]
-    C --> H["Filter + Gallery"]
-    D --> I["Form + Summarize"]
-    E --> J["Camera + AI Builder"]
-    F --> K["Chat + Context"]
-    G --> L["Connection.Connected"]
+    START["App Start\n(OnStart: lade Daten, prüfe Verbindung)"]
+    START --> VL["VisitListScreen\nEigene Besuche, sortiert nach Datum\n✓ Offline-fähig"]
+    VL --> VD["VisitDetailScreen\nBesuch-Details, Notizen\n✓ Offline-fähig (Read)"]
+    VL --> NV["NewVisitScreen\nNeuen Besuch anlegen\n✓ Offline (speichert in lokale Collection)"]
+    NV --> PS["PhysicianSearchScreen\nArzt suchen und auswählen\n✗ Erfordert Verbindung"]
+    PS --> NV
+    VD --> VL
+    NV --> VL
 ```
+
+**Screen-Tabelle (Referenz):**
+
+| Screen                | Controls                                                 | Offline?              |
+| --------------------- | -------------------------------------------------------- | --------------------- |
+| VisitListScreen       | galVisits, btnNewVisit, lblOfflineBanner                 | ✓                     |
+| VisitDetailScreen     | frmVisitDetail, btnEdit, lblPhysicianName                | ✓ (Read)              |
+| NewVisitScreen        | drpPhysician, datePicker, txtDuration, txtNotes, btnSave | ✓ (lokale Collection) |
+| PhysicianSearchScreen | txtSearch, galPhysicians, btnSelect                      | ✗                     |
 
 ---
 
-## Aufgabe 2: Visitenkarten-Scanner Power Fx
+## Aufgabe 2: Power Fx Referenzformeln
+
+**Formel A — Gefilterte Gallery:**
 
 ```powerfx
-// Button: "Visitenkarte scannen"
-OnSelect =
-    Set(isScanning, true);
-
-    // Foto aufnehmen oder auswählen
-    Set(capturedPhoto, UploadedImage1.Image);
-
-    // AI Builder aufrufen (oder Mock wenn nicht verfügbar)
-    If(
-        Connection.Connected,
-        Set(
-            cardData,
-            'BusinessCard'.Predict(capturedPhoto)
+// Items-Formel galVisits
+If(
+    Connection.Connected,
+    SortByColumns(
+        Filter(
+            vt_visits,
+            vt_owner = User().Email
         ),
-        // Mock-Daten für Offline-Testing
-        Set(cardData, {
-            Name: {Value: "Dr. Anna Bauer"},
-            MobilePhone: {Value: "+49 89 12345678"},
-            Email: {Value: "a.bauer@praxis-bauer.de"},
-            Address: {Value: "Maximilianstr. 12, 80539 München"}
-        })
-    );
-
-    // Felder befüllen
-    UpdateContext({
-        newName: cardData.Name.Value,
-        newPhone: cardData.MobilePhone.Value,
-        newEmail: cardData.Email.Value,
-        newAddress: cardData.Address.Value
-    });
-
-    Set(isScanning, false);
-
-// Button: "Arzt speichern"
-OnSelect =
-    Patch(
-        vt_physicians,
-        Defaults(vt_physicians),
-        {
-            vt_name: newName,
-            vt_phone: newPhone,
-            vt_email: newEmail,
-            vt_address: newAddress
-        }
-    );
-    Navigate(VisitListScreen, ScreenTransition.Slide)
+        "vt_visit_date",
+        SortOrder.Descending
+    ),
+    SortByColumns(
+        colOfflineVisits,
+        "vt_visit_date",
+        SortOrder.Descending
+    )
+)
 ```
 
----
+**Prüfpunkte:**
 
-## Aufgabe 4: Offline Graceful Degradation
+- `vt_owner = User().Email` → Delegation: Dataverse delegiert `=`-Filter auf Text ✓
+- `SortByColumns` → delegierbar auf Dataverse ✓
+- Offline-Fallback auf `colOfflineVisits` ✓
+
+**Formel B — Besuch speichern:**
 
 ```powerfx
-// OfflineBanner Label
-Text = "⚠️ Offline-Modus — KI-Funktionen (Scan, Chat) nicht verfügbar"
-Visible = !Connection.Connected
-Fill = RGBA(255, 200, 0, 0.9)
-
-// KI-Buttons verstecken wenn offline
-ScanCardButton.Visible = Connection.Connected
-CopilotPanel.Visible = Connection.Connected
-
-// Standard-Felder bleiben immer sichtbar
-PhysicianNameInput.Visible = true
-PhysicianPhoneInput.Visible = true
+// OnSelect — btnSaveVisit
+If(
+    IsBlank(drpPhysician.Selected),
+    Notify("Bitte einen Arzt auswählen.", NotificationType.Error),
+    If(
+        DatePicker1.SelectedDate > Today(),
+        Notify("Besuchsdatum darf nicht in der Zukunft liegen.", NotificationType.Error),
+        If(
+            Connection.Connected,
+            // Online: direkt in Dataverse
+            IfError(
+                Patch(
+                    vt_visits,
+                    Defaults(vt_visits),
+                    {
+                        vt_physician_id: drpPhysician.Selected,
+                        vt_visit_date: DatePicker1.SelectedDate,
+                        vt_duration: Value(txtDuration.Text),
+                        vt_notes: txtNotes.Text
+                    }
+                ),
+                Notify("Fehler beim Speichern: " & FirstError.Message, NotificationType.Error),
+                Navigate(VisitListScreen, ScreenTransition.Slide)
+            ),
+            // Offline: lokale Collection
+            Collect(
+                colOfflineVisits,
+                {
+                    vt_physician_id: drpPhysician.Selected,
+                    vt_visit_date: DatePicker1.SelectedDate,
+                    vt_duration: Value(txtDuration.Text),
+                    vt_notes: txtNotes.Text,
+                    _offlinePending: true
+                }
+            );
+            Navigate(VisitListScreen, ScreenTransition.Slide)
+        )
+    )
+)
 ```
+
+**Formel C — Arzt suchen:**
+
+```powerfx
+// Items-Formel galPhysicians
+FirstN(
+    Filter(
+        vt_physicians,
+        StartsWith(vt_physician_name, txtSearch.Text)
+    ),
+    20
+)
+```
+
+**Prüfpunkt:** `StartsWith` ist delegierbar auf Dataverse — kein Delegation-Warning.
+`Contains` ist NICHT delegierbar → würde nur die ersten 500 Records lokal filtern.
 
 ---
 
-## Aufgabe 5: Architekturentscheidungen Referenz
+## Aufgabe 3: PAC CLI PowerShell-Script
 
+```powershell
+# VisitTrack Deployment Script
+# Variablen — hier anpassen
+$DEV_ENV  = "https://medpharma-dev.crm4.dynamics.com"
+$TEST_ENV = "https://medpharma-test.crm4.dynamics.com"
+$SOLUTION = "VisitTrack"
+$EXPORT_PATH = ".\exports"
+
+$ErrorActionPreference = "Stop"
+
+# 1. Authentifizierung
+Write-Host "Authentifizierung DEV..."
+pac auth create --url $DEV_ENV --name "visittrack-dev"
+pac auth select --name "visittrack-dev"
+
+# 2. Export aus DEV (Unmanaged)
+Write-Host "Exportiere Solution aus DEV..."
+New-Item -ItemType Directory -Path $EXPORT_PATH -Force | Out-Null
+pac solution export `
+    --name $SOLUTION `
+    --path "$EXPORT_PATH\${SOLUTION}_unmanaged.zip" `
+    --managed false
+
+# 3. Wechsel zu TEST
+Write-Host "Wechsel zu TEST-Umgebung..."
+pac auth create --url $TEST_ENV --name "visittrack-test"
+pac auth select --name "visittrack-test"
+
+# 4. Import als Managed in TEST
+Write-Host "Importiere als Managed Solution in TEST..."
+pac solution import `
+    --path "$EXPORT_PATH\${SOLUTION}_unmanaged.zip" `
+    --publish-changes `
+    --force-overwrite
+
+Write-Host "Deployment abgeschlossen."
 ```
-Feature: Visitenkarten-Scanner
-  Technologie: AI Builder Form Recognizer (Business Card Modell)
-  Begründung: Kein Custom Training nötig, Modell ist vortrainiert für Visitenkarten
-  Alternative: Custom Computer Vision Modell (Azure AI)
-  Warum nicht Alternative: Signifikant mehr Aufwand für gleiche Qualität
-  Risiko: AI Builder Credits Verbrauch (~2 Credits pro Scan)
-  Kosten-Schätzung: 120 ADM × 2 neue Ärzte/Monat × 2 Credits = 480 Credits/Monat ≈ minimal
 
-Feature: Copilot Chat Panel
-  Technologie: Copilot Studio Agent (embedded in Canvas)
-  Begründung: Wiederverwendung des VisitTrack Agents aus M04; kein separates System
-  Alternative: Custom Chat-UI + direkte Azure OpenAI API
-  Warum nicht Alternative: Wartungsaufwand zu hoch, Copilot Studio ist integrierter
-  Risiko: Chat nicht offline-fähig — Graceful Degradation implementiert
-  Kosten: Copilot Studio Lizenz (bereits vorhanden)
+**Häufige Fehler in generierten Scripts:**
+
+- `--managed false` beim Export ist korrekt (Unmanaged exportieren)
+- Beim Import in TEST/PROD immer `--managed true` oder Managed Solution separat packen
+- `pac solution publish` fehlt manchmal — `--publish-changes` deckt das ab
+
+---
+
+## Aufgabe 4: CLAUDE.md Referenz
+
+```markdown
+# CLAUDE.md — VisitTrack Power Platform Project
+
+## Project
+
+Canvas App for field reps (ADMs) at MedPharma GmbH.
+Stack: Power Apps Canvas (offline-capable), Dataverse, Power Automate, Copilot Studio.
+ALM: PAC CLI, GitHub Actions, DEV → TEST → PROD.
+
+## Conventions
+
+- Table prefix: vt\_ (publisher prefix: medpharma, solution: VisitTrack)
+- Power Fx globals: gbl* | locals: loc* | collections: col\*
+- Controls: btnX (button), lblX (label), galX (gallery), frmX (form),
+  txtX (text input), datX (date picker), drpX (dropdown)
+- Diagrams: Mermaid only (flowchart TD/LR, erDiagram, sequenceDiagram)
+- Language: German prose, English identifiers/code
+
+## Key Tables
+
+- vt_visits: visit records — owner-based Row-Level Security
+- vt_physicians: physician master data — readable by all ADMs
+- vt_users: ADM profiles — linked to Dataverse systemuser
+
+## What AI should NOT do
+
+- Write or modify Row-Level Security / Column-Level Security configurations
+- Generate production deployment scripts without a human-review comment block
+- Assume online connectivity — always include Connection.Connected offline branches
 ```

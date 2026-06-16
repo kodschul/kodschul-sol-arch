@@ -1,6 +1,6 @@
 # Hands-on M09 — Agentic AI & MCP: VisitTrack KI-System
 
-> **Typ:** End-to-End Entwicklung — MCP Server, Agent, RAG, Deployment
+> **Typ:** End-to-End Entwicklung — SA Workspace, MCP Server, RAG, Canvas App per AI-Editor, Deployment
 > **Dauer:** ca. 4 Stunden (aufgeteilt auf Tag 2 Nachmittag + Tag 3 Vormittag)
 > **Lösung:** siehe `hands-on-sol.md`
 
@@ -8,18 +8,65 @@
 
 ## Gesamtziel
 
-Du baust das **VisitTrack KI-System** von Grund auf:
+Du richtest als SA deinen AI-gestützten Workspace ein und baust das **VisitTrack KI-System**:
 
 ```mermaid
 flowchart LR
-    APP["Canvas App\n(KI-Features)"] --> AGENT["Copilot Studio\nAgent"]
-    AGENT --> MCP["MCP Server\n(Dataverse)"]
-    AGENT --> RAG["RAG System\n(SharePoint Docs)"]
+    WS["SA Workspace\ncopilot-instructions.md\nagents.md"] --> MCP["MCP Server\n(Dataverse Tools)"]
+    WS --> APP["Canvas App\n(per AI-Editor generiert)"]
     MCP --> DV["Dataverse\n(VisitTrack-Dev)"]
-    RAG --> SP["SharePoint\n(HR-Dokumente)"]
-    DEPLOY["GitHub Actions\nPipeline"] --> AGENT
-    DEPLOY --> MCP
+    APP --> DV
+    CS["Copilot Studio Agent\n+ Knowledge Source"] --> MCP
+    CS --> RAG["RAG\n(SharePoint Docs)"]
+    DEPLOY["PAC CLI / GitHub Actions"] --> CS
+    DEPLOY --> APP
 ```
+
+---
+
+## Phase 0: SA Workspace einrichten (20 Minuten)
+
+Bevor du Code schreibst, gibst du Copilot den Projektkontext — einmal, dauerhaft.
+
+### 0.1 copilot-instructions.md anlegen
+
+Erstelle `.github/copilot-instructions.md` im Workspace-Root (Referenz: `0901-agentic-ai-konzepte/copilot-instructions.md`):
+
+```markdown
+# Projekt: VisitTrack — Power Platform Solution Architecture
+
+## Kontext
+
+Solution Architect bei MedPharma GmbH. Power Platform Projekt.
+Stack: Canvas Apps, Dataverse, Power Automate, Copilot Studio, PAC CLI.
+
+## Konventionen
+
+- Tabellenpräfix: vt\_ (Publisher: medpharma)
+- Power Fx: gbl* globals, loc* locals, col\* collections
+- Controls: btnX, lblX, galX, frmX, txtX
+- Diagramme: immer Mermaid
+
+## Arbeitsweise
+
+- Lizenzimplikationen bei jeder Empfehlung erwähnen
+- Service Protection Limits beim Dataverse Web API immer berücksichtigen
+- Offline-Szenarien explizit kennzeichnen
+```
+
+### 0.2 Workspace-Test
+
+Öffne Copilot Chat und frage **ohne weiteren Kontext**:
+
+```
+"Schlage eine Tabellenstruktur für Arztbesuche vor"
+```
+
+✓ Prüfe: Verwendet Copilot automatisch `vt_`-Präfix und Mermaid?
+
+### 0.3 agents.md anlegen
+
+Erstelle `agents.md` im Workspace-Root (Referenz: `0901-agentic-ai-konzepte/agents.md`). Nimm mindestens den `schema-agent` und den `pac-cli-agent` mit.
 
 ---
 
@@ -55,51 +102,42 @@ Erstelle `.vscode/mcp.json` und teste einen Tool-Aufruf direkt im Copilot Chat.
 
 ---
 
-## Phase 2: RAG System (45 Minuten)
+## Phase 2: RAG — Knowledge Source für Copilot Studio (30 Minuten)
 
 ### 2.1 Knowledge Base vorbereiten
 
-Erstelle eine lokale Knowledge Base (`./knowledge-base/`) mit mindestens 3 Markdown-Dateien:
+Erstelle einen SharePoint-Ordner (oder lokal für den MCP-Test) mit mindestens 3 Markdown-Dateien:
 
 ```
 knowledge-base/
-  products.md          # 5 fiktive MedPharma Produkte mit Beschreibung
-  compliance.md        # 5 Compliance-Regeln für Arztbesuche
-  visit-process.md     # Ablauf eines Arztbesuchs (Onboarding-Material)
+  products.md      # 5 fiktive MedPharma Produkte mit Beschreibung und Indikationen
+  compliance.md    # 5 Compliance-Regeln für Arztbesuche
+  visit-process.md # Ablauf eines Arztbesuchs (Onboarding-Material)
 ```
 
-### 2.2 RAG MCP Server
+### 2.2 Copilot Studio Knowledge Source einrichten
 
-Baue einen zweiten MCP Server `visittrack-rag-mcp` mit dem Tool `search_knowledge`:
+Öffne deinen `VisitTrack KI-Assistent` Agent in Copilot Studio:
 
-```typescript
-server.tool(
-  "search_knowledge",
-  "Sucht in der VisitTrack Wissensdatenbank nach relevanten Informationen",
-  {
-    query: z.string().describe("Suchanfrage in natürlicher Sprache"),
-    category: z
-      .enum(["products", "compliance", "process", "all"])
-      .default("all"),
-  },
-  async ({ query, category }) => {
-    // Einfache Keyword-Suche in den MD-Dateien
-    // (Ersetze später durch echtes Vector Search)
-    const results = await keywordSearch(query, category);
-    return { content: [{ type: "text", text: JSON.stringify(results) }] };
-  }
-);
+```
++ Knowledge → "Upload files" (oder SharePoint-URL)
+→ Die 3 Markdown-Dateien auswählen
+→ Copilot Studio chunked + embeddet automatisch
 ```
 
-Für Keyword-Search kannst du einfach `String.includes()` nutzen — das ist kein echtes RAG, aber zeigt das Pattern.
+### 2.3 System Prompt schreiben
 
-### 2.3 System Prompt gegen Halluzinationen
+Ergänze den Agent-System-Prompt so, dass er:
 
-Schreibe einen System Prompt der:
+- Nur aus der Knowledge Base antwortet
+- Bei fehlenden Infos "weiß ich nicht" sagt (kein Raten)
+- Jede Aussage mit Quelle belegt: `(Quelle: [Dokumentname])`
 
-- Agent auf Knowledge Base beschränkt
-- "Weiß nicht" erlaubt
-- Quellenangaben erzwingt
+### 2.4 Knowledge testen
+
+Stelle 3 Fragen die in den Dokumenten beantwortet werden können, und 2 Fragen die **nicht** beantwortet werden dürfen (Out-of-Scope). Dokumentiere das Ergebnis.
+
+> **Optional — lokaler MCP RAG Server**: Falls kein Copilot Studio verfügbar ist, baue einen zweiten MCP Server `visittrack-rag-mcp` mit dem Tool `search_knowledge` der die lokalen Markdown-Dateien per Keyword-Search durchsucht (siehe `0902-mcp-entwicklung` für das Muster).
 
 ---
 
@@ -137,63 +175,127 @@ Teste mindestens 5 Gespräche. Dokumentiere was gut/schlecht funktioniert.
 
 ---
 
-## Phase 4: Canvas App Integration (45 Minuten)
+## Phase 4: Canvas App per AI-Editor bauen (45 Minuten)
 
-### 4.1 Agent in Canvas App einbetten
+Du baust die VisitTrack Canvas App nicht manuell — du nutzt Copilot oder Claude Code als ersten Entwurfs-Generator (→ Details in `0904-canvas-apps-mit-ki`).
 
-Öffne deine VisitTrack Canvas App (aus M03/M04) und:
+### 4.1 App-Blueprint generieren
 
-1. Füge ein Copilot Chat Panel hinzu (rechte Seite)
-2. Verbinde mit `VisitTrack KI-Assistent`
-3. Übergib Kontext: aktuell ausgewählter Arzt + Besuch
+Schicke folgenden Prompt an Copilot Chat (oder Claude):
 
-### 4.2 KI-Feature: Besuchsnotizen zusammenfassen
+```
+Du bist ein Power Apps Architekt.
 
-Füge in der Besuchs-Detailansicht hinzu:
+Erstelle einen App-Blueprint für VisitTrack:
+- Zielgruppe: Außendienstmitarbeiter (ADM) auf Mobilgeräten
+- Datenquelle: Dataverse (vt_visits, vt_physicians)
+- Kernaufgaben: Besuche ansehen, neuen Besuch anlegen, Arzt suchen
+- Anforderungen: Offline-fähig, Touch-optimiert
 
-- Button "Notiz zusammenfassen"
-- `OnSelect`: `Set(summary, Summarize(visitNotes, "2 Sätze"))`
-- Label: Zeige `summary` an
+Output:
+1. Screen-Liste mit Zweck je Screen (Mermaid flowchart)
+2. Controls je Screen (Tabelle: Name | Typ | Zweck)
+3. Navigationsfluss
+4. Welche Screens sind offline-fähig, welche nicht
+```
 
-### 4.3 Offline Handling
+Review das Ergebnis — passe fehlende Screens oder Controls an.
 
-Verstecke alle KI-Features wenn `!Connection.Connected`.
+### 4.2 Power Fx Formeln generieren lassen
+
+Lass Copilot/Claude die Items-Formel für die Visit-Gallery generieren:
+
+```
+"Schreibe die Items-Formel für eine Gallery die nur Besuche des aktuellen Nutzers
+ aus vt_visits anzeigt, sortiert nach vt_visit_date absteigend,
+ mit Offline-Fallback auf colOfflineVisits."
+```
+
+**Pflichtprüfung vor Übernahme:**
+
+- Delegation-Warning? (`StartsWith` ✓, `Contains` ✗)
+- Offline-Zweig vollständig?
+- Fehlerhandling beim `Patch()`?
+
+### 4.3 PAC CLI-Script generieren lassen
+
+```
+"Generiere ein PowerShell-Script das die VisitTrack Solution aus DEV exportiert
+ (Unmanaged) und als Managed Solution in TEST importiert.
+ Variablen: $DEV_ENV, $TEST_ENV. Publisher: medpharma."
+```
+
+Prüfe das Script auf: Managed/Unmanaged korrekt unterschieden? `--publish-changes` vorhanden?
 
 ---
 
-## Phase 5: Deployment & agents.md (30 Minuten)
+## Phase 5: Deployment & Abschluss (30 Minuten)
 
-### 5.1 agents.md erstellen
+### 5.1 agents.md vervollständigen
 
-Erstelle `agents.md` im Repository-Root:
+Ergänze deine `agents.md` (aus Phase 0) um die MCP Server Konfiguration:
 
-- Beide Agents (Assistent + zukünftiger Architect-Agent)
-- Beide MCP Server (dataverse + rag)
-- Alle Environment-Variablen referenziert
+```markdown
+## MCP Server Konfiguration
+
+### visittrack-dataverse
+
+- **Typ:** stdio
+- **Command:** `node ./visittrack-mcp-server/dist/index.js`
+- **Umgebungsvariablen:** DATAVERSE_URL, TENANT_ID (aus .env)
+
+### visittrack-rag (optional)
+
+- **Typ:** stdio
+- **Command:** `node ./visittrack-rag-mcp/dist/index.js`
+- **Umgebungsvariablen:** KB_PATH=./knowledge-base
+```
 
 ### 5.2 GitHub Actions Workflow
 
 Erstelle `.github/workflows/deploy.yml`:
 
-- Trigger bei Änderungen in `mcp-servers/**` oder `agents.md`
-- Job: Tests
-- Job: Deploy (Pseudocode wenn kein echter Tenant)
+- Trigger: Push auf `main` bei Änderungen in `visittrack-mcp-server/**` oder `agents.md`
+- Job `test`: `npm test` im MCP-Server-Verzeichnis
+- Job `deploy`: PAC CLI Solution Import in TEST (verwende das Script aus Phase 4.3)
 
 ### 5.3 Monitoring Plan
 
-Definiere 5 KPIs die du in Production monitoren würdest.
+Definiere 5 KPIs die du in Production monitoren würdest (z.B. MCP Tool-Aufruf-Fehler, Agent-Antwortqualität, Knowledge-Quelle-Trefferquote).
 
 ---
 
 ## Checkpoint ✓
 
-- [ ] MCP Server mit 4 Tools + 8 Tests läuft
-- [ ] VS Code Tool-Aufruf via Copilot Chat funktioniert
-- [ ] Knowledge Base mit 3 Dateien
-- [ ] RAG MCP Server mit `search_knowledge` Tool
+**Phase 0 — SA Workspace:**
+
+- [ ] `.github/copilot-instructions.md` vorhanden, Copilot nutzt `vt_`-Präfix automatisch
+- [ ] `agents.md` mit mindestens `schema-agent` und `pac-cli-agent`
+
+**Phase 1 — MCP Server:**
+
+- [ ] MCP Server mit 4 Tools läuft (`get_visits`, `get_physician`, `create_visit`, `get_performance_summary`)
+- [ ] 8 Tests bestehen (`npx vitest`)
+- [ ] `.vscode/mcp.json` vorhanden, Tool-Aufruf via Copilot Chat funktioniert
+
+**Phase 2 — RAG:**
+
+- [ ] Knowledge Base mit 3 Markdown-Dateien
+- [ ] Copilot Studio Knowledge Source eingerichtet
+- [ ] System Prompt: In-Scope-Fragen beantwortet, Out-of-Scope-Fragen abgelehnt
+
+**Phase 3 — Agent:**
+
 - [ ] Copilot Studio Agent mit 3 Topics
-- [ ] Agent-Test: 5 Gespräche dokumentiert
-- [ ] Canvas App mit Copilot Panel
-- [ ] Offline Handling implementiert
-- [ ] `agents.md` vollständig
-- [ ] GitHub Actions Workflow erstellt
+- [ ] 5 Testgespräche dokumentiert
+
+**Phase 4 — Canvas App:**
+
+- [ ] App-Blueprint via Prompt generiert und reviewed
+- [ ] Mindestens eine Power Fx-Formel generiert und auf Delegation geprüft
+- [ ] PAC CLI-Script generiert und auf Managed/Unmanaged geprüft
+
+**Phase 5 — Deployment:**
+
+- [ ] `agents.md` mit MCP Server Konfiguration vollständig
+- [ ] GitHub Actions Workflow vorhanden

@@ -1,140 +1,171 @@
-# Lösung: Agentic AI Konzepte bewerten
+﻿# Lösung: Als Solution Architect mit AI arbeiten
 
-## Aufgabe 1: Agent Loop
+## Aufgabe 1: copilot-instructions.md
 
-```mermaid
-flowchart TD
-    U["Nutzer: Arzt-Name eingeben"] --> R1["REASON: Arzt in Dataverse suchen?"]
-    R1 --> A1["ACT: Tool get_physician(name)"]
-    A1 --> O1["OBSERVE: Arzt gefunden / nicht gefunden"]
-    O1 -->|gefunden| R2["REASON: Besuche abrufen"]
-    R2 --> A2["ACT: Tool get_visits(physician_id, limit=5)"]
-    A2 --> O2["OBSERVE: 5 letzte Besuche"]
-    O2 --> RESP1["RESPOND: Zeige Besuche"]
-    O1 -->|nicht gefunden| R3["REASON: Anlegen fragen"]
-    R3 --> RESP2["RESPOND: 'Arzt nicht gefunden. Anlegen?'"]
-    RESP2 --> USER2["Nutzer: Ja"]
-    USER2 --> R4["REASON: Fehlende Daten anfragen"]
-    R4 --> RESP3["RESPOND: 'Adresse und Spezialität?'"]
-    RESP3 --> USER3["Nutzer: Antwort"]
-    USER3 --> A3["ACT: Tool create_physician(name, address, specialty)"]
-    A3 --> O3["OBSERVE: Arzt-ID zurück"]
-    O3 --> RESP4["RESPOND: 'Arzt angelegt!'"]
-```
+Fertige Referenzdatei: `copilot-instructions.md` in diesem Ordner.
 
-**Tools benötigt:**
+**Prüfkriterium**: Copilot verwendet automatisch `vt_`-Präfix und Mermaid-Diagramme ohne explizite Aufforderung.
 
-- `get_physician(name)` → Physician record oder null
-- `get_visits(physician_id, limit)` → Liste von Visits
-- `create_physician(name, address, specialty)` → Neue Physician-ID
+**Minimale Checkliste für die Datei:**
+
+- [ ] Projektname und Auftraggeber genannt
+- [ ] Stack vollständig (Canvas, MDA, Dataverse, Automate, Copilot Studio)
+- [ ] Tabellenpräfix `vt_` und Publisher `medpharma` definiert
+- [ ] Power Fx Naming-Konventionen (gbl/loc/col)
+- [ ] Diagrammformat: Mermaid
+- [ ] Lizenz-Hinweis-Regel
+- [ ] Sicherheits-Hinweis-Regel
 
 ---
 
-## Aufgabe 2: Agentic oder nicht?
+## Aufgabe 2: agents.md
 
-| #   | Anforderung                    | Entscheidung     | Begründung                                                             |
-| --- | ------------------------------ | ---------------- | ---------------------------------------------------------------------- |
-| 1   | Besuchsberichte eingeben       | App (Canvas)     | Strukturiertes Formular, vorhersehbar, kein Dialog                     |
-| 2   | Manager fragt nach Performance | Agentic          | Natürlichsprachige Frage, dynamische Abfrage, unvorhersehbarer Kontext |
-| 3   | SAP Export um 03:00            | Flow (Scheduled) | Kein Nutzer, kein Dialog, deterministisch                              |
-| 4   | Onboarding-Fragen              | Agentic (RAG)    | Unstrukturierte Fragen, Knowledge Source nötig                         |
-| 5   | CRM-Synchronisierung           | Flow (Scheduled) | Deterministisch, kein Dialog, technische Integration                   |
+Fertige Referenzdatei: `agents.md` in diesem Ordner.
+
+Enthält 4 konfigurierte Agents:
+
+- `schema-agent` — Dataverse Datenmodell
+- `requirement-analyst` — Fit/Gap und User Stories
+- `review-agent` — Architecture Review mit Checkliste
+- `pac-cli-agent` — Deployment-Skripte
 
 ---
 
-## Aufgabe 3: Multi-Agent Architektur
+## Aufgabe 3: ADR Referenz
 
-```
-Orchestrator Agent
-  Input: "Analysiere meine Performance der letzten 3 Monate"
-  Plan:
-    1. → Data Agent: Hol Visit-Daten für user_id, last 90 days
-    2. → Analysis Agent: Analysiere Trends, Patterns
-    3. → Recommendation Agent: Generiere nächste-Woche-Plan
+```markdown
+# ADR-001: Canvas App vs. Model-Driven App für Besuchsbericht
 
-  Data Agent
-    Tools: get_visits(user_id, date_from), get_physician(id)
-    Trust: Dataverse Read-Only
+## Status
 
-  Analysis Agent
-    Tools: calculate_statistics(data), compare_to_team(user_id, data)
-    Trust: Darf nur Daten lesen die Data Agent übergab (kein direkter DB-Zugriff)
+Entschieden (2026-06-16)
 
-  Recommendation Agent
-    Tools: get_calendar(user_id), get_physician_history(physician_id)
-    Trust: Read-Only, keine Schreiboperationen
+## Kontext
 
-Vertrauensgrenzen:
-  - Jeder Specialist Agent bekommt nur Daten vom Orchestrator (nicht direkten DB-Zugriff)
-  - Tool-Ergebnisse werden nie als neue Instruktionen interpretiert
-  - Human-in-the-Loop bevor Empfehlungen gespeichert werden
+Manager benötigen einen Besuchsbericht mit Filtermöglichkeiten nach ADM, Zeitraum und Arzt.
+Ca. 50 Manager, monatliche Nutzung, keine Offline-Anforderung.
+
+## Entscheidung
+
+Canvas App — wegen:
+
+- Custom Layout für Dashboard-Ansicht
+- Kombination von Filtern flexibler als Model-Driven Views
+- Performance bei aggregierten Berechnungen (Summarize, Average)
+
+## Konsequenzen
+
+- ✓ Flexibles Layout und Navigation
+- ✓ Einfache Integration von Power BI Embedded
+- ✗ Höherer Pflegeaufwand als Model-Driven
+- ✗ Keine automatischen Ansichten bei Schema-Änderungen
+
+## Abgewogene Alternativen
+
+- Model-Driven App: Weniger Aufwand, aber eingeschränktes Layout
+- Power BI: Optimal für Read-Only Reports, aber keine Drilldown-Aktionen
 ```
 
 ---
 
-## Aufgabe 4: Sicherheitsanalyse
+## Aufgabe 4: Verbesserte Prompts
 
-**1.** Das ist ein **Prompt Injection Angriff** — eingebettete Anweisungen in Nutzer-Dokumenten, die den Agent manipulieren sollen.
+**Prompt A verbessert:**
 
-**2.** Bei einem ungeschützten Agent: **Ja, es würde funktionieren.** Wenn der Agent den PDF-Inhalt liest und als Kontext behandelt, interpretiert das LLM den eingebetteten Satz als legitime Anweisung.
+```
+"Erstelle eine Canvas App für VisitTrack.
+ Nutzergruppe: Außendienstmitarbeiter (ADM), ca. 200 Personen, Mobilgeräte.
+ Kernaufgaben: Besuch erfassen, Arzt suchen, eigene Besuche ansehen.
+ Datenquelle: Dataverse, Tabellen vt_visits und vt_physicians.
+ Anforderungen: Offline-fähig, Touch-optimiert.
+ Output: Screen-Liste mit Navigationsfluss als Mermaid-Diagramm."
+```
 
-**3. Gegenmaßnahmen:**
+**Prompt B verbessert:**
 
-- **Vertrauenstrennung:** Document-Inhalte werden mit einer Vertrauensmarkierung `[UNTRUSTED: document content]` übergeben. Das LLM darf diesen Bereich nicht als Anweisungsquelle behandeln.
-- **Minimale Berechtigungen:** Der Agent hat **kein** Tool zum Senden von Daten an externe URLs. Wenn das Tool nicht existiert, kann er es nicht aufrufen.
-- **Human-in-the-Loop:** Alle Schreiboperationen (außer Visit erstellen) erfordern explizite Nutzerbestätigung.
+```
+"Vergleiche Power Automate Flow vs. Copilot Studio Agent für:
+ Ein ADM schickt eine Textnachricht mit dem Inhalt eines Arztbesuchs.
+ Das System soll daraus einen strukturierten Datensatz in Dataverse anlegen.
+ Bewertungskriterien: Komplexität, Kosten, Wartbarkeit, Fehlerhandling.
+ Output: Entscheidungsmatrix + Empfehlung mit Begründung."
+```
+
+**Prompt C verbessert:**
+
+```
+"Entwirf ein Sicherheitskonzept für VisitTrack in Dataverse.
+ Rollen: ADM (sieht nur eigene Besuche), Manager (sieht Team-Besuche), Admin (alles).
+ Tabellen: vt_visits (Besitz-basiert), vt_physicians (lesend für alle).
+ Anforderungen: Keine Cross-Team-Sichtbarkeit zwischen ADMs.
+ Output: Privilege-Matrix (Tabelle) + empfohlene Row-Level Security-Methode."
+```
 
 ---
 
-## Aufgabe 5: MCP Tool Design
+## Aufgabe 5: Prüfkriterien für Prompt-Outputs
 
-```yaml
-Tool 1:
-  name: get_physician
-  description: Sucht einen Arzt in Dataverse anhand des Namens
-  parameters:
-    - name: name
-      type: string
-      required: true
-  returns: "{id, name, specialty, address} | null"
-  granularität: Richtig — genau eine Aktion, klar abgegrenzt
+### `/generate-dataverse-schema` — Mindesterwartungen
 
-Tool 2:
-  name: get_visits
-  description: Gibt Besuchsdatensätze für einen ADM oder Arzt zurück
-  parameters:
-    - name: adm_user_id
-      type: string
-      required: false
-    - name: physician_id
-      type: string
-      required: false
-    - name: date_from
-      type: date
-      required: false
-    - name: limit
-      type: integer
-      required: false
-      default: 10
-  returns: "[{visit_id, date, physician_name, duration, status}]"
-  granularität: Richtig — ein Query mit optionalen Filtern, flexibel aber fokussiert
+- Tabelle enthält `vt_visit_date` (Date Only), `vt_duration` (Whole Number), `vt_notes` (Multiline Text), `vt_status` (Choice: Geplant/Durchgeführt/Abgesagt)
+- Beziehung zu `vt_physicians`: `vt_physician_id` Lookup, Cascade-Regel `RemoveLink` oder `Restrict` mit Begründung
+- Mermaid `erDiagram` zeigt `vt_visits ||--o{ vt_physicians : "belongs to"`
+- RLS-Empfehlung: Owner-based (ADM besitzt eigene Besuche)
 
-Tool 3:
-  name: create_visit
-  description: Erstellt einen neuen Besuchsdatensatz. WICHTIG: Nur für gültige physician_id.
-  parameters:
-    - name: physician_id
-      type: string
-      required: true
-    - name: visit_date
-      type: date
-      required: true
-    - name: duration_minutes
-      type: integer
-      required: false
-    - name: notes
-      type: string
-      required: false
-  returns: "{visit_id, status: 'created'}"
-  granularität: Richtig — Schreiboperation isoliert, kein delete/update im selben Tool
+### `/fit-gap-analysis` — Mindesterwartungen
+
+| Anforderung            | Erwarteter Fit Level                                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| ADM offline erfassen   | Low-Code (Canvas + Dataverse Offline)                                                                   |
+| Manager Performance    | Low-Code (Power BI embedded oder Model-Driven App)                                                      |
+| SAP Export 03:00       | Low-Code (Scheduled Flow + Custom Connector)                                                            |
+| Fragen zur Produktdoku | Low-Code (Copilot Studio + Knowledge Source) — **AI Builder Credits / Copilot Studio Messages** erwähnt |
+| Visitenkarte scannen   | Low-Code (AI Builder Form Recognizer) — **AI Builder Credits** erwähnt                                  |
+
+### `/generate-adr` — Pflichtabschnitte
+
+- `## Status` — "Proposed"
+- `## Context` — Offline-Anforderung und mobile Nutzung erwähnt
+- `## Decision` — Canvas App mit Begründung (Offline, Custom Layout)
+- `## ALM Impact` — "Canvas Apps sind Solution-aware, können als Teil der VisitTrack-Solution exportiert/importiert werden"
+- `## Alternatives Considered` — mindestens Model-Driven App und PWA als verworfene Optionen
+
+---
+
+## Aufgabe 6: Referenz-Instruction
+
+Beispiel für `copilot-studio-topics.instructions.md`:
+
+```markdown
+---
+description:
+  "Use when designing, reviewing, or creating Copilot Studio Topics, triggers,
+  entities, or agent system prompts for Power Platform conversational AI."
+---
+
+# Copilot Studio Topic Guidelines — VisitTrack
+
+## Topic Naming
+
+- Beschreibende Namen: "Besuche abfragen", "Arzt suchen", nicht "Topic 1"
+- Trigger-Phrasen: min. 5 Varianten, verschiedene Formulierungen
+
+## Topic Struktur
+
+1. Trigger (Nutzer-Intent erkenn)
+2. Entitäten extrahieren (falls nötig)
+3. Cloud Flow oder MCP Tool aufrufen
+4. Antwort mit Adaptive Card oder Text
+
+## System Prompt Regeln
+
+- Sprache auf Deutsch festlegen
+- Halluzinationen verhindern: "Antworte nur basierend auf deiner Knowledge Base"
+- Quellenangaben erzwingen: "(Quelle: [Dokument])"
+- Out-of-Scope klar definieren
+
+## Sicherheit
+
+- Kein direkter Datenbankzugriff im Topic — immer über Cloud Flow
+- Authentifizierung: Azure AD SSO konfigurieren bevor Live-Schaltung
 ```
