@@ -111,51 +111,39 @@ Mobile Nutzung: Funktioniert die Loesung auf einem Smartphone? Nicht jede Canvas
 
 ### Fehlerbild 1: Alles in einer Umgebung
 
-**Symptom:** Entwickler, Tester und Endnutzer arbeiten alle in derselben Umgebung.
-
-**Konsequenz:** Ein fehlerhafter Flow oder eine fehlerhafte Konfigurationsaenderung beschaedigt Produktivdaten. Kein Rollback moeglich.
-
-**Praevention:** Drei-Umgebungs-Strategie (Dev, Test, Prod) mit Solutions und Deployment-Pipeline.
+- **Symptom** — Entwickler, Tester und Endnutzer arbeiten alle in derselben Umgebung.
+- **Konsequenz** — Ein fehlerhafter Flow oder eine fehlerhafte Konfigurationsaenderung beschaedigt Produktivdaten. Kein Rollback moeglich.
+- **Praevention** — Drei-Umgebungs-Strategie (Dev, Test, Prod) mit Solutions und Deployment-Pipeline.
 
 ### Fehlerbild 2: Sicherheitsrollen als Nachgedanke
 
-**Symptom:** Alle Nutzer erhalten am Anfang Systemadministrator-Rechte. "Wir klaeren das spaeter."
-
-**Konsequenz:** Sicherheitsmodell wird nie korrekt umgesetzt, weil das Abloesen von Admin-Rechten spaeter enormen Aufwand bedeutet und Nutzerwiderstand erzeugt.
-
-**Praevention:** Sicherheitsmodell in der ersten Woche entwerfen und vom ersten Nutzer an korrekt anwenden.
+- **Symptom** — Alle Nutzer erhalten am Anfang Systemadministrator-Rechte. "Wir klaeren das spaeter."
+- **Konsequenz** — Sicherheitsmodell wird nie korrekt umgesetzt, weil das Abloesen von Admin-Rechten spaeter enormen Aufwand bedeutet und Nutzerwiderstand erzeugt.
+- **Praevention** — Sicherheitsmodell in der ersten Woche entwerfen und vom ersten Nutzer an korrekt anwenden.
 
 ### Fehlerbild 3: Nicht-delegierbare Filter in Canvas Apps
 
-**Symptom:** Eine Canvas App filtert mit einer Funktion wie Mid() oder IsBlank() und gibt nur 500 Datensaetze zurueck, obwohl es 50.000 gibt.
-
-**Konsequenz:** Nutzer sehen unvollstaendige Daten ohne es zu wissen. Das System scheint zu funktionieren, liefert aber falsche Ergebnisse.
-
-**Praevention:** Alle Datenbankabfragen in Canvas Apps auf Delegierbarkeit pruefen. Power Apps zeigt eine gelbe Warnung fuer nicht-delegierbare Ausdrucke.
+- **Symptom** — Eine Canvas App filtert mit einer Funktion wie Mid() oder IsBlank() und gibt nur 500 Datensaetze zurueck, obwohl es 50.000 gibt.
+- **Konsequenz** — Nutzer sehen unvollstaendige Daten ohne es zu wissen. Das System scheint zu funktionieren, liefert aber falsche Ergebnisse.
+- **Praevention** — Alle Datenbankabfragen in Canvas Apps auf Delegierbarkeit pruefen. Power Apps zeigt eine gelbe Warnung fuer nicht-delegierbare Ausdrucke.
 
 ### Fehlerbild 4: Hardgecodete Konfiguration statt Umgebungsvariablen
 
-**Symptom:** URL der externen API, Verbindungsdetails oder E-Mail-Adressen sind direkt in Flows und Apps eingetragen.
-
-**Konsequenz:** Beim Deployment in die Produktivumgebung muessen Flows und Apps manuell angepasst werden. Fehler durch vergessene Anpassungen.
-
-**Praevention:** Alle umgebungsabhaengigen Werte in Umgebungsvariablen speichern.
+- **Symptom** — URL der externen API, Verbindungsdetails oder E-Mail-Adressen sind direkt in Flows und Apps eingetragen.
+- **Konsequenz** — Beim Deployment in die Produktivumgebung muessen Flows und Apps manuell angepasst werden. Fehler durch vergessene Anpassungen.
+- **Praevention** — Alle umgebungsabhaengigen Werte in Umgebungsvariablen speichern.
 
 ### Fehlerbild 5: Keine Fehlerbehandlung in Flows
 
-**Symptom:** Power Automate Flows haben keinen "Run After"-Fehlerhandling-Block und keinen Scope fuer Try-Catch-Logik.
-
-**Konsequenz:** Ein Flow, der fehlschlaegt, sendet keine Benachrichtigung. Prozesse bleiben unbemerkt stecken. HR bemerkt erst Wochen spaeter, dass Genehmigungen nicht ankamen.
-
-**Praevention:** Jeder Flow hat einen Scope fuer die Hauptlogik und einen Scope fuer die Fehlerbehandlung, der bei Fehler des ersten ausgeloest wird.
+- **Symptom** — Power Automate Flows haben keinen "Run After"-Fehlerhandling-Block und keinen Scope fuer Try-Catch-Logik.
+- **Konsequenz** — Ein Flow, der fehlschlaegt, sendet keine Benachrichtigung. Prozesse bleiben unbemerkt stecken. HR bemerkt erst Wochen spaeter, dass Genehmigungen nicht ankamen.
+- **Praevention** — Jeder Flow hat einen Scope fuer die Hauptlogik und einen Scope fuer die Fehlerbehandlung, der bei Fehler des ersten ausgeloest wird.
 
 ### Fehlerbild 6: Solutions werden nicht genutzt
 
-**Symptom:** Komponenten (Apps, Flows, Tabellen) werden direkt in der Umgebung erstellt, nicht in einer Solution.
-
-**Konsequenz:** Kein strukturiertes Deployment moeglich. Komponenten koennen nicht als Einheit transportiert werden. Keine Versionshistorie.
-
-**Praevention:** Von Tag 1 alles in einer Solution anlegen. Auch Dataverse-Tabellen und Sicherheitsrollen gehoeren in die Solution.
+- **Symptom** — Komponenten (Apps, Flows, Tabellen) werden direkt in der Umgebung erstellt, nicht in einer Solution.
+- **Konsequenz** — Kein strukturiertes Deployment moeglich. Komponenten koennen nicht als Einheit transportiert werden. Keine Versionshistorie.
+- **Praevention** — Von Tag 1 alles in einer Solution anlegen. Auch Dataverse-Tabellen und Sicherheitsrollen gehoeren in die Solution.
 
 ## Die Fragen, die ein SA regelmaessig stellen muss
 

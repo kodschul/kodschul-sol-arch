@@ -144,13 +144,10 @@ Der Agent uebernimmt die erste Konversationsebene. Wenn es komplex wird, uebergi
 
 Der groesste Fehler, den ein SA machen kann, ist, einen Agent als Allzweckloesung zu behandeln. Konkrete Risiken:
 
-**Halluzination:** Generative Agents koennen Antworten produzieren, die inhaltlich falsch sind. In sensiblen Bereichen (Rechtsfragen, Finanzberatung, medizinische Informationen) ist das inakzeptabel.
-
-**Kontrollverlust:** Wenn ein Agent im generativen Modus Fragen beantwortet, kann nicht zu 100% garantiert werden, welche Antwort er gibt. Fuer Unternehmen mit strengen Compliance-Vorgaben ist das ein Problem.
-
-**Nutzererlebnis bei Komplexitaet:** Ein Agent wird frustrant, wenn er zu viele Fragen stellt oder Anliegen nicht versteht. Wenn der Prozess komplex ist (viele Felder, viele Abhaengigkeiten), ist eine App die bessere Wahl.
-
-**Wartungsaufwand:** Ein klassischer Topic-basierter Agent muss kontinuierlich gepflegt werden (neue Fragen, geaenderte Prozesse). Das ist kein Einmal-Projekt.
+- **Halluzination** — Generative Agents koennen Antworten produzieren, die inhaltlich falsch sind. In sensiblen Bereichen (Rechtsfragen, Finanzberatung, medizinische Informationen) ist das inakzeptabel.
+- **Kontrollverlust** — Wenn ein Agent im generativen Modus Fragen beantwortet, kann nicht zu 100% garantiert werden, welche Antwort er gibt. Fuer Unternehmen mit strengen Compliance-Vorgaben ist das ein Problem.
+- **Nutzererlebnis bei Komplexitaet** — Ein Agent wird frustrant, wenn er zu viele Fragen stellt oder Anliegen nicht versteht. Wenn der Prozess komplex ist (viele Felder, viele Abhaengigkeiten), ist eine App die bessere Wahl.
+- **Wartungsaufwand** — Ein klassischer Topic-basierter Agent muss kontinuierlich gepflegt werden (neue Fragen, geaenderte Prozesse). Das ist kein Einmal-Projekt.
 
 ## Wo konfigurieren und überwachen?
 

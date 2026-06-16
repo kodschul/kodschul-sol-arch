@@ -60,11 +60,9 @@ graph TD
 
 Diese Frage muss vor dem Bau geklart werden, nicht nach dem Deployment.
 
-**Interne Agents:** Nur Mitarbeiter des Unternehmens. Technisch umgesetzt durch Microsoft Authentifizierung und optional durch Sicherheitsgruppen (welche Teams haben Zugriff auf welchen Agent).
-
-**Externe Agents:** Kunden oder Partner. Hier entfaellt die Microsoft-Authentifizierung. Stattdessen kann der Agent anonym zugreifbar sein oder mit einem eigenen OAuth-Provider (z.B. B2C Azure AD) abgesichert werden.
-
-**Hybride Agents:** Ein Agent der sowohl intern als auch extern zugaenglich ist, stellt erhoehte Risiken dar. Interne Informationen duerfen nicht an externe Nutzer fliessen. Das erfordert klare Knowledge-Source-Trennung und getrennte Agent-Konfigurationen.
+- **Interne Agents** — Nur Mitarbeiter des Unternehmens. Technisch umgesetzt durch Microsoft Authentifizierung und optional durch Sicherheitsgruppen (welche Teams haben Zugriff auf welchen Agent).
+- **Externe Agents** — Kunden oder Partner. Hier entfaellt die Microsoft-Authentifizierung. Stattdessen kann der Agent anonym zugreifbar sein oder mit einem eigenen OAuth-Provider (z.B. B2C Azure AD) abgesichert werden.
+- **Hybride Agents** — Ein Agent der sowohl intern als auch extern zugaenglich ist, stellt erhoehte Risiken dar. Interne Informationen duerfen nicht an externe Nutzer fliessen. Das erfordert klare Knowledge-Source-Trennung und getrennte Agent-Konfigurationen.
 
 ### Datenzugriff des Agents
 

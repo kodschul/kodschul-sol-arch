@@ -34,11 +34,9 @@ flowchart TD
     F --> G["Nutzer"]
 ```
 
-**Reason:** Das LLM analysiert die Anfrage und plant den nächsten Schritt. Es entscheidet, welches Tool es braucht und mit welchen Parametern.
-
-**Act:** Der Agent ruft ein Tool auf — z.B. eine Dataverse-Abfrage, eine REST-API, einen Power-Automate-Flow.
-
-**Observe:** Der Agent liest das Tool-Ergebnis und bezieht es in den nächsten Reasoning-Schritt ein.
+- **Reason** — Das LLM analysiert die Anfrage und plant den nächsten Schritt. Es entscheidet, welches Tool es braucht und mit welchen Parametern.
+- **Act** — Der Agent ruft ein Tool auf — z.B. eine Dataverse-Abfrage, eine REST-API, einen Power-Automate-Flow.
+- **Observe** — Der Agent liest das Tool-Ergebnis und bezieht es in den nächsten Reasoning-Schritt ein.
 
 Dieser Zyklus läuft so lange, bis der Agent eine vollständige Antwort hat oder eine Abbruchbedingung erreicht.
 
@@ -110,11 +108,9 @@ flowchart LR
     O --> U
 ```
 
-**Orchestrator:** Nimmt die Anfrage entgegen, bricht sie in Teilaufgaben auf, delegiert an Spezialisten-Agents.
-
-**Specialist Agents:** Jeder hat nur die Tools, die er für seine Aufgabe braucht — minimale Berechtigungen.
-
-**Aggregation:** Orchestrator sammelt Ergebnisse, konsolidiert, gibt finale Antwort.
+- **Orchestrator** — Nimmt die Anfrage entgegen, bricht sie in Teilaufgaben auf, delegiert an Spezialisten-Agents.
+- **Specialist Agents** — Jeder hat nur die Tools, die er für seine Aufgabe braucht — minimale Berechtigungen.
+- **Aggregation** — Orchestrator sammelt Ergebnisse, konsolidiert, gibt finale Antwort.
 
 In Power Platform:
 

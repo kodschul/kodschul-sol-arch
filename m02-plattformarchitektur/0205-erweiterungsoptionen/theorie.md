@@ -66,11 +66,9 @@ graph TB
 
 ## Ebene 2: Business Rules und Formelspalten
 
-**Wann:** Einfache Validierung oder Berechnung, die ohne Workflow-Kontext auskommt.
-
-**Business Rules:** Deklarative Regeln, die im Formular ausgefuehrt werden. Sie koennen Felder ein-/ausblenden, Fehlermeldungen anzeigen, Pflichtfelder setzen und einfache Werte berechnen. Business Rules laufen auf Client und optional auch auf Server-Ebene.
-
-**Formelspalten:** Berechnete Spalten mit Power Fx-Syntax. Sie werden in Echtzeit aktualisiert wenn die Quelle sich aendert. Seit 2024 sind sie der Ersatz fuer die abgekuendigten Calculated Columns.
+- **Wann** — Einfache Validierung oder Berechnung, die ohne Workflow-Kontext auskommt.
+- **Business Rules** — Deklarative Regeln, die im Formular ausgefuehrt werden. Sie koennen Felder ein-/ausblenden, Fehlermeldungen anzeigen, Pflichtfelder setzen und einfache Werte berechnen. Business Rules laufen auf Client und optional auch auf Server-Ebene.
+- **Formelspalten** — Berechnete Spalten mit Power Fx-Syntax. Sie werden in Echtzeit aktualisiert wenn die Quelle sich aendert. Seit 2024 sind sie der Ersatz fuer die abgekuendigten Calculated Columns.
 
 Beispiel Formelspalte:
 ```
@@ -121,13 +119,10 @@ sequenceDiagram
     PA->>PA: Folgeaktionen (innerhalb Transaktion)
 ```
 
-**PreValidation:** Laeuft vor der Datenbankoperation, ausserhalb der Transaktion. Geeignet fuer Validierungen, die abbrechen sollen. Kann keine Daten aendern, aber einen Fehler werfen der die Speicherung verhindert.
-
-**PreOperation:** Laeuft innerhalb der Transaktion, vor dem Schreiben. Kann Feldwerte anpassen bevor sie gespeichert werden. Beispiel: Automatisch ein berechnetes Feld setzen.
-
-**PostOperation:** Laeuft innerhalb der Transaktion, nach dem Schreiben. Fuer Folgeaktionen die im Kontext der gleichen Transaktion stattfinden sollen.
-
-**Grenzen:** Plugins muessen in C# entwickelt und deployed werden. Das erfordert Entwicklungsaufwand und Testing. Plugins sind nicht visuell und schwer zu debuggen.
+- **PreValidation** — Laeuft vor der Datenbankoperation, ausserhalb der Transaktion. Geeignet fuer Validierungen, die abbrechen sollen. Kann keine Daten aendern, aber einen Fehler werfen der die Speicherung verhindert.
+- **PreOperation** — Laeuft innerhalb der Transaktion, vor dem Schreiben. Kann Feldwerte anpassen bevor sie gespeichert werden. Beispiel: Automatisch ein berechnetes Feld setzen.
+- **PostOperation** — Laeuft innerhalb der Transaktion, nach dem Schreiben. Fuer Folgeaktionen die im Kontext der gleichen Transaktion stattfinden sollen.
+- **Grenzen** — Plugins muessen in C# entwickelt und deployed werden. Das erfordert Entwicklungsaufwand und Testing. Plugins sind nicht visuell und schwer zu debuggen.
 
 ## Ebene 5: Custom Connectors und Azure Functions
 

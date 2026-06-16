@@ -37,11 +37,9 @@ pie title Dataverse Speicherkategorien
     "Log Storage" : 15
 ```
 
-**Database Storage:** Alle Tabellendaten, alle Textfelder, Zahlen, Choices, Lookups, Datum-Felder. Der Grossteil der Anwendungsdaten liegt hier.
-
-**File Storage:** Bilder, Dateianhange, Anhange an E-Mails und Aktivitaeten. Dieses Kontingent wird schnell aufgebraucht, wenn Nutzer Dokumente anhangen.
-
-**Log Storage:** Audit-Logs, Plugin-Trace-Logs, Systemlogs. Wachst mit aktiviertem Audit und intensiver Plugin-Nutzung.
+- **Database Storage** — Alle Tabellendaten, alle Textfelder, Zahlen, Choices, Lookups, Datum-Felder. Der Grossteil der Anwendungsdaten liegt hier.
+- **File Storage** — Bilder, Dateianhange, Anhange an E-Mails und Aktivitaeten. Dieses Kontingent wird schnell aufgebraucht, wenn Nutzer Dokumente anhangen.
+- **Log Storage** — Audit-Logs, Plugin-Trace-Logs, Systemlogs. Wachst mit aktiviertem Audit und intensiver Plugin-Nutzung.
 
 ## Speicherberechnung: Was wirklich Platz braucht
 

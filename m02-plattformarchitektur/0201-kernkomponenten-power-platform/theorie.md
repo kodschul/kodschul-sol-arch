@@ -58,17 +58,12 @@ graph TB
     style D fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
 ```
 
-**Power Apps:** Erstellt Benutzeroberflaechen. Zwei Typen: Canvas Apps (frei gestaltbar, fuer einfache Interfaces und mobile Nutzung) und Model-Driven Apps (datenzentriert, automatisch generiert aus dem Dataverse-Datenmodell, fuer komplexe Sachbearbeitungsanwendungen).
-
-**Power Automate:** Automatisiert Prozesse und verbindet Systeme. Cloud Flows (ausgeloest durch Ereignisse oder Zeitplan) und Desktop Flows (RPA fuer Legacy-Systeme ohne API).
-
-**Dataverse:** Die Datenbankschicht der Power Platform. Relionale Datenbank mit integriertem Sicherheitsmodell, Geschaeftsregeln, Plugins und Auditing.
-
-**Power BI:** Analysen und Berichte. Verbindet sich nativ mit Dataverse und anderen Datenquellen.
-
-**Copilot Studio:** Erstellt konversationale Agents und Chatbots. Integriert mit Dataverse und Power Automate.
-
-**AI Builder:** Vorgefertigte KI-Modelle (Formularerkennung, Sentimentanalyse, Objekterkennung) die direkt in Apps und Flows genutzt werden koennen.
+- **Power Apps** — Erstellt Benutzeroberflaechen. Zwei Typen: Canvas Apps (frei gestaltbar, fuer einfache Interfaces und mobile Nutzung) und Model-Driven Apps (datenzentriert, automatisch generiert aus dem Dataverse-Datenmodell, fuer komplexe Sachbearbeitungsanwendungen).
+- **Power Automate** — Automatisiert Prozesse und verbindet Systeme. Cloud Flows (ausgeloest durch Ereignisse oder Zeitplan) und Desktop Flows (RPA fuer Legacy-Systeme ohne API).
+- **Dataverse** — Die Datenbankschicht der Power Platform. Relionale Datenbank mit integriertem Sicherheitsmodell, Geschaeftsregeln, Plugins und Auditing.
+- **Power BI** — Analysen und Berichte. Verbindet sich nativ mit Dataverse und anderen Datenquellen.
+- **Copilot Studio** — Erstellt konversationale Agents und Chatbots. Integriert mit Dataverse und Power Automate.
+- **AI Builder** — Vorgefertigte KI-Modelle (Formularerkennung, Sentimentanalyse, Objekterkennung) die direkt in Apps und Flows genutzt werden koennen.
 
 ## Zusammenspiel am Beispiel Rechnungsverarbeitung
 

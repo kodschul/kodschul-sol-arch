@@ -103,10 +103,9 @@ Eine haeufige Fehlentscheidung: Pro Projekt eine eigene Produktivumgebung, was z
 
 ## Die Frage, die der SA stellen muss
 
-"Wenn ein Angreifer die Zugangsdaten eines beliebigen Mitarbeiters kompromittiert, was kann er in dieser Umgebung sehen und tun?"
-
-Die Antwort auf diese Frage treibt die Umgebungs- und Sicherheitsarchitektur.
-
+> _"Wenn ein Angreifer die Zugangsdaten eines beliebigen Mitarbeiters kompromittiert, was kann er in dieser Umgebung sehen und tun?"_
+>
+> Die Antwort auf diese Frage treibt die Umgebungs- und Sicherheitsarchitektur.
 ## Wo konfigurieren und überwachen?
 
 | Thema | Navigation |

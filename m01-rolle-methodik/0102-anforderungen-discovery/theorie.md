@@ -105,13 +105,10 @@ Hier wird mit der MoSCoW-Methode priorisiert.
 
 MoSCoW steht fuer vier Kategorien, die Anforderungen eingeordnet werden:
 
-**Must have (M):** Diese Anforderungen sind fuer den Go-Live unverzichtbar. Ohne sie ist das System nicht nutzbar. Ein Beispiel: "Nutzer muessen sich anmelden koennen."
-
-**Should have (S):** Diese Anforderungen sind wichtig, aber das System koennte kurzfristig ohne sie starten. Ein Beispiel: "Nutzer sollten ihre E-Mail-Benachrichtigungen konfigurieren koennen."
-
-**Could have (C):** Nice-to-have. Diese Anforderungen werden umgesetzt, wenn Zeit und Budget es erlauben. Ein Beispiel: "Nutzer koennten ein Dashboard mit ihren persoenlichen Statistiken haben."
-
-**Won't have (W):** Diese Anforderungen sind ausgeschlossen. Sie werden im naechsten Release oder gar nicht umgesetzt. Explizit "Won't have" zu definieren ist wichtig, weil es Scope-Creep verhindert.
+- **Must have (M)** — Diese Anforderungen sind fuer den Go-Live unverzichtbar. Ohne sie ist das System nicht nutzbar. Ein Beispiel: "Nutzer muessen sich anmelden koennen."
+- **Should have (S)** — Diese Anforderungen sind wichtig, aber das System koennte kurzfristig ohne sie starten. Ein Beispiel: "Nutzer sollten ihre E-Mail-Benachrichtigungen konfigurieren koennen."
+- **Could have (C)** — Nice-to-have. Diese Anforderungen werden umgesetzt, wenn Zeit und Budget es erlauben. Ein Beispiel: "Nutzer koennten ein Dashboard mit ihren persoenlichen Statistiken haben."
+- **Won't have (W)** — Diese Anforderungen sind ausgeschlossen. Sie werden im naechsten Release oder gar nicht umgesetzt. Explizit "Won't have" zu definieren ist wichtig, weil es Scope-Creep verhindert.
 
 ```mermaid
 pie title Typische Verteilung in einem Erstprojekt
@@ -125,13 +122,10 @@ pie title Typische Verteilung in einem Erstprojekt
 
 Nicht alle Stakeholder sind gleich. Ein SA unterscheidet:
 
-**Sponsor:** Der Person, die das Budget hat. Der SA muss mit ihr sicherstellen, dass die Architektur zu den Investitionsentscheidungen passt.
-
-**Key Users:** Die Personen, die das System taeglich nutzen werden. Ihre Anforderungen sind oft die realistischsten, weil sie den Prozess am besten kennen.
-
-**IT-Abteilung:** Sie hat Anforderungen bezueglich Sicherheit, Compliance und Betrieb. Diese Anforderungen klingen manchmal buerokratisch, sind aber architekturrelevant.
-
-**Indirekte Beteiligte:** Systeme und Prozesse, die vom neuen System beeinflusst werden, auch wenn ihre Nutzer nicht direkt betroffen scheinen.
+- **Sponsor** — Der Person, die das Budget hat. Der SA muss mit ihr sicherstellen, dass die Architektur zu den Investitionsentscheidungen passt.
+- **Key Users** — Die Personen, die das System taeglich nutzen werden. Ihre Anforderungen sind oft die realistischsten, weil sie den Prozess am besten kennen.
+- **IT-Abteilung** — Sie hat Anforderungen bezueglich Sicherheit, Compliance und Betrieb. Diese Anforderungen klingen manchmal buerokratisch, sind aber architekturrelevant.
+- **Indirekte Beteiligte** — Systeme und Prozesse, die vom neuen System beeinflusst werden, auch wenn ihre Nutzer nicht direkt betroffen scheinen.
 
 ## Was der SA mit den Discovery-Ergebnissen macht
 
@@ -141,13 +135,10 @@ Ein Discovery ohne diese Weiterverwertung ist Zeitverschwendung. Die Discovery i
 
 ## Haeufige Fehler in der Discovery
 
-**Anforderungen als Loesungen aufnehmen:** Stakeholder formulieren oft Loesungen statt Probleme. "Ich brauche einen Button" ist keine Anforderung. "Ich muss nach Abschluss eines Auftrags den Kunden benachrichtigen koennen" ist eine Anforderung. Der SA muss diese Umformulierung immer vornehmen.
-
-**Nur mit einem Stakeholder sprechen:** Die Perspektive des Managers ist nicht die Perspektive des Sachbearbeiters. Beide sind noetig.
-
-**Nicht-funktionale Anforderungen vergessen:** Performance, Sicherheit, Verfuegbarkeit, Datenschutz. Diese Anforderungen sind fuer die Architektur oft wichtiger als funktionale Anforderungen, werden aber selten spontan genannt.
-
-**Keine Priorisierung vornehmen:** Wenn alle Anforderungen gleich wichtig sind, kann keine Architekturentscheidung getroffen werden. Priorisierung ist Pflicht.
+- **Anforderungen als Loesungen aufnehmen** — Stakeholder formulieren oft Loesungen statt Probleme. "Ich brauche einen Button" ist keine Anforderung. "Ich muss nach Abschluss eines Auftrags den Kunden benachrichtigen koennen" ist eine Anforderung. Der SA muss diese Umformulierung immer vornehmen.
+- **Nur mit einem Stakeholder sprechen** — Die Perspektive des Managers ist nicht die Perspektive des Sachbearbeiters. Beide sind noetig.
+- **Nicht-funktionale Anforderungen vergessen** — Performance, Sicherheit, Verfuegbarkeit, Datenschutz. Diese Anforderungen sind fuer die Architektur oft wichtiger als funktionale Anforderungen, werden aber selten spontan genannt.
+- **Keine Priorisierung vornehmen** — Wenn alle Anforderungen gleich wichtig sind, kann keine Architekturentscheidung getroffen werden. Priorisierung ist Pflicht.
 
 ## Wo konfigurieren und überwachen?
 

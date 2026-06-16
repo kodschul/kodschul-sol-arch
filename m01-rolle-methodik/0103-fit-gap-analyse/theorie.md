@@ -30,11 +30,9 @@ Das Ergebnis dieser Analyse ist die Grundlage fuer alle Architekturentscheidunge
 
 ## Die drei Kategorien
 
-**Fit:** Die Plattform kann die Anforderung mit Standardfunktionalitaet abdecken. Keine Erweiterung noetig. Beispiel: Ein Genehmigungsworkflow mit zwei Stufen kann vollstaendig mit Power Automate und dem eingebauten Approval-Connector umgesetzt werden.
-
-**Partial Fit:** Die Plattform deckt die Anforderung teilweise ab. Konfiguration oder eine leichte Erweiterung ist noetig. Beispiel: Automatische Erinnerungen nach drei Tagen sind mit Power Automate loesbar, brauchen aber Konfigurationsarbeit.
-
-**Gap:** Die Plattform kann die Anforderung nicht erfuellen. Hier muss der SA entscheiden: Erweiterung entwickeln, externe Loesung einbinden oder mit dem Kunden verhandeln, die Anforderung zu aendern oder zu streichen. Beispiel: Eine Echtzeit-Vollvolltextsuche ueber 10 Millionen Datensaetze ist mit Dataverse allein nicht loesbar.
+- **Fit** — Die Plattform kann die Anforderung mit Standardfunktionalitaet abdecken. Keine Erweiterung noetig. Beispiel: Ein Genehmigungsworkflow mit zwei Stufen kann vollstaendig mit Power Automate und dem eingebauten Approval-Connector umgesetzt werden.
+- **Partial Fit** — Die Plattform deckt die Anforderung teilweise ab. Konfiguration oder eine leichte Erweiterung ist noetig. Beispiel: Automatische Erinnerungen nach drei Tagen sind mit Power Automate loesbar, brauchen aber Konfigurationsarbeit.
+- **Gap** — Die Plattform kann die Anforderung nicht erfuellen. Hier muss der SA entscheiden: Erweiterung entwickeln, externe Loesung einbinden oder mit dem Kunden verhandeln, die Anforderung zu aendern oder zu streichen. Beispiel: Eine Echtzeit-Vollvolltextsuche ueber 10 Millionen Datensaetze ist mit Dataverse allein nicht loesbar.
 
 ```mermaid
 flowchart TD
@@ -65,37 +63,28 @@ Eine Fit-Gap-Analyse ist typischerweise eine strukturierte Tabelle. Jede Zeile i
 
 Eine Fit-Gap-Analyse in professioneller Qualitaet geht ueber die Tabelle hinaus.
 
-**Risikobewertung:** Gaps sind nicht gleich schwer. Ein Gap bei einer Must-have-Anforderung ist ein Projektstoprisiko. Ein Gap bei einer Could-have-Anforderung ist vernachlaessigbar. Der SA bewertet jeden Gap nach Schwere und Wahrscheinlichkeit.
-
-**Aufwandsschaetzung:** Fuer jeden Partial Fit und jeden Gap schlaegt der SA einen Loesungsweg vor und schaetzt den Umsetzungsaufwand grob. Diese Schoepfung ist ungenau, aber sie gibt dem Projektmanager und dem Kunden eine Entscheidungsgrundlage.
-
-**Priorisierungswirkung:** Eine Fit-Gap-Analyse kann die MoSCoW-Priorisierung verschieben. Eine Should-have-Anforderung kann zur Won't-have-Anforderung werden, wenn der SA feststellt, dass sie einen Gap darstellt, der unverhealtnismaessig viel Aufwand erzeugt.
+- **Risikobewertung** — Gaps sind nicht gleich schwer. Ein Gap bei einer Must-have-Anforderung ist ein Projektstoprisiko. Ein Gap bei einer Could-have-Anforderung ist vernachlaessigbar. Der SA bewertet jeden Gap nach Schwere und Wahrscheinlichkeit.
+- **Aufwandsschaetzung** — Fuer jeden Partial Fit und jeden Gap schlaegt der SA einen Loesungsweg vor und schaetzt den Umsetzungsaufwand grob. Diese Schoepfung ist ungenau, aber sie gibt dem Projektmanager und dem Kunden eine Entscheidungsgrundlage.
+- **Priorisierungswirkung** — Eine Fit-Gap-Analyse kann die MoSCoW-Priorisierung verschieben. Eine Should-have-Anforderung kann zur Won't-have-Anforderung werden, wenn der SA feststellt, dass sie einen Gap darstellt, der unverhealtnismaessig viel Aufwand erzeugt.
 
 ## Typische Gaps in Power Platform Projekten
 
 Es gibt wiederkehrende Muster, bei denen Standard-Power-Platform an Grenzen stosst:
 
-**Komplexe Druckvorlagen:** Power Platform hat keine native Funktion fuer formatierte PDF-Dokumente. Loesungsweg: Word-Templates in Power Automate, oder externe Dienste wie Encodian oder Plumsail.
-
-**Erweiterte Suche und Volltextindexierung:** Dataverse-Suche ist gut, aber nicht fuer komplexe Suchszenarien mit Facettierung und Ranking geeignet. Loesungsweg: Azure Cognitive Search.
-
-**Batch-Verarbeitung grosser Datenmengen:** Power Automate hat Limits bei der Anzahl von Loop-Iterationen und API-Calls pro Tag. Loesungsweg: Azure Functions oder Azure Data Factory.
-
-**Komplexe Berechnungen und Aggregationen in Echtzeit:** Rollup-Spalten in Dataverse sind asynchron und koennen bis zu 12 Stunden alt sein. Loesungsweg: Formel-Spalten fuer einfache Faelle, Azure Functions oder Power BI fuer komplexe Faelle.
-
-**Externe Authentifizierung ohne Entra ID:** Power Platform ist fest an Microsoft Identity gebunden. Gastnutzer ohne Microsoft-Konto brauchen Extraaufwand.
+- **Komplexe Druckvorlagen** — Power Platform hat keine native Funktion fuer formatierte PDF-Dokumente. Loesungsweg: Word-Templates in Power Automate, oder externe Dienste wie Encodian oder Plumsail.
+- **Erweiterte Suche und Volltextindexierung** — Dataverse-Suche ist gut, aber nicht fuer komplexe Suchszenarien mit Facettierung und Ranking geeignet. Loesungsweg: Azure Cognitive Search.
+- **Batch-Verarbeitung grosser Datenmengen** — Power Automate hat Limits bei der Anzahl von Loop-Iterationen und API-Calls pro Tag. Loesungsweg: Azure Functions oder Azure Data Factory.
+- **Komplexe Berechnungen und Aggregationen in Echtzeit** — Rollup-Spalten in Dataverse sind asynchron und koennen bis zu 12 Stunden alt sein. Loesungsweg: Formel-Spalten fuer einfache Faelle, Azure Functions oder Power BI fuer komplexe Faelle.
+- **Externe Authentifizierung ohne Entra ID** — Power Platform ist fest an Microsoft Identity gebunden. Gastnutzer ohne Microsoft-Konto brauchen Extraaufwand.
 
 ## Die SA-Empfehlung formulieren
 
 Nach der Fit-Gap-Analyse formuliert der SA fuer jeden Gap eine Empfehlung. Eine gute Empfehlung hat folgende Struktur:
 
-**Ausgangslage:** Was ist die Anforderung, und warum ist sie ein Gap?
-
-**Optionen:** Welche Loesungswege gibt es? Typischerweise gibt es mehrere, mit unterschiedlichen Trade-offs.
-
-**Empfehlung:** Welche Option empfiehlt der SA, und warum?
-
-**Konsequenzen:** Was bedeutet diese Empfehlung fuer Kosten, Zeitplan, Wartbarkeit und zuekuenftige Aenderungen?
+- **Ausgangslage** — Was ist die Anforderung, und warum ist sie ein Gap?
+- **Optionen** — Welche Loesungswege gibt es? Typischerweise gibt es mehrere, mit unterschiedlichen Trade-offs.
+- **Empfehlung** — Welche Option empfiehlt der SA, und warum?
+- **Konsequenzen** — Was bedeutet diese Empfehlung fuer Kosten, Zeitplan, Wartbarkeit und zuekuenftige Aenderungen?
 
 Ein Beispiel:
 

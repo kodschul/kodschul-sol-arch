@@ -111,17 +111,12 @@ Konsequenzen:
 
 Ein technisches Konzept fuer eine einzelne Fachanforderung beantwortet die folgenden Fragen:
 
-**Datenmodell:** Welche Tabellen und Felder benoetigt diese Anforderung? Welche Beziehungen gibt es?
-
-**Prozesslogik:** Welche Ereignisse loesen welche Aktionen aus? Ist die Logik synchron oder asynchron?
-
-**Benutzeroberflaeche:** Welche App-Art (Canvas, Model-Driven) wird verwendet? Welche Formulare und Ansichten sind notwendig?
-
-**Integrationen:** Welche externen Systeme sind beteiligt? Ueber welche Schnittstelle?
-
-**Sicherheit:** Wer darf diese Funktion nutzen? Welche Sicherheitsrolle wird benoetigt?
-
-**Testkriterien:** Woran erkennt man, dass die Anforderung korrekt umgesetzt wurde?
+- **Datenmodell** — Welche Tabellen und Felder benoetigt diese Anforderung? Welche Beziehungen gibt es?
+- **Prozesslogik** — Welche Ereignisse loesen welche Aktionen aus? Ist die Logik synchron oder asynchron?
+- **Benutzeroberflaeche** — Welche App-Art (Canvas, Model-Driven) wird verwendet? Welche Formulare und Ansichten sind notwendig?
+- **Integrationen** — Welche externen Systeme sind beteiligt? Ueber welche Schnittstelle?
+- **Sicherheit** — Wer darf diese Funktion nutzen? Welche Sicherheitsrolle wird benoetigt?
+- **Testkriterien** — Woran erkennt man, dass die Anforderung korrekt umgesetzt wurde?
 
 ## Praxisbeispiel: Vollstaendiges technisches Konzept
 
@@ -138,19 +133,15 @@ Ein technisches Konzept fuer eine einzelne Fachanforderung beantwortet die folge
 - Aktion 2: E-Mail senden mit Outlook-Connector
 - E-Mail-Inhalt: Name des Antragstellers, Zeitraum, direkter Link zum Datensatz in der App
 
-**App:** Model-Driven App "HR Urlaubsverwaltung". Vorgesetzter erhaelt Link direkt zum Formular.
-
-**Sicherheitsrolle:** Vorgesetzter benoetigt Lesezugriff auf cr_UrlaubsAntrag und Schreibzugriff auf cr_Status-Feld, um genehmigen oder ablehnen zu koennen.
-
-**Testkriterium:** Ein Mitarbeiter erstellt einen Antrag. Innerhalb von fuenf Minuten erhaelt der eingetragene Vorgesetzte eine E-Mail mit korrektem Inhalt und funktionierendem Link.
+- **App** — Model-Driven App "HR Urlaubsverwaltung". Vorgesetzter erhaelt Link direkt zum Formular.
+- **Sicherheitsrolle** — Vorgesetzter benoetigt Lesezugriff auf cr_UrlaubsAntrag und Schreibzugriff auf cr_Status-Feld, um genehmigen oder ablehnen zu koennen.
+- **Testkriterium** — Ein Mitarbeiter erstellt einen Antrag. Innerhalb von fuenf Minuten erhaelt der eingetragene Vorgesetzte eine E-Mail mit korrektem Inhalt und funktionierendem Link.
 
 ## Typische Fehler beim Uebergang von Fach zu Technik
 
-**Anforderungen uebersetzen, nicht interpretieren:** Der SA uebersetzt, was der Stakeholder braucht. Er erfindet keine Anforderungen hinzu. Wenn jemand sagt "benachrichtigen", entscheidet der SA ob das E-Mail, Teams-Nachricht oder Notification in der App ist und bestaetigt diese Entscheidung mit dem Stakeholder.
-
-**Nicht-dokumentierte Annahmen:** Jede Annahme, die der SA in einem technischen Konzept macht, muss explizit als Annahme markiert werden. Beispiel: "Annahme: Jeder Mitarbeiter hat genau einen direkten Vorgesetzten im System."
-
-**Zu detailliert zu frueh:** Ein technisches Konzept in der Planungsphase beschreibt das Was, nicht das Wie. Der Developer entscheidet, ob er fuer die E-Mail den Outlook-Connector oder den Office365-Connector nutzt. Der SA legt fest, dass eine E-Mail gesendet wird.
+- **Anforderungen uebersetzen, nicht interpretieren** — Der SA uebersetzt, was der Stakeholder braucht. Er erfindet keine Anforderungen hinzu. Wenn jemand sagt "benachrichtigen", entscheidet der SA ob das E-Mail, Teams-Nachricht oder Notification in der App ist und bestaetigt diese Entscheidung mit dem Stakeholder.
+- **Nicht-dokumentierte Annahmen** — Jede Annahme, die der SA in einem technischen Konzept macht, muss explizit als Annahme markiert werden. Beispiel: "Annahme: Jeder Mitarbeiter hat genau einen direkten Vorgesetzten im System."
+- **Zu detailliert zu frueh** — Ein technisches Konzept in der Planungsphase beschreibt das Was, nicht das Wie. Der Developer entscheidet, ob er fuer die E-Mail den Outlook-Connector oder den Office365-Connector nutzt. Der SA legt fest, dass eine E-Mail gesendet wird.
 
 ## Wo konfigurieren und überwachen?
 

@@ -121,11 +121,9 @@ Filter(Bestellungen, StartsWith(Bestellnummer, "OR"))
 
 ## Weitere wichtige Limits
 
-**Maximale Anzahl von Tabellen pro Umgebung:** Kein hartes Limit, aber Performance-Empfehlung: nicht mehr als 1.000 Custom Tables.
-
-**Maximale Anzahl von Spalten pro Tabelle:** 400 Custom Columns.
-
-**Maximale Zeilengrenzen in Dataverse:** Kein Datensatz-Limit, aber Speicherlimits gelten.
+- **Maximale Anzahl von Tabellen pro Umgebung** — Kein hartes Limit, aber Performance-Empfehlung: nicht mehr als 1.000 Custom Tables.
+- **Maximale Anzahl von Spalten pro Tabelle** — 400 Custom Columns.
+- **Maximale Zeilengrenzen in Dataverse** — Kein Datensatz-Limit, aber Speicherlimits gelten.
 
 **Power Automate Flow-Limits:**
 - Maximale Laufzeit eines einzelnen Flow-Runs: 30 Tage

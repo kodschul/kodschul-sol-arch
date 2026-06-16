@@ -58,13 +58,10 @@ graph TB
     style D fill:#FFF3E0,stroke:#E65100
 ```
 
-**Sicherheitsschicht:** Das Sicherheitsmodell ist in die Datenbank integriert. Es ist nicht moeglich, Dataverse-Daten abzurufen, ohne das Sicherheitsmodell zu respektieren. Ein Nutzer ohne Lesezugriff auf eine Tabelle sieht keine Datensaetze, auch nicht wenn er die Web API direkt aufruft.
-
-**Datenschicht:** Tabellen, Spalten, Beziehungen und Schluessel. Sowohl Standardtabellen (Account, Contact, User) als auch Custom Tables koennen genutzt werden.
-
-**Logikschicht:** Geschaeftslogik kann ohne Code (Geschaeftsregeln), mit Low Code (Power Automate) oder mit Code (Plugins) implementiert werden.
-
-**API-Schicht:** Dataverse stellt eine standardisierte REST API (OData) bereit, die von jedem System aufgerufen werden kann.
+- **Sicherheitsschicht** — Das Sicherheitsmodell ist in die Datenbank integriert. Es ist nicht moeglich, Dataverse-Daten abzurufen, ohne das Sicherheitsmodell zu respektieren. Ein Nutzer ohne Lesezugriff auf eine Tabelle sieht keine Datensaetze, auch nicht wenn er die Web API direkt aufruft.
+- **Datenschicht** — Tabellen, Spalten, Beziehungen und Schluessel. Sowohl Standardtabellen (Account, Contact, User) als auch Custom Tables koennen genutzt werden.
+- **Logikschicht** — Geschaeftslogik kann ohne Code (Geschaeftsregeln), mit Low Code (Power Automate) oder mit Code (Plugins) implementiert werden.
+- **API-Schicht** — Dataverse stellt eine standardisierte REST API (OData) bereit, die von jedem System aufgerufen werden kann.
 
 ## Standardtabellen und das Common Data Model
 
@@ -111,13 +108,10 @@ Was SQL Server kann, was Dataverse nicht (oder anders) kann:
 
 Dataverse hat drei verschiedene Speicherpools mit unterschiedlichen Preisen:
 
-**Database Storage:** Zeilenbasierter Speicher fuer Tabellendaten. Standard-Datenspeicher fuer alle Felder in Custom Tables. Preis: Enthalten in der Basislizenz plus Zukauf.
-
-**File Storage:** Fuer Dateianhange (File-Spalten und Notes/Annotations). Typisch fuer Bilder, PDFs, Dokumente. Preis: Geringerer Preis als Database Storage, aber teurer als SharePoint.
-
-**Log Storage:** Fuer Audit-Logs. Wachst automatisch wenn Auditing aktiviert ist. Kann mit Retention Policies begrenzt werden.
-
-**SA-Implikation:** Der SA plant den Speicherverbrauch. Eine Loesung mit vielen grossen Dateianhangen direkt in Dataverse kann teuer werden. Alternative: SharePoint fuer Dateien, Dataverse fuer strukturierte Daten mit Link-Verweis auf SharePoint.
+- **Database Storage** — Zeilenbasierter Speicher fuer Tabellendaten. Standard-Datenspeicher fuer alle Felder in Custom Tables. Preis: Enthalten in der Basislizenz plus Zukauf.
+- **File Storage** — Fuer Dateianhange (File-Spalten und Notes/Annotations). Typisch fuer Bilder, PDFs, Dokumente. Preis: Geringerer Preis als Database Storage, aber teurer als SharePoint.
+- **Log Storage** — Fuer Audit-Logs. Wachst automatisch wenn Auditing aktiviert ist. Kann mit Retention Policies begrenzt werden.
+- **SA-Implikation** — Der SA plant den Speicherverbrauch. Eine Loesung mit vielen grossen Dateianhangen direkt in Dataverse kann teuer werden. Alternative: SharePoint fuer Dateien, Dataverse fuer strukturierte Daten mit Link-Verweis auf SharePoint.
 
 ## Wo konfigurieren und überwachen?
 

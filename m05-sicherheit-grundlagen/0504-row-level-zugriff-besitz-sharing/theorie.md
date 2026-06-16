@@ -93,11 +93,9 @@ Neben statischen Owner-Teams gibt es Access Teams. Ein Access Team hat keinen fe
 
 Die Hierarchiesicherheit ist ein optionales Zusatzmodell. Wenn aktiviert, kann ein Nutzer alle Datensaetze sehen, die seinen direkten Mitarbeitern gehoeren - basierend auf der Managerbeziehung im SystemUser-Datensatz.
 
-**Voraussetzung:** Im Systembenutzer-Datensatz muss das Manager-Feld gepflegt sein.
-
-**Einschraenkung:** Nur eine Hierarchietiefe ist standardmaessig konfigurierbar (der direkte Manager). Mehrstufige Hierarchien erfordern hoehere Tiefen-Konfiguration.
-
-**Wann Hierarchiesicherheit sinnvoll ist:** Wenn die Organisationsstruktur exakt der BU-Struktur entspricht und Manager ihren Mitarbeiterdaten sehen muessen, aber keine separate BU-Konfiguration gewuenscht wird. Als Ergaenzung zu BUs, nicht als Ersatz.
+- **Voraussetzung** — Im Systembenutzer-Datensatz muss das Manager-Feld gepflegt sein.
+- **Einschraenkung** — Nur eine Hierarchietiefe ist standardmaessig konfigurierbar (der direkte Manager). Mehrstufige Hierarchien erfordern hoehere Tiefen-Konfiguration.
+- **Wann Hierarchiesicherheit sinnvoll ist** — Wenn die Organisationsstruktur exakt der BU-Struktur entspricht und Manager ihren Mitarbeiterdaten sehen muessen, aber keine separate BU-Konfiguration gewuenscht wird. Als Ergaenzung zu BUs, nicht als Ersatz.
 
 ## Wo konfigurieren und überwachen?
 

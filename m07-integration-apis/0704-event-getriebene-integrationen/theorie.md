@@ -61,11 +61,9 @@ Ein Webhook ist eine HTTP-Endpunkt-Registrierung in Dataverse. Wenn ein bestimmt
 - Dataverse sendet ein JSON-Payload mit dem Execution Context
 - Authentifizierung per Webhook-Key (HTTP-Header) oder Azure AD
 
-**Timeout:** Dataverse erwartet innerhalb von 60 Sekunden eine HTTP 200/201/202-Antwort. Bei Ueberschreitung wird die Anfrage als fehlgeschlagen markiert.
-
-**Retries:** Bei Fehler wird Dataverse bis zu 12 Mal erneut versuchen (exponential backoff).
-
-**Wann Webhooks:** Wenn ein externes System direkt benachrichtigt werden soll und es einen zuverlaessigen HTTPS-Endpunkt anbietet.
+- **Timeout** — Dataverse erwartet innerhalb von 60 Sekunden eine HTTP 200/201/202-Antwort. Bei Ueberschreitung wird die Anfrage als fehlgeschlagen markiert.
+- **Retries** — Bei Fehler wird Dataverse bis zu 12 Mal erneut versuchen (exponential backoff).
+- **Wann Webhooks** — Wenn ein externes System direkt benachrichtigt werden soll und es einen zuverlaessigen HTTPS-Endpunkt anbietet.
 
 ## Azure Service Bus: Entkoppelte, zuverlaessige Weiterleitung
 

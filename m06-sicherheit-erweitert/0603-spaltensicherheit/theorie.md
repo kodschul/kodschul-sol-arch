@@ -66,13 +66,10 @@ graph TB
 
 ## Einschraenkungen und Fallstricke
 
-**Performance:** Spaltensicherheit wirkt sich auf die Abfrageperformance aus. Wenn viele Felder gesichert sind, erhoehen sich die Pruefvorgaenge je Datensatz. Bei grossen Datensaetzen und vielen gesicherten Spalten kann das spaerbar sein.
-
-**Export/API:** Spaltensicherheit gilt auch fuer API-Aufrufe und Excel-Exporte. Wer per API das Feld nicht lesen darf, erhaelt es auch per Web API nicht. Das ist ein Vorteil gegenr manuellen Prueflungen im Frontend.
-
-**Backup/Migration:** Wenn gesicherte Felder in einer Loesung enthalten sind, muessen Spaltensicherheitsprofile ebenfalls in die Loesung eingepflegt werden. Ein haeufiger Fehler bei Deployments: Die Loesung kommt an, aber das Profil ist nicht enthalten.
-
-**Readonly-Felder per Spaltensicherheit:** Oft wird Spaltensicherheit verwendet, um Felder sichtbar, aber nicht editierbar zu machen. Das ist ein valider Anwendungsfall (Lesen = Ja, Aktualisieren = Nein).
+- **Performance** — Spaltensicherheit wirkt sich auf die Abfrageperformance aus. Wenn viele Felder gesichert sind, erhoehen sich die Pruefvorgaenge je Datensatz. Bei grossen Datensaetzen und vielen gesicherten Spalten kann das spaerbar sein.
+- **Export/API** — Spaltensicherheit gilt auch fuer API-Aufrufe und Excel-Exporte. Wer per API das Feld nicht lesen darf, erhaelt es auch per Web API nicht. Das ist ein Vorteil gegenr manuellen Prueflungen im Frontend.
+- **Backup/Migration** — Wenn gesicherte Felder in einer Loesung enthalten sind, muessen Spaltensicherheitsprofile ebenfalls in die Loesung eingepflegt werden. Ein haeufiger Fehler bei Deployments: Die Loesung kommt an, aber das Profil ist nicht enthalten.
+- **Readonly-Felder per Spaltensicherheit** — Oft wird Spaltensicherheit verwendet, um Felder sichtbar, aber nicht editierbar zu machen. Das ist ein valider Anwendungsfall (Lesen = Ja, Aktualisieren = Nein).
 
 ## Abgrenzung zu Feldsichtbarkeit in Formularen
 

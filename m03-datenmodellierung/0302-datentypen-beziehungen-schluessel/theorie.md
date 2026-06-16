@@ -163,11 +163,9 @@ erDiagram
 
 Diese drei "Referenz-Typen" werden oft verwechselt:
 
-**Lookup:** Verweist auf genau einen spezifischen Tabellentyp. "Dieser Auftrag gehoert zu diesem Kunden" (Lookup auf Account). Eindeutig, einfach, wartbar.
-
-**Customer:** Verweist auf entweder einen Account ODER einen Contact. Wird verwendet, wenn ein Datensatz sowohl an Unternehmen als auch an Einzelpersonen haengen kann. Intern speichert Dataverse sowohl den Typ als auch die ID. Nachteil: Komplexer in Flows und API-Abfragen.
-
-**Owner:** Spezielles Feld, das automatisch an jede Tabelle mit Eigentuemer-basiertem Zugriff angehaengt wird. Verweist auf SystemUser oder Team. Dient als Grundlage fuer das Sicherheitsmodell.
+- **Lookup** — Verweist auf genau einen spezifischen Tabellentyp. "Dieser Auftrag gehoert zu diesem Kunden" (Lookup auf Account). Eindeutig, einfach, wartbar.
+- **Customer** — Verweist auf entweder einen Account ODER einen Contact. Wird verwendet, wenn ein Datensatz sowohl an Unternehmen als auch an Einzelpersonen haengen kann. Intern speichert Dataverse sowohl den Typ als auch die ID. Nachteil: Komplexer in Flows und API-Abfragen.
+- **Owner** — Spezielles Feld, das automatisch an jede Tabelle mit Eigentuemer-basiertem Zugriff angehaengt wird. Verweist auf SystemUser oder Team. Dient als Grundlage fuer das Sicherheitsmodell.
 
 ## Alternativschluessel: Wenn die Guid nicht reicht
 
