@@ -1,4 +1,4 @@
-# Hands-On M03 — Agentic: Data Schema Generation (für Adrian)
+# Hands-On M03 — Agentic: Data Schema Generation
 
 > **Typ:** Dataverse Schema Auto-Generator bauen  
 > **Dauer:** ca. 60 Minuten  

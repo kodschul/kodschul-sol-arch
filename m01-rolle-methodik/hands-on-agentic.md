@@ -1,4 +1,4 @@
-# Hands-On M01 — Agentic: Discovery Automation (für Adrian)
+# Hands-On M01 — Agentic: Discovery Automation
 
 > **Typ:** Agentic Discovery Tool bauen  
 > **Dauer:** ca. 60 Minuten  

@@ -1,4 +1,4 @@
-# Hands-On M04 — Agentic: Agent Builder Agent (für Adrian)
+# Hands-On M04 — Agentic: Agent Builder Agent
 
 > **Typ:** Baue einen Agent, der Agents baut 🤯  
 > **Dauer:** ca. 60 Minuten  

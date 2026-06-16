@@ -29,6 +29,7 @@ Ergänze zusätzlich eine Spalte `Agentisch?` und entscheide, ob das Feature bes
 Schreibe einen Prompt für einen App-Design-Agenten, der aus den Anforderungen eine Canvas App-Skizze erzeugt.
 
 Der Agent soll ausgeben:
+
 - Screens und Navigation
 - Controls je Screen
 - Datenbindungen zu Dataverse

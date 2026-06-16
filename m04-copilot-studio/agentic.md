@@ -404,41 +404,6 @@ Output:
 
 ---
 
-## Handlung für Adrian
-
-**Niveau:** Advanced (Agent-Architektur + MCP-Integration)
-
-**Aufgabe:**  
-Baue einen **HR-Agent mit Agentic Support**, der:
-
-1. **Topic Generation:**
-
-   - Liest Anforderungen
-   - Erzeugt Topics mit Trigger-Phrasen
-   - Exportiert zu Copilot Studio JSON
-
-2. **RAG Optimization:**
-
-   - Lädt Knowledge Source (SharePoint)
-   - Testet verschiedene Prompts
-   - Misst Halluzinationen
-   - Gibt Best Prompt zurück
-
-3. **Flow Orchestration:**
-
-   - Generiert Power Automate Flows für Multi-Step Actions
-   - Handlert Timeouts & Eskalationen
-   - Bi-direktionale Agent ↔ Canvas Communication
-
-4. **Testing & Validation:**
-   - Agent simuliert User-Conversations
-   - Misst Antwort-Qualität
-   - Detektiert Halluzinationen
-
-**Bonus:** CLI-Tool `agent-builder --requirements "file.md"` → fertiger Copilot Studio Agent
-
----
-
 ## Checkpoint ✓
 
 Am Ende verstehst du:

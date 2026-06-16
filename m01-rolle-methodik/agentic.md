@@ -176,34 +176,6 @@ Outputs:
 
 ---
 
-## Handlung für Adrian
-
-**Niveau:** Intermediate (Agent-Entwicklung vorausgesetzt)
-
-**Aufgabe:**  
-Baue einen **VisitTrack Discovery Assistant** mit folgenden Features:
-
-1. **Interview-Strukturierung:**
-
-   - Akzeptiert Freitext-Notizen oder Transkripte
-   - Extrahiert automatisch Anforderungen, Stakeholder, Risiken
-   - Speichert strukturiert in Dataverse
-
-2. **Fit-Gap Automation:**
-
-   - Pro Anforderung: Power-Platform-Mapping
-   - MoSCoW-Vorschlag basierend auf Anforderungs-Komplexität
-   - SharePoint-Output für Stakeholder-Review
-
-3. **Knowledge Graph Integration:**
-   - Referenziert ähnliche Projekte aus SharePoint
-   - Schlägt Reusable-Components vor
-   - Warnt vor Known Pitfalls
-
-**Bonus:** Canvas App mit Agent-Chat, in der Stakeholder selbst Anforderungen eingeben können statt Interviews.
-
----
-
 ## Checkpoint ✓
 
 Am Ende dieses Moduls verstehst du:

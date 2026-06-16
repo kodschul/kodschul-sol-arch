@@ -301,33 +301,6 @@ Output-Schema:
 
 ---
 
-## Handlung für Adrian
-
-**Niveau:** Advanced (Agent + MCP + Datenmodellierung)
-
-**Aufgabe:**  
-Baue einen **VisitTrack Architecture Assistant**, der:
-
-1. **Komponenten-Mapping:**
-
-   - Liest Anforderungen
-   - Mappt auf Canvas App / Power BI / Dataverse / Power Automate
-   - Warnt vor Delegation-Limits & Performance-Risks
-
-2. **Umgebungsstrategie Automation:**
-
-   - Analysiert Team-Größe, Deployment-Frequenz, Risiko-Profil
-   - Empfiehlt 3-Stufen oder 4-Stufen-Modell
-   - Erzeugt Access-Matrix für Dataverse/Power Apps
-
-3. **Best-Practice Validation:**
-   - Checkt: Ist mein Architektur-Design sicher?
-   - Warnt vor Anti-Patterns (z.B. "Großer Dataset direkt in Canvas Gallery")
-
-**Bonus:** REST API, die andere SAs aufrufen können → "Gib mir Architektur für mein Projekt"
-
----
-
 ## Checkpoint ✓
 
 Am Ende verstehst du:

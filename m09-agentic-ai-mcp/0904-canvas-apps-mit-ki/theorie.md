@@ -101,6 +101,7 @@ flowchart TD
 4. Der Mensch prüft das Ergebnis, korrigiert Datenmodell, Security und Usability und veröffentlicht erst danach.
 
 **Was der Agent konkret vorbereiten kann:**
+
 - Screen-Struktur mit Hauptansicht, Detailansicht und Eingabemaske
 - Benennung von Controls und Variablen nach Konvention
 - Beispiel-Formeln für `Filter`, `Patch`, `If`, `Summarize` und `Connection.Connected`
@@ -108,6 +109,7 @@ flowchart TD
 - Vorschlag, welche Teile in Canvas App bleiben und welche besser als Agent ausgelagert werden
 
 **Was der Agent nicht allein entscheiden sollte:**
+
 - Berechtigungen und Row-Level Security
 - produktive Schreibaktionen ohne Review
 - komplexe Validierungslogik mit fachlichen Ausnahmen

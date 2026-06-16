@@ -195,7 +195,7 @@ Nodes:
      - Nein: "Nicht gefunden" → Antwort
   4. Variable: physician_id = Flow-Output
   5. Cloud Flow: "Visits für Arzt" (die letzten 30 Tage)
-  6. MessageCard erzeugen: 
+  6. MessageCard erzeugen:
      "Dr. {physician_name} hatte {visit_count} Besuche."
   7. Antwort an Nutzer
 ```
@@ -212,15 +212,15 @@ Inputs:
 Steps:
   1. Parse Physician Record
      GET /tables/physicians({physician_id})
-  
+
   2. Calculate Date Range
      Set variable: date_from = addDays(utcNow(), -date_range_days)
-  
+
   3. Query Visits (Filtered + Sorted)
-     GET /tables/visits?$filter=physician_id eq '{physician_id}' 
+     GET /tables/visits?$filter=physician_id eq '{physician_id}'
                         and visit_date ge {date_from}
                      &$orderby=visit_date desc
-  
+
   4. Aggregate
      Set output:
        physician_name: {physician_name}
@@ -273,7 +273,7 @@ OnVisible:
 // Button: "Arzt analysieren"
 OnSelect:
   Set(gblLoading, true);
-  
+
   // Step 1: Dataverse abfragen
   Set(
     gblPhysician,
@@ -282,13 +282,13 @@ OnSelect:
       physician_name = Trim(TextInput_PhysicianName.Value)
     )
   );
-  
+
   If(IsBlank(gblPhysician),
     Notify("Arzt nicht gefunden", NotificationType.Error);
     Set(gblLoading, false);
     Exit;
   );
-  
+
   // Step 2: Visits abfragen
   Set(
     gblVisits,
@@ -300,7 +300,7 @@ OnSelect:
       )
     )
   );
-  
+
   // Step 3: Agentic Processing via Cloud Flow
   Set(
     gblAgentResult,
@@ -310,7 +310,7 @@ OnSelect:
       Concat(gblVisits, visit_id & ",")
     )
   );
-  
+
   Set(gblLoading, false);
   Notify("Analyse abgeschlossen", NotificationType.Success);
 
@@ -402,11 +402,11 @@ If(
 
 ### Entscheidungsmatrix: Wann Agentic in Power Apps?
 
-| Anforderung                | Lösung                          | Grund                          |
-| -------------------------- | ------------------------------- | ------------------------------ |
-| Einfache Datenabfrage      | Power Automate Flow             | Agentic overhead nicht nötig   |
-| Strukturierte, feste Logik | Power Automate Flow + Bedingung | Vorhersehbar, keine LLM nötig  |
-| Freetext-Analyse           | **Agentic (Copilot Studio)**    | LLM kann Variationen verstehen |
-| Multi-Step-Entscheidungen  | **Agentic (Copilot Studio)**    | Agent optimiert Pfade          |
-| Nutzer-Dialog, Kontext     | **Agentic (Copilot Studio)**    | Agent hält State, fragt nach    |
-| Sehr hohe Kosten-Sensibilität | Power Automate Flow            | LLM-Aufrufe kosten mehr        |
+| Anforderung                   | Lösung                          | Grund                          |
+| ----------------------------- | ------------------------------- | ------------------------------ |
+| Einfache Datenabfrage         | Power Automate Flow             | Agentic overhead nicht nötig   |
+| Strukturierte, feste Logik    | Power Automate Flow + Bedingung | Vorhersehbar, keine LLM nötig  |
+| Freetext-Analyse              | **Agentic (Copilot Studio)**    | LLM kann Variationen verstehen |
+| Multi-Step-Entscheidungen     | **Agentic (Copilot Studio)**    | Agent optimiert Pfade          |
+| Nutzer-Dialog, Kontext        | **Agentic (Copilot Studio)**    | Agent hält State, fragt nach   |
+| Sehr hohe Kosten-Sensibilität | Power Automate Flow             | LLM-Aufrufe kosten mehr        |

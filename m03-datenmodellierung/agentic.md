@@ -365,40 +365,6 @@ Output:
 
 ---
 
-## Handlung für Adrian
-
-**Niveau:** Advanced (Schema Design + Performance Tuning)
-
-**Aufgabe:**  
-Baue einen **VisitTrack Data Modeler**, der:
-
-1. **Schema Generation:**
-
-   - Liest Anforderungen
-   - Generiert Dataverse Tables
-   - Erstellt ER-Diagramm (Mermaid oder Visio)
-   - Checkt auf Normalisierung
-
-2. **Denormalisierung Detection:**
-
-   - Warnt vor redundanten Feldern
-   - Schlägt Lösungen vor (RLS-Modeling, Caching)
-
-3. **Performance Advisory:**
-
-   - Schätzt Query-Zeiten
-   - Empfiehlt Indizes
-   - Prüft auf Delegation-Limits (Canvas)
-
-4. **RLS Strategy:**
-   - Analysiert Sicherheitsanforderung
-   - Modeliert Business-Unit Struktur
-   - Generiert RLS-Rules
-
-**Bonus:** Integration mit Power Platform CLI → `pac solution create-from-schema` → Tabellen auto-deployed
-
----
-
 ## Checkpoint ✓
 
 Am Ende verstehst du:

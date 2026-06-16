@@ -1,4 +1,4 @@
-# Hands-On M02 — Agentic: Architecture Code Generation (für Adrian)
+# Hands-On M02 — Agentic: Architecture Code Generation
 
 > **Typ:** Architektur-Auto-Generator bauen  
 > **Dauer:** ca. 60 Minuten  
