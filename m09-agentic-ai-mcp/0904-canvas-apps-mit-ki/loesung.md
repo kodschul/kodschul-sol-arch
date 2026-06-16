@@ -10,6 +10,39 @@
 | Stimmungsanalyse für Manager  | AI Builder Sentiment       | Low        | Low            | Nein           | Optional (nice to have)  |
 | Spracheingabe für Notiz       | Native OS Spracherkennung  | Low        | High           | Ja (lokal)     | Implementieren (Phase 1) |
 
+## Aufgabe 2: Agentischer App-Blueprint
+
+```text
+Input an den App-Design-Agenten:
+- App-Ziel: VisitTrack für Außendienstmitarbeiter
+- Kern-Use-Cases: Besuche erfassen, Arzt anlegen, Besuche prüfen
+- Datenquelle: Dataverse
+- KI-Funktionen: Visitenkarten-Scan, Copilot Chat, Zusammenfassung
+- Offline: Ja
+
+Output:
+- Screens: VisitListScreen, VisitDetailScreen, NewPhysicianScreen
+- Navigation: Bottom Bar oder Left Nav
+- Controls: Gallery, Form, Camera/Add Media, Copilot Panel, Offline Banner
+- Formeln: Filter, Patch, Summarize, Connection.Connected
+- Review-Punkte: Security, RLS, Kosten, Offline-Fallback
+```
+
+```mermaid
+flowchart TD
+    A["VisitTrack App Prompt"] --> B["App-Design-Agent"]
+    B --> C["VisitListScreen"]
+    B --> D["VisitDetailScreen"]
+    B --> E["NewPhysicianScreen"]
+    B --> F["Copilot Panel"]
+    B --> G["Offline Banner"]
+    C --> H["Filter + Gallery"]
+    D --> I["Form + Summarize"]
+    E --> J["Camera + AI Builder"]
+    F --> K["Chat + Context"]
+    G --> L["Connection.Connected"]
+```
+
 ---
 
 ## Aufgabe 2: Visitenkarten-Scanner Power Fx

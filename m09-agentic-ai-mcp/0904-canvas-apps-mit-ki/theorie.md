@@ -80,6 +80,65 @@ CopilotChat.Send({
 })
 ```
 
+## Canvas App agentisch bauen
+
+Eine Canvas App kann nicht nur KI enthalten, sondern auch **agentisch erzeugt** werden. Der Agent übernimmt dann den ersten Entwurf, damit der Mensch sich auf Architektur, Datenmodell und Validierung konzentriert.
+
+```mermaid
+flowchart TD
+    A["Anforderung in natürlicher Sprache"] --> B["Agent erstellt App-Skizze"]
+    B --> C["Screens, Controls, Navigation"]
+    C --> D["Power Fx und Datenbindungen"]
+    D --> E["Canvas App in Power Apps"]
+    E --> F["Human Review und Feinschliff"]
+```
+
+**Typischer agentischer Ablauf:**
+
+1. Du gibst dem Agenten einen klaren Kontext: Nutzergruppe, Datenquelle, Kern-Use-Cases, Offline-Bedarf und gewünschte KI-Funktionen.
+2. Der Agent erzeugt die Informationsarchitektur: welche Screens es braucht, wie die Navigation aussieht und welche Komponenten wiederverwendet werden.
+3. Der Agent generiert die ersten Power Fx-Formeln für Filter, Validierung, Patch, Summarize und Sichtbarkeit.
+4. Der Mensch prüft das Ergebnis, korrigiert Datenmodell, Security und Usability und veröffentlicht erst danach.
+
+**Was der Agent konkret vorbereiten kann:**
+- Screen-Struktur mit Hauptansicht, Detailansicht und Eingabemaske
+- Benennung von Controls und Variablen nach Konvention
+- Beispiel-Formeln für `Filter`, `Patch`, `If`, `Summarize` und `Connection.Connected`
+- Vorschläge für Offline-Verhalten und Fallback-UI
+- Vorschlag, welche Teile in Canvas App bleiben und welche besser als Agent ausgelagert werden
+
+**Was der Agent nicht allein entscheiden sollte:**
+- Berechtigungen und Row-Level Security
+- produktive Schreibaktionen ohne Review
+- komplexe Validierungslogik mit fachlichen Ausnahmen
+- Kosten- und Lizenzentscheidung für AI Builder oder Copilot
+
+**Praktisches Muster für VisitTrack:**
+
+```mermaid
+flowchart TD
+    A["Input an den Agent"] --> B["App-Ziel: Besuche erfassen, Arzt anlegen, KI-Assistenz anzeigen"]
+    B --> C["Datenquelle: Dataverse"]
+    C --> D["Rollen: ADM, Manager, SA"]
+    D --> E["KI-Features: Visitenkarten-Scan, Chat, Zusammenfassung"]
+    E --> F["Offline: Ja, zumindest für die Erfassung"]
+    F --> G["Agent erzeugt App-Blueprint"]
+    G --> H["3 Screens: VisitList, VisitDetail, NewPhysician"]
+    H --> I["1 Copilot Panel + 1 Offline Banner"]
+    I --> J["1 Scan-Workflow + erste Power Fx Formeln"]
+```
+
+```mermaid
+flowchart LR
+    A["Agent Prompt"] --> B["App-Skizze"]
+    B --> C["Screens & Navigation"]
+    C --> D["Power Fx"]
+    D --> E["Canvas App"]
+    E --> F["Human Review"]
+```
+
+Mermaid ist hier das Standardformat fuer alle Architektur- und App-Showcases, damit der Ablauf sofort visuell pruefbar ist.
+
 ## Power Fx KI-Funktionen (2024+)
 
 Power Apps hat native AI-Funktionen direkt in Power Fx:

@@ -20,9 +20,63 @@ Bewertet als Team folgende KI-Features für die VisitTrack Canvas App:
 
 Fülle die Tabelle aus. Nutze für Complexity und Value: `Low / Medium / High`.
 
+Ergänze zusätzlich eine Spalte `Agentisch?` und entscheide, ob das Feature besser von einem Agenten vorbereitet, direkt in der App gebaut oder komplett als eigenständiger Agent umgesetzt wird.
+
 ---
 
-## Aufgabe 2: Visitenkarten-Scanner bauen (20 Minuten)
+## Aufgabe 2: Canvas App agentisch entwerfen (20 Minuten)
+
+Schreibe einen Prompt für einen App-Design-Agenten, der aus den Anforderungen eine Canvas App-Skizze erzeugt.
+
+Der Agent soll ausgeben:
+- Screens und Navigation
+- Controls je Screen
+- Datenbindungen zu Dataverse
+- erste Power Fx Formeln
+- Offline-Verhalten
+- Stellen, an denen ein Copilot Panel sinnvoll ist
+- mindestens ein Mermaid-Diagramm für den App-Blueprint
+
+Nutze dieses Format als Ausgangspunkt:
+
+```text
+Du bist ein Power Apps App Builder Agent.
+
+Input:
+- App-Ziel: VisitTrack für Außendienstmitarbeiter
+- Datenquelle: Dataverse
+- Kernaufgaben: Besuch erfassen, Arzt anlegen, Besuche ansehen
+- KI-Funktionen: Visitenkarten-Scan, Chat, Zusammenfassung
+- Offline: Ja
+
+Output:
+1. Screens mit Zweck
+2. Controls mit Namen und Zweck
+3. Navigation zwischen Screens
+4. Power Fx Startformeln
+5. Vorschlag für Copilot-Integration
+6. Vorschlag für Offline-Fallback
+```
+
+---
+
+## Aufgabe 3: App-Skelett in Power Apps umsetzen (20 Minuten)
+
+Erstelle in Power Apps ein erstes Skelett der VisitTrack App:
+
+1. Screen `VisitListScreen` mit einer Gallery für Besuche
+2. Screen `VisitDetailScreen` mit Formular und Zusammenfassung
+3. Screen `NewPhysicianScreen` mit Visitenkarten-Upload
+4. Eine Navigationsleiste zwischen den Screens
+5. Ein leeres Copilot Panel als Platzhalter
+
+Nutze möglichst wenig manuelle Detailarbeit. Der Fokus liegt darauf, dass der App-Aufbau durch den agentischen Entwurf bereits vorstrukturiert ist.
+
+Stelle dein Ergebnis als Mermaid-Flowchart dar, bevor du die Screens in Power Apps anlegst.
+
+---
+
+## Aufgabe 4: Visitenkarten-Scanner bauen (15 Minuten)
 
 Baue in einer Canvas App einen Screen `NewPhysicianScreen`:
 
@@ -48,7 +102,7 @@ Set(cardData, {
 
 ---
 
-## Aufgabe 3: Copilot Chat Panel integrieren (20 Minuten)
+## Aufgabe 5: Copilot Chat Panel integrieren (15 Minuten)
 
 Füge zur VisitTrack-Hauptapp ein Copilot Chat Panel hinzu:
 
@@ -65,7 +119,7 @@ Teste folgende User Stories im Chat:
 
 ---
 
-## Aufgabe 4: Offline Graceful Degradation (10 Minuten)
+## Aufgabe 6: Offline Graceful Degradation (10 Minuten)
 
 Implementiere Offline-Handling für die KI-Features:
 
@@ -83,7 +137,7 @@ Baue eine `OfflineBanner`-Komponente:
 
 ---
 
-## Aufgabe 5: Architekturentscheidung dokumentieren (15 Minuten)
+## Aufgabe 7: Architekturentscheidung dokumentieren (15 Minuten)
 
 Dokumentiere deine Architekturentscheidungen für VisitTrack KI-Features in diesem Format:
 
@@ -106,7 +160,9 @@ Feature: Copilot Chat Panel
 
 ## Abgabe
 
+- Der Prompt für den App-Design-Agenten
+- Screenshot oder Export des App-Skeletts
 - Screenshot der Canvas App mit Visitenkarten-Scanner
 - Screenshot des Copilot Chat Panels
 - Power Fx-Code für Offline-Handling
-- Architektur-Dokumentation (Aufgabe 5)
+- Architektur-Dokumentation (Aufgabe 7)
